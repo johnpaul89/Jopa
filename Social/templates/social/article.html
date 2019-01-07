@@ -1,0 +1,150 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+  </head>
+  <body>
+
+
+    {% block content %}
+
+    <div class="container">
+      <br><br><br><br>
+
+      <h1 class="text-center">{{article.title}}</h1>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-8">
+            {% if article.article_image %}
+            <div class="row">
+              <img src="{{article.article_image.url}}"  class="img-responsive" alt="">
+            </div>
+            {% endif %}
+            <br>
+          </div>
+          <div class="col-sm-4">
+
+            {% if article.editor == request.user %}
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <a href="{% url 'edit_article' id=article.id %}">
+                        <button type="button" class="btn btn-outline-success">Edit</button>
+                      </a>
+                    </div>
+                    <div class="col-xs-6">
+                      <a href="{% url 'delete_article' id=article.id %}" id="delete">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          {% for topic in topics %}
+          <h3>{{topic.name}}</h3>
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <div class="row">
+
+
+
+
+      </div>
+
+      <div class="row">
+        {% autoescape on %}
+        {{article.post| safe}}
+       {% endautoescape %}
+
+      </div>
+      <div class="row">
+        <hr>
+        <br>
+        <p>Posted {{article.pub_date|timesince}} by <a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">{{article.editor.username}}</a></p>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <br><hr>
+
+          <div id="like-section">
+            {% include "social/like_section.html" %}
+          </div>
+
+          <br><hr>
+        </div>
+      </div>
+
+        <div class="row">
+          <br>
+          <hr>
+          <div class="main-comment-section">
+            {% include "social/comments.html" %}
+          <br>
+        </div>
+      </div>
+        </div>
+
+
+
+    {% endblock %}
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+     <script src="{% static 'js/navbar.js' %}"></script>
+     <script src="{% static 'js/base.js' %}"></script>
+     <script src="{% static 'js/article.js' %}"></script>
+     <script type="text/javascript">
+       $(document).ready(function(event){
+         $(document).on('click', '#like', function(event){
+           event.preventDefault();
+           var pk = $(this).attr('value');
+           $.ajax({
+             type: 'POST',
+             url: '{% url "like_post" %}',
+             data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+             dataType: 'json',
+             success: function(response){
+               $('#like-section').html(response['form'])
+               console.log($('#like-section').html(response['form']));
+             },
+             error: function(rs, e){
+               console.log(rs.responseText);
+             },
+           });
+         });
+       });
+
+     </script>
+
+    {% endblock %}
+
+  </body>
+</html>

@@ -1,0 +1,16 @@
+
+{% if user.is_authenticated %}
+<form action="{% url 'specs_like_post' %}" method="post">
+  {% csrf_token %}
+  {% if is_liked %}
+    <i type="submit" id="specslike" name="post_id" value="{{ specspost.id }}"  class="glyphicon glyphicon-like glyphicon-heart"></i>
+   <!-- <button type="submit" id="specslike" name="post_id" value="{{ specspost.id }}" class="btn btn-danger">Dislike</button> -->
+   {% else %}
+   <i type="submit" id="specslike" name="post_id" value="{{ specspost.id }}" class="glyphicon glyphicon-like glyphicon-heart-empty"></i>
+   <!-- <button type="submit" id="specslike" name="post_id" value="{{ specspost.id }}" class="btn btn-primary">Like</button> -->
+  {% endif %}
+</form>
+{% else %}
+<button type="button" class="btn btn-md btn-info" name="button">Please Sign In or Sign Up to Like or Dislike</button>
+{% endif %}
+<h4>{{ total_likes }} Like{{ total_likes|pluralize }}</h4>

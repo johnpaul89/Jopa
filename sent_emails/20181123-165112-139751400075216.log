@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: johnpaulgitata@gmail.com
+Date: Fri, 23 Nov 2018 16:51:12 -0000
+Message-ID: <154299187273.10460.10675208238221815530@john-Aspire-E5-573>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/51j-947ee5a882b090a4e7a8/
+
+Your username, in case you've forgotten: Jopa
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

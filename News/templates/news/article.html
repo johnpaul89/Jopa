@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="container">
+      <br><br><br><br>
+      <div class="container-fluid">
+        <div class="row">
+          <h2>{{article.title|safe}}</h2>
+          <a href={{article.articleUrl}} target="_blank">
+            <button type="button" class="btn btn-md btn-danger" name="button">Read from {{article.source|safe}}</button>
+          </a>
+          <img src="{{article.imageUrl}}" class="img-responsive" alt="{{article.title}}">
+          <p>{{article.article|safe}}</p>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+     <script src="{% static 'js/navbar.js' %}"></script>
+     <script src="{% static 'js/base.js' %}"></script>
+
+    {% endblock %}
+
+  </body>
+</html>

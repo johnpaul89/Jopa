@@ -1,0 +1,33 @@
+body{
+  background-color: #e9ebee;
+  /* #e9ebee; */
+}
+.img-flick{
+  height: 200px;
+  width: 150px;
+}
+h2{
+  text-align: center;
+}
+.panel-paragraph{
+  font-size: 16px;
+  color: black;
+}
+.panelstuff{
+  height: 300px;
+}
+.img-article{
+  height: 500px;
+}
+.glyphicon-like{
+  margin-top: 25px;
+  font-size: 36px;
+  color: darkred;
+}
+h5{
+  font-weight: bold;
+}
+h4{
+  color: darkred;
+  font-weight: bold;
+}

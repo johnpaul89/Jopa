@@ -1,0 +1,138 @@
+body{
+  background-color: #e9ebee;
+   /* #F3E6DE; */
+}
+h2{
+  text-align: center;
+}
+a{
+  color: black;
+}
+.vergecolor{
+  /* background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); */
+
+}
+.panelstuff{
+  height: 250px;
+  width: 175px;
+  border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
+  /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
+}
+.panelsearch{
+  height: 300px;
+}
+.glyphicon-like{
+  margin-top: 25px;
+  font-size: 36px;
+  color: darkred;
+}
+/* .specs-like-section{
+  margin-top: 25px;
+} */
+.fa{
+  font-size: 24px;
+  padding-left: 50px;
+}
+.fa-facebook{
+  color: darkblue;
+}
+.fa-instagram{
+  color: darkred;
+}
+.fa-twitter{
+  color: blue;
+}
+.fa-youtube{
+  color: red;
+}
+.btn-view-more{
+  margin-top: 25px;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+.carousel-cell {
+}
+.carousel-padding{
+  padding-left: 10px;
+}
+/* position dots up a bit */
+.flickity-page-dots {
+  bottom: -22px;
+}
+/* dots are lines */
+.flickity-page-dots .dot {
+  height: 4px;
+  width: 40px;
+  margin: 0;
+  border-radius: 0;
+  display: none;
+}
+.img-flick{
+  height: 200px;
+  width: 150px;
+}
+/* no circle */
+.flickity-button {
+  background: transparent;
+}
+/* big previous & next buttons */
+.flickity-prev-next-button {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+}
+/* icon color */
+.flickity-button-icon {
+  fill: white;
+}
+/* hide disabled button */
+.flickity-button:disabled {
+  display: none;
+}
+/* Style the tab */
+.tab {
+  background-color: #f68c2f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 24px;
+    transition: 0.3s;
+    font-size: 17px;
+
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #e9ebee;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #e9ebee;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    -webkit-animation: fadeEffect 3s;
+    animation: fadeEffect 3s;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

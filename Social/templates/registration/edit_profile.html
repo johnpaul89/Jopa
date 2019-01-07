@@ -1,0 +1,41 @@
+{% extends "django_registration/base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+{% load avatar_tags %}
+<div class="container">
+  <!-- <div class="col-sm-2"></div> -->
+  <br><br>
+
+  <!-- <div class="col-sm-2"> -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Edit Profile</h2>
+      </div>
+      <div class="panel-body">
+
+        <br>
+        <div class="row">
+          <div class="col-sm-4">
+            <a href="{% url 'avatar_add' %}"> <button type="button" class="btn btn-lg btn-info" name="button">Add a Profile image</button> </a>
+          </div>
+          <div style="margin-top: 10px;" class="col-sm-4">
+            <a href="{% url 'avatar_change' %}"> <button type="button" class="btn btn-lg btn-primary" name="button">Change your Profile image</button> </a>
+          </div>
+          <div style="margin-top: 10px;" class="col-sm-4">
+            <a href="{% url 'avatar_delete' %}"> <button type="button" class="btn btn-lg btn-primary" name="button">Delete your Profile image</button> </a>
+          </div>
+        </div>
+        <br>
+
+        <form method="post">
+          {% csrf_token %}
+          {{user_form.as_p}}
+          {{ profile_form.as_p }}
+          <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  <!-- </div> -->
+  <!-- <div class="col-sm-2"></div> -->
+</div>
+{% endblock %}

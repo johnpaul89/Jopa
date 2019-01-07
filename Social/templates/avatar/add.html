@@ -1,0 +1,36 @@
+{% extends "avatar/base.html" %}
+{% load i18n avatar_tags %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+  <div class="container-fluid">
+    <div class="row">
+      <br><br>
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 style="color: darkred; text-align: center;">{% trans "Your current avatar: " %}</h3>
+          </div>
+          <div class="panel-body">
+            <p style="margin-left: 100px;">{% avatar user %}</p>
+
+            {% if not avatars %}
+                <h4>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</h4>
+            {% endif %}
+            <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+                {{ upload_avatar_form.as_p }}
+                <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}

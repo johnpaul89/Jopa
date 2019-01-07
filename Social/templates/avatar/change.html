@@ -1,0 +1,40 @@
+{% extends "avatar/base.html" %}
+{% load i18n avatar_tags %}
+
+{% block content %}
+<div class="container">
+  <div class="container-fluid">
+    <div class="row">
+      <br><br>
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h2 style="color: darkred; text-align: center;">{% trans "Your current Profile Image: " %}</h2>
+          </div>
+          <div class="panel-body">
+            <p style="margin-left: 100px;">{% avatar user %}</p>
+            {% if not avatars %}
+                <h4>{% trans "You haven't uploaded a Profile image yet. Please upload one now." %}</h4>
+            {% else %}
+            <br>
+            <form method="POST" action="{% url 'avatar_change' %}">
+                <ul>
+                    {{ primary_avatar_form.as_ul }}
+                </ul>
+                <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
+            </form>
+            <br>
+        {% endif %}
+        <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+            {{ upload_avatar_form.as_p }}
+            <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Profile Image" %}" /></p>
+        </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

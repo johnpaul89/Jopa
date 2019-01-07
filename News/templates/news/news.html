@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="container-fluid">
+      <br><br><br><br>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            {% for news in news_articles %}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a href="{% url 'read_news_article' id=news.id %}">
+                <h5>Source:{{news.source|safe}}</h5>
+                <h4>{{news.title|safe}}</h4></a>
+              </div>
+              <div class="panel-body">
+                <img src="{{news.imageUrl}}" class="img-responsive" alt="{{news.title|safe}}">
+                <p>{{news.article|truncatechars:100|safe}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+     <script src="{% static 'js/navbar.js' %}"></script>
+     <script src="{% static 'js/base.js' %}"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
+
+  </body>
+</html>

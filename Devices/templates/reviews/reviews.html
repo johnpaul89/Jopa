@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    {% if title %}
+    <title>Mobile Reviews</title>
+    {{else}}
+    <title>Reviews</title>
+    {% endif %}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+    {% endblock %}
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <h2> Reviews</h2>
+        <div class="row infinite-container">
+
+          {% for number in review_pages %}
+          <div class="infinite-item">
+            <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+              <a href="{% url 'review_article' pk=number.pk %}">
+              <div class="panel panelstuff panel-default">
+                <div class="panel-body">
+
+                  <img src="{{number.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{number.title|safe}}">
+                </div>
+                <div class="panel-footer">
+                  <p class="panel-paragraph">{{number.title|safe}}</p>
+                </div>
+              </div></a>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <div class="loading" >
+        Loading...
+      </div>
+
+      {% if review_pages.has_next %}
+      <a class="infinite-more-link" href="?page={{ review_pages.next_page_number }}">More</a>
+      {% endif %}
+
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/infinite.min.js' %}"></script>
+    <script>
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function ($items) {
+        $('.loading').hide();
+      }
+    });
+  </script>
+    {% bootstrap_javascript %}
+
+    {% endblock %}
+
+  </body>
+</html>

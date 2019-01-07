@@ -1,0 +1,42 @@
+{% load bootstrap3 %}
+{% load static %}
+{% load staticfiles %}
+{% load avatar_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    {% if title %}
+    <title>Home</title>
+    {% else %}
+    <title>Home</title>
+    {% endif %}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+    {% include "index/navbar.html" %}
+
+  </head>
+  <body>
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+     <script src="{% static 'js/navbar.js' %}"></script>
+     <script src="{% static 'js/base.js' %}"></script>
+     <script src="{% static 'js/search_ajax.js' %}"></script>
+
+    {% endblock %}
+
+  </body>
+</html>

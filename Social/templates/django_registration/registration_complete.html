@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% block content %}
+<br><br><br>
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h1 class="text-center">Registration Successful</h1>
+    </div>
+    <div class=" text-center panel-body">
+
+      <h4>Congratulations you created your account.</h4>
+      <br>
+      <a href="{% url 'social' %}">
+      <button type="button" class="btn btn-lg btn-success" name="button">Home</button></a>
+      <br><br>
+      <h4>Enjoy the Best of cutting edge reviews, Discussions, News and enjoy many more features.</h4>
+      <br>
+      <br>
+    </div>
+    <div class="panel-footer panel-info">
+      <h3 class="text-center"> Congratulations </h3>
+    </div>
+  </div>
+{% endblock %}

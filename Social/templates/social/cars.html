@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load avatar_tags %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cars.css' %}">
+    {% endblock %}
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="container">
+      <br><br><br><br>
+      <div class="container-fluid">
+        <div class="row">
+          {% for article in articles %}
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
+                      <h3 class="panelsuccesscolor">{{article.title}}</h3>
+                    </a>
+                  </div>
+                  <div class="col-sm-4">
+                    <!-- <h4>{{comments.count}}</h4> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-8">
+                    <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
+                      <p style="color:black;">{{article.post|truncatechars:100|safe}}</p>
+                    </a>
+                  </div>
+                  <div class="col-xs-2">
+                    <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                      <p>Posted {{article.pub_date|timesince}} ago by </p>
+                    </a>
+                  </div>
+                  <div class="col-xs-2">
+                    <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}"> {% avatar article.editor.username 60 class="img-circle img-responsive" id="user_avatar" %}</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+     {% bootstrap_javascript %}
+     <script src="{% static 'js/navbar.js' %}"></script>
+     <script src="{% static 'js/base.js' %}"></script>
+
+    {% endblock %}
+
+  </body>
+</html>

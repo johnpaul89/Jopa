@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load avatar_tags %}
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social.css' %}">
+    {% endblock %}
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="container">
+      <br><br><br><br>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h2>General</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-info ">
+              <div class="panel-heading ">
+                <h4>General Discussion</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-info ">
+              <div class="panel-heading ">
+                <h4>Tech News</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-info ">
+              <div class="panel-heading ">
+                <h4>Tech Tips</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-info ">
+              <div class="panel-heading ">
+                <h4>Off Topic</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+          <br>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h2>Consumer Electronics</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+      <div class="row">
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-success ">
+              <div class="panel-heading ">
+                <h4>SmartPhones and Tablets</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-success ">
+              <div class="panel-heading ">
+                <h4>Laptops</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-success ">
+              <div class="panel-heading ">
+                <h4>Photography and Videography</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff panel-success ">
+              <div class="panel-heading ">
+                <h4>Televisions</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff panel-success ">
+              <div class="panel-heading ">
+                <h4>Sound System</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+              <div class="panel panelstuff panel-success">
+                <div class="panel-heading">
+                  <a class="panelsuccesscolor" href="{% url 'carsforum' %}">
+                    <h4>Cars</h4>
+                    <h5>{{car_articles.count}} Post{{car_articles|pluralize}}</h5>
+                  </a>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                  {% for article in latest_car_articles %}
+                  <p>Posted {{article.pub_date|timesince}} ago by
+                     <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                       {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                     </a>
+                   </p>
+                  {% endfor %}
+                </div>
+              </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff  panel-success ">
+              <div class="panel-heading ">
+                <h4>SmartPhones and Tablets</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff panel-success ">
+              <div class="panel-heading ">
+                <h4>Laptops</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff panel-success ">
+              <div class="panel-heading ">
+                <h4>Photography and Videography</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+      </div>
+          <br>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h2>Software</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff panel-danger ">
+              <div class="panel-heading ">
+                <h4>Programmes</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff panel-danger ">
+              <div class="panel-heading ">
+                <h4>Apps and Websites</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panelstuff panel-danger ">
+              <div class="panel-heading ">
+                <h4>Operating Systems</h4>
+              </div>
+              <div class="panel-body">
+                <img class="panel-image" src="" alt="">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    {% bootstrap_javascript %}
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    {% endblock %}
+
+  </body>
+</html>

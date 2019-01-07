@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="container">
+      <br><br><br>
+      <div class="container-fluid">
+        <div class="row">
+          <h2>{{specsarticle.title}}</h2>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-7">
+                  <img src="{{specsarticle.specs_image.url}}" class="img-article img-responsive img-rounded" alt="{{specsarticle.specs_article.title|safe}}">
+                </div>
+                <div class="col-sm-5">
+                  <div id="specs-like-section">
+                    {% include "specs/specs_like_section.html" %}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="specsarticle">
+              <h3>{{specsarticle.title}}</h3>
+            </div>
+
+            <div class="main-specs-comment-section">
+              {% include "specs/specs_comments.html" %}
+            <br>
+          </div>
+
+          </div>
+          <div class="col-sm-4">
+            <h3>Similar Devices</h3>
+            <div class="infinite-container">
+              {% for specs in specs_article_pages %}
+              <div class="col-xs-6">
+                <div class="infinite-item">
+                  <a href="{% url 'specs_article' pk=specs.pk %}">
+                  <div class="panel panelstuff panel-default">
+                    <div class="panel-body">
+                      <img src="{{specs.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{specs.title|safe}}">
+                    </div>
+                    <div class="panel-footer">
+                      <p class="panel-paragraph">{{specs.title|safe}}</p>
+                    </div>
+                  </div></a>
+                </div>
+              </div>
+
+              {% endfor %}
+            </div>
+
+          </div>
+
+          <div class="loading" >
+            Loading...
+          </div>
+
+          {% if specs_article_pages.has_next %}
+          <a class="infinite-more-link" href="?page={{ specs_article_pages.next_page_number }}">More</a>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+     <script src="{% static 'js/navbar.js' %}"></script>
+     <script src="{% static 'js/base.js' %}"></script>
+     <script src="{% static 'js/specs_article.js' %}"></script>
+     <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+     <script src="{% static 'js/infinite.min.js' %}"></script>
+     <script>
+     var infinite = new Waypoint.Infinite({
+       element: $('.infinite-container')[0],
+       onBeforePageLoad: function () {
+         $('.loading').show();
+       },
+       onAfterPageLoad: function ($items) {
+         $('.loading').hide();
+       }
+     });
+   </script>
+   {% bootstrap_javascript %}
+     <script type="text/javascript">
+
+       $(document).ready(function(event){
+         $(document).on('click', '#specslike', function(event){
+           event.preventDefault();
+           var pk = $(this).attr('value');
+           $.ajax({
+             type: 'POST',
+             url: '{% url "specs_like_post" %}',
+             data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+             dataType: 'json',
+             success: function(response){
+               $('#specs-like-section').html(response['form'])
+               console.log($('#specs-like-section').html(response['form']));
+             },
+             error: function(rs, e){
+               console.log(rs.responseText);
+             },
+           });
+         });
+       });
+
+     </script>
+
+    {% endblock %}
+
+  </body>
+</html>

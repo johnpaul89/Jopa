@@ -1,0 +1,43 @@
+<div class="container mt-2">
+  <div class="form-group row">
+    <form method="post" class="review-comment-form" action="{% url 'review_article' pk=reviewarticle.pk %}">
+      {% csrf_token %}
+      {{review_comment_form.as_p}}
+      {% if request.user.is_authenticated %}
+      <input type="submit" value="Submit" class="btn btn-outline-success">
+      {% else %}
+      <button type="button" class="btn btn-danger" name="button">Please Sign up or Sign In</button>
+      {% endif %}
+    </form>
+  </div>
+</div>
+<div class="container-fluid">
+  <h4>{{reviewcomments.count}} Comment{{reviewcomments.count|pluralize}}</h4>
+{% for comment in reviewcomments %}
+<blockquote class="blockquote">
+  <p class="mb-0" id="comment">{{comment.review_content}}</p>
+  <footer class="blockquote-footer">by <cite title="Source Title">{{comment.review_user|capfirst }}</cite>
+    <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button>
+    <h5>{{comment.reviewreplies.count}} Reply{{comment.reviewreplies.count|pluralize}}</h5>
+  </footer>
+</blockquote>
+
+<div class="replied-comments container mt-2" style="display:none;">
+  {% for reply in comment.reviewreplies.all %}
+  <blockquote class="blockquote">
+    <p class="mb-0" id="comment"><small>{{reply.review_content}}</small></p>
+    <footer class="blockquote-footer"><small>by <cite title="Source Title">{{reply.review_user|capfirst }}</cite></small></footer>
+  </blockquote>
+  {% endfor %}
+  <div class="form-group row">
+    <form method="post" class="review-reply-form" action="{% url 'review_article' pk=reviewarticle.pk %}">
+      {% csrf_token %}
+      <input type="hidden" name="comment_id" value="{{ comment.id }}">
+      {{review_comment_form.as_p}}
+      <input type="submit" value="Submit" class="btn btn-outline-success">
+    </form>
+  </div>
+</div>
+
+{% endfor %}
+</div>

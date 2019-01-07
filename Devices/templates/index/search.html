@@ -1,0 +1,109 @@
+{%extends 'base.html'%}
+{% block content %}
+  <br><br><br><br>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'Reviews')">Reviews</button>
+          <button class="tablinks" onclick="openCity(event, 'Specs')">Specs</button>
+          <button class="tablinks" onclick="openCity(event, 'Forums')">Forums</button>
+          <button class="tablinks " onclick="openCity(event, 'News')">News</button>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <div id="Reviews" class="tabcontent">
+          {% if reviews_articles%}
+            <h2>Found {{ reviews_articles|length }} of searched term <strong>{{message_reviews}}</strong> in reviews</h2>
+          {% else %}
+            <h2> Found 0 articles for the search term <strong>{{message_reviews}}</strong> in reviews</h2>
+          {% endif %}
+          {% for article in reviews_articles %}
+          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <a href="{% url 'review_article' pk=article.pk %}">
+            <div class="panel panelsearch panel-default">
+              <div class="panel-body">
+
+                <img src="{{article.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
+              </div>
+              <div class="panel-footer">
+                <p class="panel-paragraph">{{article.title|safe}}</p>
+              </div>
+            </div></a>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div id="Specs" class="tabcontent">
+          {% if specs_articles%}
+            <h2>Found {{ specs_articles|length }} of searched term <strong>{{message_specs}}</strong> in specs</h2>
+          {% else %}
+            <h2> Found 0 articles for the search term <strong>{{message_specs}}</strong> in specs</h2>
+          {% endif %}
+          {% for article in specs_articles %}
+          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <a href="{% url 'specs_article' pk=article.pk %}">
+            <div class="panel panelsearch panel-default">
+              <div class="panel-body">
+
+                <img src="{{article.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
+              </div>
+              <div class="panel-footer">
+                <p class="panel-paragraph">{{article.title|safe}}</p>
+              </div>
+            </div></a>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div id="Forums" class="tabcontent">
+          {% if forums_articles%}
+            <h2>Found {{ forums_articles|length }} of searched term <strong>{{message_forums}}</strong> in forums</h2>
+          {% else %}
+            <h2> Found 0 articles for the search term <strong>{{message_forums}}</strong> in forums</h2>
+          {% endif %}
+          {% for article in forums_articles %}
+          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <a href="{% url 'readarticle' pk=article.pk %}">
+            <div class="panel panelsearch panel-default">
+              <div class="panel-body">
+                {% if article.article_image %}
+                  <img src="{{article.article_image.url}}"  class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
+                {% endif %}
+              </div>
+              <div class="panel-footer">
+                <p class="panel-paragraph">{{article.title|safe}}</p>
+              </div>
+            </div></a>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div id="News" class="tabcontent">
+          {% if news_articles%}
+            <h2>Found {{ news_articles|length }} of searched term <strong>{{message_news}}</strong> in news</h2>
+          {% else %}
+            <h2> Found 0 articles for the search term <strong>{{message_news}}</strong> in news</h2>
+          {% endif %}
+          {% for article in news_articles %}
+          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <a href="{% url 'read_news_article' id=article.id %}">
+            <div class="panel panelsearch panel-default">
+              <div class="panel-body">
+                  <img src="{{article.imageUrl}}"  class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
+
+              </div>
+              <div class="panel-footer">
+                <p class="panel-paragraph">{{article.title|safe}}</p>
+              </div>
+            </div></a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

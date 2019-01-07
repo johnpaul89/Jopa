@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3">
+        <h3 class="dropdown-item">Reviews</h3>
+        <h4 class="dropdown-item">{{ajax_search_reviews_all.count}} Reviews</h4>
+        {% if ajax_search_reviews %}
+
+        {% for article in ajax_search_reviews %}
+          <li class="dropdown-item"> {{article.title}} </li>
+        {% endfor %}
+        {% else %}
+        <li>None to show</li>
+        {% endif %}
+      </div>
+      <div class="col-sm-3">
+        <h3>Specs</h3>
+        <h4>{{ajax_search_specs_all.count}} Specs</h4>
+        {% if ajax_search_specs %}
+
+        {% for article in ajax_search_specs %}
+          <li> {{article.title}} </li>
+        {% endfor %}
+        {% else %}
+        <li>None to show</li>
+        {% endif %}
+      </div>
+      <div class="col-sm-3">
+        <h3>Forums</h3>
+        <h4>{{ajax_search_forums_all.count}} Forums</h4>
+        {% if ajax_search_forums  %}
+
+        {% for article in ajax_search_forums %}
+          <li> {{article.title}} </li>
+        {% endfor %}
+        {% else %}
+        <li>None to show</li>
+        {% endif %}
+
+      </div>
+      <div class="col-sm-3">
+        <h3>News</h3>
+        <h4>{{ajax_search_news_all.count}} News</h4>
+        {% if ajax_search_news.count  %}
+
+        {% for article in ajax_search_news %}
+          <li> {{article.title}} </li>
+        {% endfor %}
+        {% else %}
+        <li>None to show</li>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

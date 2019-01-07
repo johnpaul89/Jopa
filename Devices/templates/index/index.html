@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% block title %}
+    {% if title %}
+    <title>Home Page</title>
+    {{else}}
+    <title>Home</title>
+    {% endif %}
+    {% endblock %}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/flickity.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+  </head>
+  <body>
+
+    {% block content %}
+    <div class="container-fluid">
+      <br><br><br>
+
+      <!-- Social media -->
+      <div class="container-fluid">
+        <div class="row">
+          <br>
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-instagram"></a>
+          <a href="#" class="fa fa-youtube"></a>
+        </div>
+      </div>
+      <!-- Social media end -->
+
+      <!-- Reviews -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-7">
+              <a href="/reviews/">
+            <h2>Phone Reviews</h2></a>
+          </div>
+          <div class="col-xs-5">
+            <a href="/reviews/">
+            <p class="btn-view-more">More Reviews ></p></a>
+          </div>
+        </div>
+
+        <div class="row vergecolor">
+          <div class="main-carousel " data-flickity='{ "cellAlign": "left", "contain": true }'>
+            {% for review in reviews %}
+            <div class="carousel-padding">
+              <a href="{% url 'review_article' pk=review.pk %}">
+                <div class="panel vergecolor panelstuff panel-default">
+                  <div class="panel-body">
+                    <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
+                  </div>
+                  <div class="panel-footer">
+                    <p>{{review.title|safe}}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- Review end -->
+
+      <!-- Forums -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-7">
+            <a href="/social/">
+            <h2>Trending Forums</h2></a>
+          </div>
+          <div class="col-xs-5">
+            <a href="/social/">
+            <p class="btn-view-more">More Forums ></p></a>
+          </div>
+        </div>
+        <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+
+            <div class="carousel-padding ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech News</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding  ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech Tips</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding  ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Off Topic</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding  ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech News</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding  ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech Tips</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Off Topic</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding  ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech News</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech Tips</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Off Topic</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding  ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech Tips</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Off Topic</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding  ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech News</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Tech Tips</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-padding ">
+              <div class="panel panelstuff  panel-info ">
+                <div class="panel-heading ">
+                  <h4>Off Topic</h4>
+                </div>
+                <div class="panel-body">
+                  <img class="panel-image" src="" alt="">
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+      <!-- Forums end -->
+
+      <!-- Specs -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="row">
+            <div class="col-xs-8">
+              <a href="/specs/">
+              <h2>Phone Specs</h2></a>
+            </div>
+            <div class="col-xs-4">
+              <a href="/specs/">
+              <p class="btn-view-more">More Specs ></p></a>
+            </div>
+          </div>
+
+          <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+            {% for spec in specs %}
+            <div class="carousel-padding carousel-cell">
+              <a href="{% url 'specs_article' pk=spec.pk %}">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <img src="{{spec.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{spec.title|safe}}">
+                </div>
+                <div class="panel-footer">
+                  <h5>{{spec.title}}</h5>
+                </div>
+              </div></a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- Specs end -->
+
+      <!-- News -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="row">
+            <div class="col-xs-8">
+              <a href="/news/">
+              <h2>News</h2></a>
+            </div>
+            <div class="col-xs-4">
+              <a href="/news/">
+              <p class="btn-view-more">More News ></p></a>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            {% for news in news_articles %}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a href="{% url 'read_news_article' id=news.id %}">
+                <h5>Source:{{news.source|safe}}</h5>
+                <h2 style="color: black;">{{news.title|safe}}</h2></a>
+              </div>
+              <div class="panel-body">
+                      <img src="{{news.imageUrl}}" class="img-responsive" alt="{{news.title|safe}}">
+
+                <p>{{news.article|truncatechars:100|safe}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- News end -->
+    </div>
+
+
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/search_ajax.js' %}"></script>
+    {% bootstrap_javascript %}
+
+
+    {% endblock %}
+
+  </body>
+</html>
