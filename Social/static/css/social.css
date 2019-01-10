@@ -1,16 +1,25 @@
 body{
-  background-color: #001B1D;
+  background-color: #e9ebee;
 }
+/* #f3e6de; */
 h2{
   text-align: center;
-  font-weight: bold;
+  font-weight: bolder;
+}
+p{
+  color: black;
 }
 h4{
   text-align: center;
   font-weight: bolder;
+  color: black;
+}
+.panel-image{
+  height: 180px;
+  width: 150px;
 }
 .panelstuff{
-  height: 200px;
+  height: 300px;
 }
 .panelsuccesscolor{
   color: #3c763d;
@@ -18,4 +27,13 @@ h4{
 h5{
   text-align: right;
   color: darkred;
+}
+.row-b{
+  background-color: #bce8f1;
+}
+.row-d{
+  background-color: #d6e9c6;
+}
+.row-f{
+  background-color: #ebccd1;
 }

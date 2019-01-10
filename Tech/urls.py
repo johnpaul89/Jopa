@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^accounts/logout', views.logout_view, name='logout'),
     url('avatar/', include('avatar.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^auth/', include('social_django.urls', namespace='socialauth')),
 
 ]
 

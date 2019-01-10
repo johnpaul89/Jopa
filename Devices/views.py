@@ -12,17 +12,17 @@ from django.db.models import Q
 
 # Create your views here.
 def devices(request, pk=None):
-    specs = PhoneSpecs.objects.filter()
-    reviews = PhoneReview.objects.filter()
+    specs = PhoneSpecs.objects.filter().order_by('-id')[:10]
+    reviews = PhoneReview.objects.filter().order_by('-id')[:10]
     news_articles = NewsArticle.objects.filter()
 
     return render(request, 'index/index.html', {"specs": specs, "reviews": reviews, "news_articles": news_articles})
 
 def phone_specs(request):
-    specifications = PhoneSpecs.objects.all()
+    specifications = PhoneSpecs.objects.all().order_by('-id')[:400]
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(specifications, 2)
+    paginator = Paginator(specifications, 10)
     try:
         specs_pages = paginator.page(page)
     except PageNotAnInteger:
@@ -33,10 +33,10 @@ def phone_specs(request):
     return render(request, 'specs/specs.html', {"specifications": specifications, "specs_pages": specs_pages})
 
 def phone_reviews(request):
-    reviews = PhoneReview.objects.filter()
+    reviews = PhoneReview.objects.filter().order_by('-id')[:400]
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(reviews, 2)
+    paginator = Paginator(reviews, 10)
     try:
         review_pages = paginator.page(page)
     except PageNotAnInteger:
@@ -53,7 +53,7 @@ def review_article(request, pk):
     reviewcomments = ReviewComment.objects.filter(review_post=reviewpost, review_reply=None).order_by('-id')
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(reviews, 2)
+    paginator = Paginator(reviews, 8)
     try:
         review_article_pages = paginator.page(page)
     except PageNotAnInteger:

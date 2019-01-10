@@ -49,6 +49,67 @@ class Article(models.Model):
         return articles
 
     @classmethod
+    def apps_websites_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Apps_and_Website').order_by('-id')
+        return articles
+
+    @classmethod
+    def general_discussion_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='General_Discussion').order_by('-id')
+        return articles
+
+    @classmethod
+    def laptops_forum_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Laptops').order_by('-id')
+        return articles
+
+    @classmethod
+    def off_topic_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Off_Topic').order_by('-id')
+        return articles
+
+    @classmethod
+    def operating_systems_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Operating_Systems').order_by('-id')
+        return articles
+
+    @classmethod
+    def programmes_forum_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Programmes').order_by('-id')
+        return articles
+
+    @classmethod
+    def smartphones_tablets_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='SmartPhones_Tablets').order_by('-id')
+        return articles
+
+    @classmethod
+    def sound_system_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Sound_System').order_by('-id')
+        return articles
+
+    @classmethod
+    def photography_videography_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Photography_Videography').order_by('-id')
+        return articles
+
+    @classmethod
+    def tech_news_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Tech_News').order_by('-id')
+        return articles
+
+    @classmethod
+    def tech_tips_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Tech-_Tips').order_by('-id')
+        return articles
+
+    @classmethod
+    def televisions_forum_articles(cls):
+        articles = cls.objects.filter(tags__name__startswith='Televisions').order_by('-id')
+        return articles
+
+
+    @classmethod
     def search_by_title(cls,search_term):
         forums_search = cls.objects.filter(title__icontains=search_term)
         return forums_search

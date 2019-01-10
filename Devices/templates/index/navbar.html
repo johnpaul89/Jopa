@@ -39,10 +39,10 @@
 
                    </form></li>
 
-                     <li > <a style="color: white;" href="/reviews/">Reviews</a> </li>
-                     <li> <a style="color: white;" href="/specs/">Tech Specs </a> </li>
-                     <li> <a style="color: white;" href="/social/">Forums</a> </li>
-                     <li> <a style="color: white;" href="/news/">News</a> </li>
+                     <li > <a style="color: white; font-weight: bold;" href="/reviews/">Reviews</a> </li>
+                     <li> <a style="color: white; font-weight: bold;"  href="/specs/">Tech Specs </a> </li>
+                     <li> <a style="color: white; font-weight: bold;" href="/social/">Forums</a> </li>
+                     <li> <a style="color: white; font-weight: bold;" href="/news/">News</a> </li>
                    </ul>
                {% if  user.is_authenticated %}
                <ul class=" navbar-right">
@@ -53,23 +53,27 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="{% url 'accountsprofile'  %}">Profile</a>
+                    <a style="color: darkred;" href="{% url 'accountsprofile'  %}">Profile</a>
                   </li>
                   <hr>
                   <li>
-                    <a href="{% url 'changepassword' %}">Change Password</a>
+                    <a style="color: darkred;" href="{% url 'changepassword' %}">Change Password</a>
                   </li>
                   <hr>
                   <li>
-                    <a href="{% url 'logout' %}">Logout</a>
+                    <a style="color: darkred;" href="{% url 'logout' %}">Logout</a>
                   </li>
                 </ul>
               </li>
             </ul>
             {% else %}
             <li class="nav navbar-nav navbar-right">
-              <a class='btn btn-default' href="/accounts/login">Login</a>
+              <a class='btn btn-default' href="/accounts/register">Sign Up</a>
             </li>
+              <li class="nav navbar-nav navbar-right">
+                <a class='btn btn-default' href="/accounts/login/?next=/accounts/login">Login</a>
+              </li>
+
             {% endif %}
 
              </div>

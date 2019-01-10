@@ -8,6 +8,11 @@ h2{
 a{
   color: black;
 }
+a:hover {
+  background-color: black;
+  color: black;
+  text-decoration: none;
+}
 .vergecolor{
   /* background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); */
 
@@ -16,6 +21,7 @@ a{
   height: 263px;
   width: 175px;
   border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
+  margin-left: -8px;
   /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
 }
 .panelsearch{
@@ -80,11 +86,12 @@ a{
 .flickity-prev-next-button {
   width: 30px;
   height: 30px;
-  background-color: black;
+  background-color: white;
+  color: white;
 }
 /* icon color */
 .flickity-button-icon {
-  fill: white;
+  fill: darkred;
 }
 /* hide disabled button */
 .flickity-button:disabled {

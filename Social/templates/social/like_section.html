@@ -3,11 +3,11 @@
 <form action="{% url 'like_post' %}" method="post">
   {% csrf_token %}
   {% if is_liked %}
-   <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-danger">Dislike</button>
+    <i type="submit" id="like" name="post_id" value="{{ post.id }}"  class="glyphicon glyphicon-like glyphicon-heart"></i>
    {% else %}
-   <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
+   <i type="submit" id="like" name="post_id" value="{{ post.id }}" class="glyphicon glyphicon-like glyphicon-heart-empty"></i>
   {% endif %}
 </form>
 {% else %}
-<button type="button" class="btn btn-md btn-info" name="button">Please Sign In or Sign Up to Like or Dislike</button>
+<button type="button" class="btn  btn-md btn-info" name="button">Please Sign In or Sign Up to Like or Dislike</button>
 {% endif %}

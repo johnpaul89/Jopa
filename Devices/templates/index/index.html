@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     {% block title %}
     {% if title %}
     <title>Home Page</title>
@@ -58,7 +61,7 @@
             {% for review in reviews %}
             <div class="carousel-padding">
               <a href="{% url 'review_article' pk=review.pk %}">
-                <div class="panel vergecolor panelstuff panel-default">
+                <div  class="panel vergecolor panelstuff panel-default">
                   <div class="panel-body">
                     <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
                   </div>
@@ -89,157 +92,172 @@
         <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
 
             <div class="carousel-padding ">
+              <a class="panelsuccesscolor" href="{% url 'technews' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
                   <h4>Tech News</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Talk about latest and trending tech news in the community</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding  ">
+              <a class="panelsuccesscolor" href="{% url 'techtips' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
                   <h4>Tech Tips</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Share your technology tips with others in the community.</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding  ">
+              <a class="panelsuccesscolor" href="{% url 'offtopic' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
                   <h4>Off Topic</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Any topic which is not technology related goes here e.g welcoming a new member.</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding  ">
+              <a class="panelsuccesscolor" href="{% url 'generaldiscussion' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Tech News</h4>
+                  <h4>General Discussion</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Talk about general tech topics which might not be icluded in the other forums</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding  ">
+              <a class="panelsuccesscolor" href="{% url 'smartphonestablets' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Tech Tips</h4>
+                  <h4>SmartPhones and Tablets</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Contribute to topics about SmartPhones and tablets</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding ">
+              <a class="panelsuccesscolor" href="{% url 'laptopsforum' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Off Topic</h4>
+                  <h4>Laptops</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Contribute to topics about laptops</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding  ">
+              <a class="panelsuccesscolor" href="{% url 'photographyvideography' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Tech News</h4>
+                  <h4>Photography and Videography</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Contribute to topics about photographs and videos</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding ">
+              <a class="panelsuccesscolor" href="{% url 'televisionsforum' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Tech Tips</h4>
+                  <h4>Televisions</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Talk about Televisions and discuss with the communities</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding ">
+              <a class="panelsuccesscolor" href="{% url 'soundsystem' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Off Topic</h4>
+                  <h4>Sound System</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Contribute and talk on topics about sound systems with the community</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding  ">
+              <a class="panelsuccesscolor" href="{% url 'carsforum' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Tech Tips</h4>
+                  <h4>Cars</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Contribute and talk about Cars with the community</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding ">
+              <a class="panelsuccesscolor" href="{% url 'programmesforum' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Off Topic</h4>
+                  <h4>Programmes</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Discuss about topics of programmes with the community</p>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding  ">
+              <a class="panelsuccesscolor" href="{% url 'appswebsites' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Tech News</h4>
+                  <h4>Apps and Websites</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                  <p>Discuss about various applications and websites with the community</p><br>
                 </div>
               </div>
+            </a>
             </div>
 
             <div class="carousel-padding ">
+              <a class="panelsuccesscolor" href="{% url 'operatingsystems' %}">
               <div class="panel panelstuff  panel-info ">
                 <div class="panel-heading ">
-                  <h4>Tech Tips</h4>
+                  <h4>Operating Systems</h4>
                 </div>
                 <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
+                <p>Discuss abot topics on Operating Systems with the communiity.</p>
                 </div>
               </div>
-            </div>
-
-            <div class="carousel-padding ">
-              <div class="panel panelstuff  panel-info ">
-                <div class="panel-heading ">
-                  <h4>Off Topic</h4>
-                </div>
-                <div class="panel-body">
-                  <img class="panel-image" src="" alt="">
-                </div>
-              </div>
+            </a>
             </div>
 
           </div>
@@ -264,7 +282,7 @@
             {% for spec in specs %}
             <div class="carousel-padding carousel-cell">
               <a href="{% url 'specs_article' pk=spec.pk %}">
-              <div class="panel panel-default">
+              <div  class="panel panelstuff panel-default">
                 <div class="panel-body">
                   <img src="{{spec.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{spec.title|safe}}">
                 </div>

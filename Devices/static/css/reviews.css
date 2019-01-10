@@ -15,6 +15,8 @@ h2{
 }
 .panelstuff{
   height: 300px;
+  margin-left: -17px;
+  margin-right: -10px;
 }
 .img-article{
   height: 500px;

@@ -45,7 +45,7 @@ class EditArticleForm(forms.ModelForm):
     tags = forms.RadioSelect()
     class Meta:
         model = Article
-        exclude = ['editor', 'pub_date', 'likes']
+        exclude = ['editor', 'pub_date', 'likes', 'article_image']
 
 
 class CommentForm(forms.ModelForm):

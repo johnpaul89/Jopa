@@ -15,6 +15,22 @@
           <h3 class="text-center">Sign Up</h3>
         </div>
         <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <a href="{% url 'socialauth:begin' 'google-oauth2' %}">
+              <button type="button" class="btn btn-md btn-danger" name="button"> Sign Up with Google</button></a> <br>
+            </div>
+            <div class="col-xs-6">
+              <a href="{% url 'socialauth:begin' 'facebook' %}">
+              <button type="button" class="btn btn-md btn-primary" name="button">Sign Up with Facebook</button>
+            </a>
+            </div>
+          </div>
+
+          <br>
+          <p><strong>-- OR --</strong> Create an account</p>
+          <br>
+
           <form action="/accounts/register/" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}

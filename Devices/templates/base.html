@@ -7,11 +7,13 @@
   <head>
     <meta charset="utf-8">
 
+    {% block title %}
     {% if title %}
-    <title>Home</title>
-    {% else %}
+    <title>Home Page</title>
+    {{else}}
     <title>Home</title>
     {% endif %}
+    {% endblock %}
 
     {% block styles %}
     {% bootstrap_css %}

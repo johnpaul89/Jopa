@@ -26,21 +26,14 @@ def social(request):
 
     return render(request, 'social/social.html', {"users": users, "car_articles": car_articles, "latest_car_articles": latest_car_articles})
 
-def cars_forum(request):
-    articles = Article.car_articles()
-    users = User.objects.all()
-    comments = Comment.objects.all()
-
-    return render(request, 'social/cars.html', {"articles": articles, "comments": comments, "users": users})
-
 @login_required
 def login_view(request):
-    return redirect('social')
+    return redirect('devices')
 
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect('social')
+    return redirect('devices')
 
 @login_required
 def super_profile(request):
@@ -105,7 +98,7 @@ def edit_article(request, id):
     if article.editor != request.user:
         raise Http404()
     if request.method == "POST":
-        form = EditArticleForm(request.POST or None, instance=article)
+        form = EditArticleForm(request.POST or None, request.FILES, instance=article)
         if form.is_valid():
             form.save()
             return redirect('readarticle', pk=article.pk)
@@ -190,7 +183,96 @@ def change_password(request):
 
 
 
+def cars_forum(request):
+    articles = Article.car_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
 
+    return render(request, 'social/cars.html', {"articles": articles, "comments": comments, "users": users})
+
+def apps_websites(request):
+    articles = Article.apps_websites_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/apps_and_websites.html', {"articles": articles, "comments": comments, "users": users})
+
+def general_discussion(request):
+    articles = Article.general_discussion_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/general_discussion.html', {"articles": articles, "comments": comments, "users": users})
+
+def laptops_forum(request):
+    articles = Article.laptops_forum_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/laptops.html', {"articles": articles, "comments": comments, "users": users})
+
+def off_topic(request):
+    articles = Article.off_topic_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/off_topic.html', {"articles": articles, "comments": comments, "users": users})
+
+def operating_systems(request):
+    articles = Article.operating_systems_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/operating_systems.html', {"articles": articles, "comments": comments, "users": users})
+
+def photography_videography(request):
+    articles = Article.photography_videography_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/photography_and_videography.html', {"articles": articles, "comments": comments, "users": users})
+
+def programmes_forum(request):
+    articles = Article.programmes_forum_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/programmes.html', {"articles": articles, "comments": comments, "users": users})
+
+def smartphones_tablets(request):
+    articles = Article.smartphones_tablets_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/smartphones_and_tablets.html', {"articles": articles, "comments": comments, "users": users})
+
+def sound_system(request):
+    articles = Article.sound_system_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/sound_system.html', {"articles": articles, "comments": comments, "users": users})
+
+def tech_news(request):
+    articles = Article.tech_news_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/tech_news.html', {"articles": articles, "comments": comments, "users": users})
+
+def tech_tips(request):
+    articles = Article.tech_tips_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/techtips.html', {"articles": articles, "comments": comments, "users": users})
+
+def televisions_forum(request):
+    articles = Article.televisions_forum_articles()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+
+    return render(request, 'social/televisions.html', {"articles": articles, "comments": comments, "users": users})
 
 
 
