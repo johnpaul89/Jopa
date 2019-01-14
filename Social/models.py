@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     website = models.URLField(blank=True, null=True)
     phone = models.IntegerField(blank=True, null=True)
     Profile_image = models.ImageField(upload_to = 'avatars/', blank=True)
+    cover_image = models.ImageField(null = True ,blank = True, upload_to = 'cover_images/')
 
     def __str__(self):
         return self.user.username

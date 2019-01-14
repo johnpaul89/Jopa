@@ -40,6 +40,13 @@ class NewArticleForm(forms.ModelForm):
         model = Article
         exclude = ['editor', 'pub_date', 'likes']
 
+class CoverImageForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = (
+            'cover_image',
+        )
+
 
 class EditArticleForm(forms.ModelForm):
     tags = forms.RadioSelect()

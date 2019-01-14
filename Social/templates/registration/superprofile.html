@@ -29,6 +29,11 @@
           <div class="col-sm-9">
             <a href="{% url 'newarticle' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Start a Discussion</button></a>
             <a href="{% url 'editprofile' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Edit Profile</button></a>
+            <form  action="{%url 'accountsprofile'%}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+              {% bootstrap_form form%}
+              <input type="submit" class="btn btn-success btn-sm" value="Post">
+            </form>
           </div>
           {% endif %}
         </div>

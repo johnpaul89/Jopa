@@ -6,11 +6,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+
+    {% block title %}
+    <title>Profile</title>
+    {% endblock %}
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {{form.media}}
     {% endblock %}
 
   </head>
@@ -18,10 +23,12 @@
 
     {% block content %}
     <div class="container-fluid">
-
+      <br><br><br><br>
       <div class="container-fluid">
         <div class=" coverphoto row" style="padding-bottom: 150px; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); ">
-          <img src="" alt="">
+          <!-- {% if user.cover_image %} -->
+          <img src="user.cover_image.url" alt="">
+          <!-- {% endif %} -->
         </div>
         <div class="row" style=" padding-bottom: auto; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); ">
           {% if user == request.user %}
@@ -29,6 +36,11 @@
           <div class="col-sm-9">
             <a href="{% url 'newarticle' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Start a Discussion</button></a>
             <a href="{% url 'editprofile' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Edit Profile</button></a>
+            <form  action="{%url 'accountsprofilewithpk' pk=user.pk%}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+              {% bootstrap_form form%}
+              <input type="submit" class="btn btn-success btn-sm" value="Post">
+            </form>
           </div>
           {% endif %}
         </div>

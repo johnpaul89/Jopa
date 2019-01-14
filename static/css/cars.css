@@ -1,7 +1,7 @@
 body{
-  background-color: #001B1D;
+  background-color: #e9ebee;
 }
-h3{
+h2{
   font-weight: bold;
   text-align: center;
 }
@@ -10,4 +10,14 @@ h3{
 }
 p{
   color: black;
+}
+.panel{
+  margin-top: -25px;
+}
+.forums-images{
+  height: 200px;
+  width: auto;
+}
+h3{
+  text-align: center;
 }

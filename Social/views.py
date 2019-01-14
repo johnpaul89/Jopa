@@ -7,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.template.loader import render_to_string
-from .forms import EditProfileForm, UserProfileForm, NewArticleForm, CommentForm, EditArticleForm
+from .forms import EditProfileForm, UserProfileForm, NewArticleForm, CommentForm, EditArticleForm, CoverImageForm
 from .models import UserProfile, Article, Comment
 
 
@@ -43,7 +43,16 @@ def super_profile(request):
     likes = Article.objects.filter().order_by('-id')
     user = request.user
 
-    args = {'user': user, "articles": articles, "comments": comments, "likes": likes}
+    if request.method == 'POST':
+        form = CoverImageForm(request.POST or None, request.FILES)
+        if form.is_valid():
+            # article = form.save(commit=False)
+            form.save()
+            return redirect('accountsprofile')
+    else:
+        form = CoverImageForm()
+
+    args = {'user': user, "articles": articles, "comments": comments, "likes": likes, "form": form}
     return render(request, 'registration/superprofile.html', args)
 
 @login_required
@@ -57,7 +66,19 @@ def update_profile(request, pk=None):
     else:
         user = request.user
 
-    args = {'user': user, "articles": articles, "comments": comments, "likes": likes}
+    if request.method == 'POST':
+        current_user = request.user
+        form = CoverImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save
+            # article = form.save(commit=False)
+
+            return redirect('accountsprofilewithpk', pk=user.pk)
+    else:
+        form = CoverImageForm()
+
+    args = {'user': user, "articles": articles, "comments": comments, "likes": likes, "form": form}
     return render(request, 'registration/profile.html', args)
 
 def edit_profile(request):
