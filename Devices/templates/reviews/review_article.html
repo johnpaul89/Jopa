@@ -84,11 +84,14 @@
           <div class="col-sm-4">
             <h3>Similar Devices</h3>
             <div class="infinite-container">
-              {% for review in review_article_pages %}
+              {% for review in similar %}
               <div class="infinite-item">
                 <div class="col-xs-6">
                   <a href="{% url 'review_article' pk=review.pk %}">
                   <div class="panel panelstuff panel-default">
+                    <div class="panel-heading">
+                      <h5>{{review.tags.all}}</h5>
+                    </div>
                     <div class="panel-body">
 
                       <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">

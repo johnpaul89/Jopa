@@ -10,6 +10,7 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
@@ -18,39 +19,41 @@
 
     {% block content %}
     <div class="container-fluid">
-
-      <div class="container-fluid">
-        <div class=" coverphoto row" style="padding-bottom: 150px; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); ">
-          <img src="" alt="">
-        </div>
-        <div class="row" style=" padding-bottom: auto; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); ">
-          {% if user == request.user %}
-          <div class="col-sm-3"></div>
-          <div class="col-sm-9">
-            <a href="{% url 'newarticle' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Start a Discussion</button></a>
-            <a href="{% url 'editprofile' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Edit Profile</button></a>
-            <form  action="{%url 'accountsprofile'%}" method="post" enctype="multipart/form-data">
-              {%csrf_token%}
-              {% bootstrap_form form%}
-              <input type="submit" class="btn btn-success btn-sm" value="Post">
-            </form>
+      <div class=" coverphoto row" style="margin-top: 55px; padding-top: 20px; padding-bottom: auto; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); ">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-5">
+              {% avatar user 100 class="img-circle img-responsive" id="user_avatar" %}
+            </div>
+            <div class="col-xs-6">
+              <br>
+              {% if user == request.user %}
+              <div class="col-sm-3"></div>
+              <div class="col-sm-12">
+                <a href="{% url 'newarticle' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Start a Discussion</button></a>
+                <a href="{% url 'editprofile' %}"> <button type="button" class="btn btn-sm btn-primary" name="button">Edit Profile</button></a>
+              </div>
+              {% endif %}
+            </div>
           </div>
-          {% endif %}
         </div>
+      </div>
+        <br>
+
         <div class="row">
-          <div class="col-sm-3">
-            {% avatar user 100 class="img-circle img-responsive" id="user_avatar" %}
+          <div style="margin-left: 50px;" class="col-sm-3">
             <h3>{{user}}</h3>
             <h4>{{user.first_name}} {{user.last_name}}</h4>
             <h4>{{user.email}}</h4>
             <h4>{{user.userprofile.description}}</h4>
             <h4>{{user.userprofile.phone}}</h4>
             <h4>{{user.userprofile.city}}</h4>
-            <h4>{{user.userprofile.website}}</h4>
+           <a href="{{user.userprofile.website}}"><h4>{{user.userprofile.website}}</h4></a>
           </div>
           <div class="col-sm-6">
             <br><br>
-            <div class="tab">
+            <div style="margin-left: 20px" class="tab">
               <button class="tablinks" onclick="openCity(event, 'Articles')">Articles</button>
               <button class="tablinks" onclick="openCity(event, 'Comments')">Comments</button>
               <button class="tablinks" onclick="openCity(event, 'Likes')">Likes</button>
@@ -58,7 +61,7 @@
 
             <div class="row">
               <br><br>
-            </div>
+            </div> <br>
 
             <div id="Articles" class="tabcontent">
               <div class="panel panel-success">
@@ -117,13 +120,9 @@
           </div>
 
         </div>
-        <div class="col-sm-3">
-
-
-        </div>
 
       </div>
-    </div>
+
     {% endblock %}
 
     {% block scripts %}

@@ -47,10 +47,12 @@
                {% if  user.is_authenticated %}
                <ul class=" navbar-right">
                  <li style="list-style-type: none;"  class="dropdown">
+                   {% block profile-image %}
+                   
                    <a href="#" class="" data-toggle="dropdown" >
                      {% avatar user 50 class="img-circle navbar-nav img-responsive" id="user_avatar" %}
-
-                </a>
+                   </a>
+                   {% endblock %}
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <a style="color: darkred;" href="{% url 'accountsprofile'  %}">Profile</a>

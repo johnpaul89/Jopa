@@ -51,6 +51,7 @@ def review_article(request, pk):
     reviewarticle = get_object_or_404(PhoneReview, pk = pk)
     reviewpost = get_object_or_404(PhoneReview, pk=pk)
     reviewcomments = ReviewComment.objects.filter(review_post=reviewpost, review_reply=None).order_by('-id')
+    similar = PhoneReview.objects.all()
 
     page = request.GET.get('page', 1)
     paginator = Paginator(reviews, 8)
@@ -83,7 +84,7 @@ def review_article(request, pk):
         html = render_to_string('reviews/review_comments.html', {"reviewarticle": reviewarticle, "reviewpost": reviewpost, "review_comment_form":review_comment_form, "is_liked": is_liked, "total_likes": reviewpost.total_likes(), "reviewcomments":reviewcomments} ,request=request)
         return JsonResponse({ 'form': html })
 
-    return render(request, "reviews/review_article.html", {"reviews":reviews, "review_article_pages": review_article_pages, "reviewarticle": reviewarticle, "reviewpost": reviewpost, "review_comment_form":review_comment_form, "is_liked": is_liked, "total_likes": reviewpost.total_likes(), "reviewcomments":reviewcomments})
+    return render(request, "reviews/review_article.html", {"reviews":reviews, "similar": similar, "review_article_pages": review_article_pages, "reviewarticle": reviewarticle, "reviewpost": reviewpost, "review_comment_form":review_comment_form, "is_liked": is_liked, "total_likes": reviewpost.total_likes(), "reviewcomments":reviewcomments})
 
 def review_like_post(request):
     # post = get_object_or_404(Article, id=request.POST.get('post_id'))

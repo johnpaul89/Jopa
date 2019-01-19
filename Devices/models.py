@@ -46,6 +46,14 @@ class PhoneReview(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+    def similar_articles(self):
+        return self.tags
+
+    # @classmethod
+    # def similar_articles(cls):
+    #     similar = cls.objects.order_by(tags)
+    #     return similar
+
     @classmethod
     def search_by_title(cls,search_term):
         phone_search_review = cls.objects.filter(title__icontains=search_term)

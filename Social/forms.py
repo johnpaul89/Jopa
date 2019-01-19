@@ -21,10 +21,10 @@ class EditProfileForm(UserChangeForm):
         )
 
 class UserProfileForm(forms.ModelForm):
-    description = forms.CharField(label="Description", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'7', 'cols':'50'}))
-    city = forms.CharField(label="Town/City", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'2', 'cols':'50'}))
-    website = forms.CharField(label="Website", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'2', 'cols':'50'}))
-    phone = forms.CharField(label="Phone Number", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'2', 'cols':'50'}))
+    description = forms.CharField(required=False, label="Description", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'7', 'cols':'50'}))
+    city = forms.CharField(required=False, label="Town/City", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'2', 'cols':'50'}))
+    website = forms.URLField(required=False, label="Website", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'2', 'cols':'50'}))
+    phone = forms.IntegerField(required=False, label="Phone Number", widget=CKEditorWidget(attrs={'class': 'form-control', 'rows':'2', 'cols':'50'}))
     class Meta:
         model = UserProfile
         fields= (
@@ -39,13 +39,6 @@ class NewArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         exclude = ['editor', 'pub_date', 'likes']
-
-class CoverImageForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = (
-            'cover_image',
-        )
 
 
 class EditArticleForm(forms.ModelForm):
