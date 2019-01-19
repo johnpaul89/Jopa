@@ -5,15 +5,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
+    {% block meta %}
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TechEleza is your premier source for latest technology products reviews in Africa, technology news in Africa, Specifications for mobile phones in Africa, laptops in Africa, tablets in Africa, and unbiased expert product reviews of HDTVs, laptops, smartphones and more.">
+    <link rel="canonical" href="https://www.techeleza.com">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Latest Africa Technology News, Technology product Reviews in Africa, smartphones Reviews, Phone Specifications, &amp; Mobile Phone Specs |  TechEleza">
+    <meta property="og:description" content="TechEleza is your home for Africa technology news,  product reviews , mobile app reviews and smartphones Specifications.">
+    <meta property="og:url" content="https://www.techeleza.com">
+    <meta property="og:site_name" content="TechEleza">
+    <meta property="og:image" content="">
+    <meta property="og:image:secure_url" content="">
+    {% endblock %}
 
     {% block title %}
-    {% if title %}
-    <title>Home Page</title>
-    {{else}}
     <title>Home</title>
-    {% endif %}
     {% endblock %}
 
     {% block styles %}

@@ -7,11 +7,9 @@
   <head>
     <meta charset="utf-8">
 
-    {% if title %}
+    {% block title %}
     <title>Mobile Reviews</title>
-    {{else}}
-    <title>Reviews</title>
-    {% endif %}
+    {% endblock %}
 
     {% block styles %}
     {% bootstrap_css %}

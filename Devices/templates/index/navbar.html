@@ -13,7 +13,7 @@
          <div class="container-fluid">
 
              <div class="navbar-header">
-                     <a class="navbar-brand" href="/"> Africa Tech </a>
+                     <a class="navbar-brand" href="/"> TechEleza </a>
                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                        <span class="sr-only">Toggle navigation</span>
                        <span class="icon-bar"></span>
@@ -48,7 +48,7 @@
                <ul class=" navbar-right">
                  <li style="list-style-type: none;"  class="dropdown">
                    {% block profile-image %}
-                   
+
                    <a href="#" class="" data-toggle="dropdown" >
                      {% avatar user 50 class="img-circle navbar-nav img-responsive" id="user_avatar" %}
                    </a>
@@ -69,11 +69,12 @@
               </li>
             </ul>
             {% else %}
-            <li class="nav navbar-nav navbar-right">
-              <a class='btn btn-default' href="/accounts/register">Sign Up</a>
+            <li style="padding-top: 5px;" class="nav navbar-nav navbar-right">
+              <a style="color: darkred;"  class='btn btn-default' href="/accounts/register">  <strong> Sign Up </strong> </a>
             </li>
-              <li class="nav navbar-nav navbar-right">
-                <a class='btn btn-default' href="/accounts/login/?next=/accounts/login">Login</a>
+            <li style="margin-right: 5px; padding-top: 5px;" class="nav navbar-nav navbar-right"></li>
+              <li style="padding-top: 5px;" class="nav navbar-nav navbar-right">
+                <a style="color: darkred;" class='btn btn-default' href="/accounts/login/?next=/accounts/login"> <strong>Log In</strong> </a>
               </li>
 
             {% endif %}

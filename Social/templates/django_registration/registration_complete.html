@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% load staticfiles %}
+
+{% block title %}
+<title>Congrats on creating an account</title>
+{% endblock %}
+
 {% block content %}
 <br><br><br>
   <div class="panel panel-success">
@@ -11,7 +16,7 @@
 
       <h4>Congratulations you created your account.</h4>
       <br>
-      <a href="{% url 'social' %}">
+      <a href="{% url 'devices' %}">
       <button type="button" class="btn btn-lg btn-success" name="button">Home</button></a>
       <br><br>
       <h4>Enjoy the Best of cutting edge reviews, Discussions, News and enjoy many more features.</h4>

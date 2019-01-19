@@ -6,11 +6,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    {% if title %}
+
+    {% block title %}
     <title>Mobile Specs</title>
-    {{else}}
-    <title>Mobile Specs</title>
-    {% endif %}
+    {% endblock %}
 
     {% block styles %}
     {% bootstrap_css %}
