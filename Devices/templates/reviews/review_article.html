@@ -35,7 +35,6 @@
   <body>
 
     {% block content %}
-    <div class="container">
       <br><br><br>
       <div class="container-fluid">
         <div class="row">
@@ -57,53 +56,56 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> <br>
 
-            <div class="reviewarticle">
+            <div class="article-row">
+              <div class="reviewarticle">
+                <br>
+                <h4 class="text-center">{{reviewarticle.title}}</h4>
+                <p class="articleparagraph">{{reviewarticle.description|safe}}</p>
+                <img src="{{reviewarticle.introduction_releasedate_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.introduction_releasedate|safe}}</p>
+                <img src="{{reviewarticle.performance_price_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.performance_price|safe}}</p>
+                <img src="{{reviewarticle.design_hardware_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.design_hardware|safe}}</p>
+                <img src="{{reviewarticle.software_os_softwarefeatures_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.software_os_softwarefeatures|safe}}</p>
+                <img src="{{reviewarticle.display|safe}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.display_image|safe}}</p>
+                <img src="{{reviewarticle.batterylife_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.batterylife|safe}}</p>
+                <img src="{{reviewarticle.camera_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.camera_image|safe}}</p>
+                <img src="{{reviewarticle.competition_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.competition_image|safe}}</p>
+                <img src="{{reviewarticle.pros_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.pros|safe}}</p>
+                <img src="{{reviewarticle.cons_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                <p class="articleparagraph">{{reviewarticle.cons|safe}}</p>
+                <p class="articleparagraph">{{reviewarticle.verdict|safe}}</p>
+                <br>
+              </div>
               <br>
-              <h4 class="text-center">{{reviewarticle.title}}</h4>
-              <p class="articleparagraph">{{reviewarticle.description|safe}}</p>
-              <img src="{{reviewarticle.introduction_releasedate_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.introduction_releasedate|safe}}</p>
-              <img src="{{reviewarticle.performance_price_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.performance_price|safe}}</p>
-              <img src="{{reviewarticle.design_hardware_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.design_hardware|safe}}</p>
-              <img src="{{reviewarticle.software_os_softwarefeatures_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.software_os_softwarefeatures|safe}}</p>
-              <img src="{{reviewarticle.display|safe}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.display_image|safe}}</p>
-              <img src="{{reviewarticle.batterylife_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.batterylife|safe}}</p>
-              <img src="{{reviewarticle.camera_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.camera_image|safe}}</p>
-              <img src="{{reviewarticle.competition_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.competition_image|safe}}</p>
-              <img src="{{reviewarticle.pros_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.pros|safe}}</p>
-              <img src="{{reviewarticle.cons_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-              <p class="articleparagraph">{{reviewarticle.cons|safe}}</p>
-              <p class="articleparagraph">{{reviewarticle.verdict|safe}}</p>
+
+              <div class="main-review-comment-section">
+                {% include "reviews/review_comments.html" %}
               <br>
             </div>
-
-            <div class="main-review-comment-section">
-              {% include "reviews/review_comments.html" %}
-            <br>
-          </div>
+            </div>
 
           </div>
           <div class="col-sm-4">
             <h3>Similar Devices</h3>
             <div class="infinite-container">
-              {% for review in similar %}
+              {% for review in review_article_pages %}
               <div class="infinite-item">
                 <div class="col-xs-6">
                   <a href="{% url 'review_article' pk=review.pk %}">
                   <div class="panel panelstuff panel-default">
-                    <div class="panel-heading">
+                    <!-- <div class="panel-heading">
                       <h5>{{review.tags.all}}</h5>
-                    </div>
+                    </div> -->
                     <div class="panel-body">
 
                       <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
@@ -118,9 +120,6 @@
             </div>
 
           </div>
-          <div class="loading" >
-            Loading...
-          </div>
 
           {% if review_article_pages.has_next %}
           <a class="infinite-more-link" href="?page={{ review_article_pages.next_page_number }}">More</a>
@@ -128,7 +127,6 @@
         </div>
       </div>
 
-    </div>
     {% endblock %}
 
     {% block scripts %}

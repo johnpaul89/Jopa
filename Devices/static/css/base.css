@@ -147,3 +147,10 @@ a:hover {
     from {opacity: 0;}
     to {opacity: 1;}
 }
+.article-row{
+  background-color: white;
+  color: black;
+}
+.specsarticle{
+  background-color: white;
+}

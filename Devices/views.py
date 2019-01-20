@@ -51,7 +51,7 @@ def review_article(request, pk):
     reviewarticle = get_object_or_404(PhoneReview, pk = pk)
     reviewpost = get_object_or_404(PhoneReview, pk=pk)
     reviewcomments = ReviewComment.objects.filter(review_post=reviewpost, review_reply=None).order_by('-id')
-    similar = PhoneReview.objects.all()
+    similar = PhoneReview.objects.all().order_by('-id')[:20]
 
     page = request.GET.get('page', 1)
     paginator = Paginator(reviews, 8)
@@ -174,10 +174,10 @@ def search_results(request):
         search_news_term = request.GET.get("article")
         search_forums_term = request.GET.get("article")
 
-        searched_reviews_articles = PhoneReview.search_by_title(search_reviews_term)
-        searched_specs_articles = PhoneSpecs.search_by_title(search_reviews_term)
-        searched_news_articles = NewsArticle.search_by_title(search_news_term)
-        searched_forums_articles = Article.search_by_title(search_forums_term)
+        searched_reviews_articles = PhoneReview.search_by_title(search_reviews_term).order_by('-id')[:50]
+        searched_specs_articles = PhoneSpecs.search_by_title(search_reviews_term).order_by('-id')[:50]
+        searched_news_articles = NewsArticle.search_by_title(search_news_term).order_by('-id')[:50]
+        searched_forums_articles = Article.search_by_title(search_forums_term).order_by('-id')[:50]
 
         message_reviews = f"{search_reviews_term}"
         message_news = f"{search_news_term}"

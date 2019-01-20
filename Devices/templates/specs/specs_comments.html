@@ -17,7 +17,7 @@
 {% for comment in specscomments %}
 <blockquote class="blockquote">
   <p class="mb-0" id="comment">{{comment.specs_comment}}</p>
-  <footer class="blockquote-footer">by <cite title="Source Title">{{comment.specs_user|capfirst }}</cite>
+  <footer class="blockquote-footer">by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=comment.specs_user.pk %}">{{comment.specs_user|capfirst }}</a></cite>
     <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button>
     <h5>{{comment.specsreplies.count}} Reply{{comment.specsreplies.count|pluralize}}</h5>
   </footer>
@@ -27,7 +27,7 @@
   {% for reply in comment.specsreplies.all %}
   <blockquote class="blockquote">
     <p class="mb-0" id="comment"><small>{{reply.specs_comment}}</small></p>
-    <footer class="blockquote-footer"><small>by <cite title="Source Title">{{reply.specs_user|capfirst }}</cite></small></footer>
+    <footer class="blockquote-footer"><small>by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=reply.specs_user.pk %}">{{reply.specs_user|capfirst }}</a></cite></small></footer>
   </blockquote>
   {% endfor %}
   <div class="form-group row">

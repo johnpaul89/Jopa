@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {% load bootstrap3 %}
 {% load static %}
+{% load avatar_tags %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -35,7 +36,7 @@
 
     {% block content %}
 
-    <div class="container">
+    <div class="container ">
       <br><br><br><br>
 
       <h1 class="text-center">{{article.title}}</h1>
@@ -77,47 +78,51 @@
         </div>
       </div>
 
-      <div class="container-fluid">
-        <div class="row">
-          {% for topic in topics %}
-          <h3>{{topic.name}}</h3>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="row">
-        {% autoescape on %}
-        {{article.post| safe}}
-       {% endautoescape %}
-
-      </div>
-      <div class="row">
-        <hr>
-        <br>
-        <p>Posted {{article.pub_date|timesince}} by <a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">{{article.editor.username}}</a></p>
-      </div>
-
-      <div class="container-fluid">
-        <div class="row">
-          <br><hr>
-
-          <div id="like-section">
-            {% include "social/like_section.html" %}
+      <div class="container article-row">
+        <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="row">
+              {% for topic in topics %}
+              <h3>{{topic.name}}</h3>
+              {% endfor %}
+            </div>
           </div>
 
-          <br><hr>
+          <div class="row ">
+            <h3 style="text-align: center;">{{article.title}}</h3>
+            {% autoescape on %}
+            {{article.post| safe}}
+           {% endautoescape %}
+
+          </div>
+          <div class="row">
+            <br>
+              <p>Posted {{article.pub_date|timesince}} by
+            <a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+              {{article.editor.username}}{% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}</p></a>
+          </div>
+
+          <div class="container-fluid">
+            <div class="row">
+              <br>
+
+              <div id="like-section">
+                {% include "social/like_section.html" %}
+              </div>  <br>
+            </div>
+          </div>
+
+            <div class="row">
+              <br>
+              <div class="main-comment-section">
+                {% include "social/comments.html" %}
+              <br>
+            </div>
+          </div>
         </div>
       </div>
 
-        <div class="row">
-          <br>
-          <hr>
-          <div class="main-comment-section">
-            {% include "social/comments.html" %}
-          <br>
-        </div>
-      </div>
-        </div>
+    </div>
 
 
 

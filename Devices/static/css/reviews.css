@@ -37,3 +37,8 @@ h4{
   color: darkred;
   font-weight: bold;
 }
+.article-row{
+  background-color: white;
+  color: black;
+  padding-left: 20px;
+}

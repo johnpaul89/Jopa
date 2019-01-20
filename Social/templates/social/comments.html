@@ -1,3 +1,4 @@
+{% load avatar_tags %}
 <div class="container mt-2">
   <div class="form-group row">
     <form method="post" class="comment-form" action="{% url 'readarticle' pk=article.pk %}">
@@ -16,8 +17,9 @@
   <h4>{{comments.count}} Comment{{comments.count|pluralize}}</h4>
 {% for comment in comments %}
 <blockquote class="blockquote">
-  <p class="mb-0" id="comment">{{comment.content}}</p>
-  <footer class="blockquote-footer">by <cite title="Source Title">{{comment.user|capfirst }}</cite>
+  <!-- {% avatar comment.user 50 class="img-circle img-responsive" id="user_avatar" %} -->
+  <p class="mb-0" id="comment">{{comment.content}} </p>
+  <footer class="blockquote-footer">by <cite title="Source Title"> <a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=comment.user.pk %}"> {{comment.user|capfirst }}</a></cite>
     <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button>
     <h5>{{comment.replies.count}} Reply{{comment.replies.count|pluralize}}</h5>
   </footer>
@@ -26,8 +28,8 @@
 <div class="replied-comments container mt-2" style="display:none;">
   {% for reply in comment.replies.all %}
   <blockquote class="blockquote">
-    <p class="mb-0" id="comment"><small>{{reply.content}}</small></p>
-    <footer class="blockquote-footer"><small>by <cite title="Source Title">{{reply.user|capfirst }}</cite></small></footer>
+    <p class="mb-0" id="comment">{{reply.content}}</p>
+    <footer class="blockquote-footer"><small>by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=reply.user.pk %}"> {{reply.user|capfirst }}</a></cite></small></footer>
   </blockquote>
   {% endfor %}
   <div class="form-group row">
