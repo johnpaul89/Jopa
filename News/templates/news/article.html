@@ -4,8 +4,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
+    {% block meta %}
     <meta charset="utf-8">
-    <title></title>
+    <meta name="keywords" itemprop="keywords" content="{{newsarticle.keywords}}" ng-attr-content="{{newsarticle.keywords}}">
+    <meta name="description" content="{{newsarticle.description}}">
+    <link rel="canonical" href="https://www.techeleza.com/news/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{newsarticle.title}}">
+    <meta property="og:description" content="{{newsarticle.description}}">
+    <meta property="og:url" content="https://www.techeleza.com/news/">
+    <meta property="og:site_name" content="TechEleza">
+    <meta property="og:image" content="">
+    <meta property="og:image:secure_url" content="">
+    {% endblock %}
+
+    {% block title %}
+    <title>{{article.title|safe}}</title>
+    {% endblock %}
 
     {% block styles %}
     {% bootstrap_css %}

@@ -76,7 +76,11 @@ a:hover {
 }
 .img-flick{
   height: 200px;
-  width: 150px;
+  width: auto;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* no circle */
 .flickity-button {

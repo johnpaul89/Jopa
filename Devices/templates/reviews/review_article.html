@@ -5,13 +5,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
 
-    {% if title %}
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta name="keywords" itemprop="keywords" content="{{reviewarticle.keywords}}" ng-attr-content="{{reviewarticle.keywords}}">
+    <meta name="description" content="{{reviewarticle.description}}">
+    <link rel="canonical" href="https://www.techeleza.com/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{reviewarticle.title}}">
+    <meta property="og:description" content="{{reviewarticle.description}}">
+    <meta property="og:url" content="https://www.techeleza.com/">
+    <meta property="og:site_name" content="TechEleza">
+    <meta property="og:image" content="">
+    <meta property="og:image:secure_url" content="">
+    {% endblock %}
+
+    {% block title %}
     <title>{{reviewarticle.title}}</title>
-    {{else}}
-    <title>Review</title>
-    {% endif %}
+    {% endblock %}
 
     {% block styles %}
     {% bootstrap_css %}

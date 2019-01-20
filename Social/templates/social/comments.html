@@ -6,7 +6,8 @@
       {% if request.user.is_authenticated %}
       <input type="submit" value="Submit" class="btn btn-outline-success">
       {% else %}
-      <button type="button" class="btn btn-danger" name="button">Please Sign up or Sign In</button>
+      <a href="/accounts/login/">
+      <button type="button" class="btn btn-danger" name="button">Please Sign up or Sign In to add a comment</button></a>
       {% endif %}
     </form>
   </div>

@@ -4,8 +4,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
+    {% block meta %}
     <meta charset="utf-8">
-    <title></title>
+    <meta name="description" content="Get to find Topics and articles discussed by the online community in our forum">
+    <link rel="canonical" href="https://www.techeleza.com/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{article.title}}">
+    <meta property="og:description" content="Get to find Topics and articles discussed by the online community in our forum">
+    <meta property="og:url" content="https://www.techeleza.com/">
+    <meta property="og:site_name" content="TechEleza">
+    <meta property="og:image" content="">
+    <meta property="og:image:secure_url" content="">
+    {% endblock %}
+
+    {% block title %}
+    <title>{{article.title}}</title>
+    {% endblock %}
 
     {% block styles %}
     {% bootstrap_css %}
@@ -67,14 +83,6 @@
           <h3>{{topic.name}}</h3>
           {% endfor %}
         </div>
-      </div>
-
-
-      <div class="row">
-
-
-
-
       </div>
 
       <div class="row">

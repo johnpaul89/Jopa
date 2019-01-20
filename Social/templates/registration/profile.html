@@ -5,10 +5,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
+    {% block meta %}
     <meta charset="utf-8">
+    <meta name="description" content="{{user}}'s Profile in where you can start a Discussion or edit your profile, also you can see your articles, likes and comments">
+    <link rel="canonical" href="https://www.techeleza.com/accounts/profile/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{user}}'s Profile | TechEleza">
+    <meta property="og:description" content="{{user}}'s Profile in where you can start a Discussion or edit your profile, also you can see your articles, likes and comments.">
+    <meta property="og:url" content="https://www.techeleza.com/accounts/profile/">
+    <meta property="og:site_name" content="TechEleza">
+    <meta property="og:image" content="">
+    <meta property="og:image:secure_url" content="">
+    {% endblock %}
 
     {% block title %}
-    <title>Profile</title>
+    <title>{{user}}'s Profile</title>
     {% endblock %}
 
     {% block styles %}

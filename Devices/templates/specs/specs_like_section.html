@@ -11,6 +11,7 @@
   {% endif %}
 </form>
 {% else %}
-<button type="button" class="btn btn-md btn-info" name="button">Please Sign In or Sign Up to Like or Dislike</button>
+<a href="/accounts/login/">
+<button type="button" class="btn btn-md btn-info" name="button">Please Sign In or Sign Up to Like or Dislike</button></a>
 {% endif %}
 <h4>{{ total_likes }} Like{{ total_likes|pluralize }}</h4>
