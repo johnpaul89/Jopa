@@ -48,7 +48,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-7">
-                  <img src="{{reviewarticle.review_image.url}}" class="img-article img-responsive img-rounded" alt="{{reviewarticle.review_article.title|safe}}">
+                  <img src="{{reviewarticle.review_image.url}}" class=" reviewarticleimages img-article img-responsive img-rounded" alt="{{reviewarticle.review_article.title|safe}}">
                 </div>
                 <div class="col-sm-5">
                   <div id="review-like-section">
@@ -63,25 +63,45 @@
                 <br>
                 <h4 class="text-center">{{reviewarticle.title}}</h4>
                 <p class="articleparagraph">{{reviewarticle.description|safe}}</p>
-                <img src="{{reviewarticle.introduction_releasedate_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                {% if reviewarticle.introduction_releasedate_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.introduction_releasedate_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
                 <p class="articleparagraph">{{reviewarticle.introduction_releasedate|safe}}</p>
-                <img src="{{reviewarticle.performance_price_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                {% if reviewarticle.performance_price_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.performance_price_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
                 <p class="articleparagraph">{{reviewarticle.performance_price|safe}}</p>
-                <img src="{{reviewarticle.design_hardware_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                {% if reviewarticle.design_hardware_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.design_hardware_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
                 <p class="articleparagraph">{{reviewarticle.design_hardware|safe}}</p>
-                <img src="{{reviewarticle.software_os_softwarefeatures_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                {% if reviewarticle.software_os_softwarefeatures_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.software_os_softwarefeatures_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
                 <p class="articleparagraph">{{reviewarticle.software_os_softwarefeatures|safe}}</p>
-                <img src="{{reviewarticle.display|safe}}" class="img-responsive" alt="{{reviewarticle.title}}">
-                <p class="articleparagraph">{{reviewarticle.display_image|safe}}</p>
-                <img src="{{reviewarticle.batterylife_image}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                {% if reviewarticle.display_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.display_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
+                <p class="articleparagraph">{{reviewarticle.display|safe}}</p>
+                {% if reviewarticle.batterylife_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.batterylife_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
                 <p class="articleparagraph">{{reviewarticle.batterylife|safe}}</p>
-                <img src="{{reviewarticle.camera_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-                <p class="articleparagraph">{{reviewarticle.camera_image|safe}}</p>
-                <img src="{{reviewarticle.competition_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
-                <p class="articleparagraph">{{reviewarticle.competition_image|safe}}</p>
-                <img src="{{reviewarticle.pros_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                {% if reviewarticle.camera_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.camera_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
+                <p class="articleparagraph">{{reviewarticle.camera|safe}}</p>
+                {% if reviewarticle.competition_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.competition_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
+                <p class="articleparagraph">{{reviewarticle.competition|safe}}</p>
+                {% if reviewarticle.pros_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.pros_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
                 <p class="articleparagraph">{{reviewarticle.pros|safe}}</p>
-                <img src="{{reviewarticle.cons_image.url}}" class="img-responsive" alt="{{reviewarticle.title}}">
+                {% if reviewarticle.cons_image %}
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.cons_image}}" class=" reviewarticleimages  img-responsive" alt="{{reviewarticle.title}}">
+                {% endif %}
                 <p class="articleparagraph">{{reviewarticle.cons|safe}}</p>
                 <p class="articleparagraph">{{reviewarticle.verdict|safe}}</p>
                 <br>
@@ -108,7 +128,7 @@
                     </div> -->
                     <div class="panel-body">
 
-                      <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
+                      <img src="{{review.review_image.url}}" class=" reviewarticleimages img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
                     </div>
                     <div class="panel-footer">
                       <p class="panel-paragraph">{{review.title|safe}}</p>

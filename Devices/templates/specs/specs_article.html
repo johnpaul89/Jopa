@@ -70,265 +70,281 @@
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Network</h3> </th></tr>
           <tr>
               <td> <h4>2G Network</h4> </td>
-              <td> <p>{{specsarticle.network2G| safe}}</p> </td>
+              <td> {% if specsarticle.network2G %} <p>{{specsarticle.network2G| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>3G Network</h4> </td>
-            <td>  <p>{{specsarticle.network3G| safe}}</p> </td>
+            <td> {% if specsarticle.network3G %}  <p>{{specsarticle.network3G| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>3G Network</h4> </td>
-            <td> <p>{{specsarticle.network4G| safe}}</p> </td>
+            <td> {% if specsarticle.network4G %} <p>{{specsarticle.network4G| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Launch</h3> </th></tr>
           <tr>
               <td> <h4>Announced Date</h4> </td>
-              <td> <p>{{specsarticle.launchannounced| safe}}</p> </td>
+              <td> {% if specsarticle.launchannounced %} <p>{{specsarticle.launchannounced| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Release Date</h4> </td>
-            <td>  <p>{{specsarticle.launchavailable| safe}}</p> </td>
+            <td> {% if specsarticle.launchavailable %}  <p>{{specsarticle.launchavailable| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Body</h3> </th></tr>
           <tr>
               <td> <h4>Body Dimensions</h4> </td>
-              <td> <p>{{specsarticle.bodydimensions| safe}}</p> </td>
+              <td> {% if specsarticle.bodydimensions %} <p>{{specsarticle.bodydimensions| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Body Build</h4> </td>
-            <td>  <p>{{specsarticle.bodybuild| safe}}</p> </td>
+            <td> {% if specsarticle.bodybuild %}  <p>{{specsarticle.bodybuild| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Body Weight</h4> </td>
-            <td>  <p>{{specsarticle.bodyweight| safe}}</p> </td>
+            <td> {% if specsarticle.bodyweight %}  <p>{{specsarticle.bodyweight| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Body Sim</h4> </td>
-            <td>  <p>{{specsarticle.bodysim| safe}}</p> </td>
+            <td> {% if specsarticle.bodysim %}  <p>{{specsarticle.bodysim| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Display</h3> </th></tr>
           <tr>
               <td> <h4>Display Type</h4> </td>
-              <td> <p>{{specsarticle.displaytype| safe}}</p> </td>
+              <td> {% if specsarticle.displaytype %} <p>{{specsarticle.displaytype| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Display Size</h4> </td>
-            <td>  <p>{{specsarticle.displaysize| safe}}</p> </td>
+            <td> {% if specsarticle.displaysize %}  <p>{{specsarticle.displaysize| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Resolution</h4> </td>
-            <td>  <p>{{specsarticle.displayresolution| safe}}</p> </td>
+            <td> {% if specsarticle.displayresolution %} <p>{{specsarticle.displayresolution| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Multitouch</h4> </td>
-            <td>  <p>{{specsarticle.displaymultitouch| safe}}</p> </td>
+            <td> {% if specsarticle.displaymultitouch %} <p>{{specsarticle.displaymultitouch| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Protection</h4> </td>
-            <td>  <p>{{specsarticle.displayprotection| safe}}</p> </td>
+            <td> {% if specsarticle.displayprotection %} <p>{{specsarticle.displayprotection| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Platform</h3> </th></tr>
           <tr>
               <td> <h4>OS</h4> </td>
-              <td> <p>{{specsarticle.platformos| safe}}</p> </td>
+              <td> {% if specsarticle.platformos %} <p>{{specsarticle.platformos| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Chipset</h4> </td>
-            <td>  <p>{{specsarticle.platformchipset| safe}}</p> </td>
+            <td> {% if specsarticle.platformchipset %} <p>{{specsarticle.platformchipset| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>CPU</h4> </td>
-            <td>  <p>{{specsarticle.platformcpu| safe}}</p> </td>
+            <td> {% if specsarticle.platformcpu %}  <p>{{specsarticle.platformcpu| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>GPU</h4> </td>
-            <td>  <p>{{specsarticle.platformgpu| safe}}</p> </td>
+            <td> {% if specsarticle.platformgpu %} <p>{{specsarticle.platformgpu| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Storage</h3> </th></tr>
           <tr>
               <td> <h4>Memory Card Slot</h4> </td>
-              <td> <p>{{specsarticle.memorycardslot| safe}}</p> </td>
+              <td> {% if specsarticle.memorycardslot %} <p>{{specsarticle.memorycardslot| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Internal Memory</h4> </td>
-            <td>  <p>{{specsarticle.internalmemory| safe}}</p> </td>
+            <td> {% if specsarticle.internalmemory %} <p>{{specsarticle.internalmemory| safe}}</p> {% endif %}</td>
+          </tr>
+
+          <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Main Camera</h3> </th></tr>
+          <tr>
+              <td> <h4> Main Camera</h4> </td>
+              <td> {% if specsarticle.maincameradual %} <p>{{specsarticle.maincameradual| safe}}</p> {% endif %}</td>
+          </tr>
+
+          <tr>
+            <td> <h4>Main Camera Features</h4> </td>
+            <td> {% if specsarticle.maincamerafeatures %} <p>{{specsarticle.maincamerafeatures| safe}}</p> {% endif %}</td>
+          </tr>
+
+          <tr>
+            <td> <h4>Main Camera Video</h4> </td>
+            <td> {% if specsarticle.maincameravideo %} <p>{{specsarticle.maincameravideo| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Selfie Camera</h3> </th></tr>
           <tr>
-              <td> <h4>Dual Selfie Camera</h4> </td>
-              <td> <p>{{specsarticle.selfiecameradual| safe}}</p> </td>
+              <td> <h4> Selfie Camera</h4> </td>
+              <td> {% if specsarticle.selfiecameradual %} <p>{{specsarticle.selfiecameradual| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>SelfieCamera Features</h4> </td>
-            <td>  <p>{{specsarticle.selfiecamerafeatures| safe}}</p> </td>
+            <td> {% if specsarticle.selfiecamerafeatures %} <p>{{specsarticle.selfiecamerafeatures| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Selfie Camera Video</h4> </td>
-            <td>  <p>{{specsarticle.selfiecameravideo| safe}}</p> </td>
+            <td> {% if specsarticle.selfiecameravideo %} <p>{{specsarticle.selfiecameravideo| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Sound</h3> </th></tr>
           <tr>
               <td> <h4>Alert types</h4> </td>
-              <td> <p>{{specsarticle.soundalerttypes| safe}}</p> </td>
+              <td> {% if specsarticle.soundalerttypes %} <p>{{specsarticle.soundalerttypes| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Loud Speaker</h4> </td>
-            <td>  <p>{{specsarticle.soundloudspeaker| safe}}</p> </td>
+            <td> {% if specsarticle.soundloudspeaker %} <p>{{specsarticle.soundloudspeaker| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Headphone Jack</h4> </td>
-            <td>  <p>{{specsarticle.soundheadphonejack| safe}}</p> </td>
+            <td> {% if specsarticle.soundheadphonejack %} <p>{{specsarticle.soundheadphonejack| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">COMMS</h3> </th></tr>
           <tr>
               <td> <h4>WLAN</h4> </td>
-              <td> <p>{{specsarticle.commswlan| safe}}</p> </td>
+              <td> {% if specsarticle.commswlan %} <p>{{specsarticle.commswlan| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Bluetooth</h4> </td>
-            <td>  <p>{{specsarticle.commsbluetooth| safe}}</p> </td>
+            <td> {% if specsarticle.commsbluetooth %} <p>{{specsarticle.commsbluetooth| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>GPS</h4> </td>
-            <td>  <p>{{specsarticle.commsgps| safe}}</p> </td>
+            <td> {% if specsarticle.commsgps %} <p>{{specsarticle.commsgps| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>nfc</h4> </td>
-            <td>  <p>{{specsarticle.commsnfc| safe}}</p> </td>
+            <td> {% if specsarticle.commsnfc %} <p>{{specsarticle.commsnfc| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Radio</h4> </td>
-            <td>  <p>{{specsarticle.commsradio| safe}}</p> </td>
+            <td> {% if specsarticle.commsradio %} <p>{{specsarticle.commsradio| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>USB</h4> </td>
-            <td>  <p>{{specsarticle.commsusb| safe}}</p> </td>
+            <td> {% if specsarticle.commsusb %} <p>{{specsarticle.commsusb| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Features</h3> </th></tr>
           <tr>
               <td> <h4>Sensors</h4> </td>
-              <td> <p>{{specsarticle.featuressensors| safe}}</p> </td>
+              <td> {% if specsarticle.featuressensors %} <p>{{specsarticle.featuressensors| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Messaging</h4> </td>
-            <td>  <p>{{specsarticle.featuresmessaging| safe}}</p> </td>
+            <td> {% if specsarticle.featuresmessaging %} <p>{{specsarticle.featuresmessaging| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
             <td> <h4>Browser</h4> </td>
-            <td>  <p>{{specsarticle.featuresbrowser| safe}}</p> </td>
+            <td> {% if specsarticle.featuresbrowser %} <p>{{specsarticle.featuresbrowser| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Battery</h3> </th></tr>
           <tr>
               <td> <h4>Battery</h4> </td>
-              <td> <p>{{specsarticle.battery| safe}}</p> </td>
+              <td> {% if specsarticle.battery %} <p>{{specsarticle.battery| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Colors</h3> </th></tr>
           <tr>
               <td> <h4>Device Colors</h4> </td>
-              <td> <p>{{specsarticle.devicecolors| safe}}</p> </td>
+              <td> {% if specsarticle.devicecolors %} <p>{{specsarticle.devicecolors| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Tests</h3> </th></tr>
           <tr>
               <td> <h4>Performance</h4> </td>
-              <td> <p>{{specsarticle.performancetests| safe}}</p> </td>
+              <td> {% if specsarticle.performancetests %} <p>{{specsarticle.performancetests| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
               <td> <h4>Display</h4> </td>
-              <td> <p>{{specsarticle.displaytest| safe}}</p> </td>
+              <td> {% if specsarticle.displaytest %} <p>{{specsarticle.displaytest| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
               <td> <h4>Camera</h4> </td>
-              <td> <p>{{specsarticle.cameratest| safe}}</p> </td>
+              <td> {% if specsarticle.cameratest %} <p>{{specsarticle.cameratest| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
               <td> <h4>Loud Speaker</h4> </td>
-              <td> <p>{{specsarticle.loudspeakertest| safe}}</p> </td>
+              <td> {% if specsarticle.loudspeakertest %} <p>{{specsarticle.loudspeakertest| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
               <td> <h4>Audio</h4> </td>
-              <td> <p>{{specsarticle.audiotest| safe}}</p> </td>
+              <td> {% if specsarticle.audiotest %} <p>{{specsarticle.audiotest| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
               <td> <h4>Battery</h4> </td>
-              <td> <p>{{specsarticle.batterytest| safe}}</p> </td>
+              <td> {% if specsarticle.batterytest %} <p>{{specsarticle.batterytest| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Price</h3> </th></tr>
           <tr>
               <td> <h4>Kenya</h4> </td>
-              <td> <p>{{specsarticle.priceinkenya| safe}}</p> </td>
+              <td> {% if specsarticle.priceinkenya %} <p>{{specsarticle.priceinkenya| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
               <td> <h4>Nigeria</h4> </td>
-              <td> <p>{{specsarticle.priceinnigeria| safe}}</p> </td>
+              <td> {% if specsarticle.priceinnigeria %} <p>{{specsarticle.priceinnigeria| safe}}</p> {% endif %}</td>
           </tr>
 
           <tr>
               <td> <h4>South Africa</h4> </td>
-              <td> <p>{{specsarticle.priceinsouthafrica| safe}}</p> </td>
+              <td> {% if specsarticle.priceinsouthafrica %} <p>{{specsarticle.priceinsouthafrica| safe}}</p> {% endif %}</td>
           </tr>
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Other Features</h3> </th></tr>
           <tr>
               <td> <h4>Other Features</h4> </td>
-              <td> <p>{{specsarticle.otherfeatures| safe}}</p> </td>
+              <td> {% if specsarticle.otherfeatures %} <p>{{specsarticle.otherfeatures| safe}}</p> {% endif %}</td>
           </tr>
         </div>
         </tbody>
