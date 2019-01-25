@@ -14,7 +14,7 @@ urlpatterns = [
     # path('accounts/', include('accounts.urls')),
     # path('accounts/', include('django.contrib.auth.urls')),
     url(r'',include('Devices.urls')),
-    url(r'^news/',include('News.urls')),
+    # url(r'^news/',include('News.urls')),
     url(r'^social/',include('Social.urls')),
     url(r'^accounts/', include('django_registration.backends.one_step.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),

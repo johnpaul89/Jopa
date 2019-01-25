@@ -14,9 +14,9 @@ from django.db.models import Q
 def devices(request, pk=None):
     specs = PhoneSpecs.objects.filter().order_by('-id')[:10]
     reviews = PhoneReview.objects.filter().order_by('-id')[:10]
-    news_articles = NewsArticle.objects.filter()
+    # news_articles = NewsArticle.objects.filter()
 
-    return render(request, 'index/index.html', {"specs": specs, "reviews": reviews, "news_articles": news_articles})
+    return render(request, 'index/index.html', {"specs": specs, "reviews": reviews})
 
 def phone_specs(request):
     specifications = PhoneSpecs.objects.all().order_by('-id')[:400]

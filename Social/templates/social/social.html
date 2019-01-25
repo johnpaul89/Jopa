@@ -7,6 +7,16 @@
 <html lang="en" dir="ltr">
   <head>
 
+    {% block adsense %}
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3710297308109999",
+        enable_page_level_ads: true
+      });
+    </script>
+    {% endblock %}
+
     {% block meta %}
     <meta charset="utf-8">
     <!-- <meta name="keywords" itemprop="keywords" content="manufacturing, factories, assembly, automation, 3d printing" ng-attr-content="{{meta.keywords}}"> -->
@@ -48,14 +58,14 @@
             </div>
             <div class="panel-body">
               <div class="row row-a">
-                <a class="panelsuccesscolor" href="{% url 'generaldiscussion' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'generaldiscussion' %}"> -->
                 <div class="col-sm-8">
                   <h4>General Discussion</h4>
                   <p>Talk about general tech topics which might not be icluded in the other forums</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{general_discussion_articles.count}} Post{{general_discussion_articles|pluralize}}</h4>
+                  <!-- <h4>{{general_discussion_articles.count}} Post{{general_discussion_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in general_discussion_articles %}
@@ -71,14 +81,14 @@
                 </div>
               </div>
               <div class="row row-b">
-                <a class="panelsuccesscolor" href="{% url 'technews' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'technews' %}"> -->
                 <div class="col-sm-8">
                   <h4>Tech News</h4>
                   <p>Talk about latest and trending tech news in the community</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{tech_news_articles.count}} Post{{tech_news_articles|pluralize}}</h4>
+                  <!-- <h4>{{tech_news_articles.count}} Post{{tech_news_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in tech_news_articles %}
@@ -95,14 +105,14 @@
               </div>
 
               <div class="row row-a">
-                <a class="panelsuccesscolor" href="{% url 'techtips' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'techtips' %}"> -->
                 <div class="col-sm-8">
                   <h4>Tech Tips</h4>
                   <p>Share your technology tips with others in the community.</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{tech_tips_articles.count}} Post{{tech_tips_articles|pluralize}}</h4>
+                  <!-- <h4>{{tech_tips_articles.count}} Post{{tech_tips_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in tech_tips_articles %}
@@ -119,14 +129,14 @@
               </div>
 
               <div class="row row-b">
-                <a class="panelsuccesscolor" href="{% url 'offtopic' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'offtopic' %}"> -->
                 <div class="col-sm-8">
                   <h4>Off Topic</h4>
                   <p>Any topic which is not technology related goes here e.g welcoming a new member.</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{off_topic_articles.count}} Post{{off_topic_articles|pluralize}}</h4>
+                  <!-- <h4>{{off_topic_articles.count}} Post{{off_topic_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in off_topic_articles %}
@@ -156,14 +166,14 @@
             </div>
             <div class="panel-body">
               <div class="row row-c">
-                <a class="panelsuccesscolor" href="{% url 'smartphonestablets' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'smartphonestablets' %}"> -->
                 <div class="col-sm-8">
                   <h4>SmartPhones and Tablets</h4>
                   <p>Contribute to topics about SmartPhones and tablets</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{smartphones_tablets_articles.count}} Post{{smartphones_tablets_articles|pluralize}}</h4>
+                  <!-- <h4>{{smartphones_tablets_articles.count}} Post{{smartphones_tablets_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in smartphones_tablets_articles %}
@@ -180,14 +190,14 @@
               </div>
 
               <div class="row row-d">
-                <a class="panelsuccesscolor" href="{% url 'laptopsforum' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'laptopsforum' %}"> -->
                 <div class="col-sm-8">
                   <h4>Laptops</h4>
                   <p>Contribute to topics about laptops</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{laptops_forum_articles.count}} Post{{laptops_forum_articles|pluralize}}</h4>
+                  <!-- <h4>{{laptops_forum_articles.count}} Post{{laptops_forum_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in laptops_forum_articles %}
@@ -204,14 +214,14 @@
               </div>
 
               <div class="row row-c">
-                <a class="panelsuccesscolor" href="{% url 'photographyvideography' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'photographyvideography' %}"> -->
                 <div class="col-sm-8">
                   <h4>Photography and Videography</h4>
                   <p>Contribute to topics about photographs and videos</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{photography_videography_articles.count}} Post{{photography_videography_articles|pluralize}}</h4>
+                  <!-- <h4>{{photography_videography_articles.count}} Post{{photography_videography_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in photography_videography_articles %}
@@ -228,14 +238,14 @@
               </div>
 
               <div class="row row-d">
-                <a class="panelsuccesscolor" href="{% url 'televisionsforum' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'televisionsforum' %}"> -->
                 <div class="col-sm-8">
                   <h4>Televisions</h4>
                   <p>Talk about Televisions and discuss with the communities</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{televisions_forum_articles.count}} Post{{televisions_forum_articles|pluralize}}</h4>
+                  <!-- <h4>{{televisions_forum_articles.count}} Post{{televisions_forum_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in televisions_forum_articles %}
@@ -252,14 +262,14 @@
               </div>
 
               <div class="row row-c">
-                <a class="panelsuccesscolor" href="{% url 'soundsystem' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'soundsystem' %}"> -->
                 <div class="col-sm-8">
                   <h4>Sound System</h4>
                   <p>Contribute and talk on topics about sound systems with the community</p><br>
                 </div>
-                </a>
+                <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{sound_system_articles.count}} Post{{sound_system_articles|pluralize}}</h4>
+                  <!-- <h4>{{sound_system_articles.count}} Post{{sound_system_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in sound_system_articles %}
@@ -276,14 +286,14 @@
               </div>
 
               <div class="row row-d">
-                <a class="panelsuccesscolor" href="{% url 'carsforum' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'carsforum' %}"> -->
                 <div class="col-sm-8">
                   <h4>Cars</h4>
                   <p>Contribute and talk about Cars with the community</p><br>
                 </div>
-                </a>
+                <!-- </a> -->
                 <div class="col-sm-4">
-                    <h4>{{car_articles.count}} Post{{car_articles|pluralize}}</h4>
+                    <!-- <h4>{{car_articles.count}} Post{{car_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in latest_car_articles %}
@@ -316,14 +326,14 @@
             <div class="panel-body">
 
               <div class="row row-e">
-                <a class="panelsuccesscolor" href="{% url 'programmesforum' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'programmesforum' %}"> -->
                 <div class="col-sm-8">
                   <h4>Programmes</h4>
                   <p>Discuss about topics of programmes with the community</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{programmes_forum_articles.count}} Post{{programmes_forum_articles|pluralize}}</h4>
+                  <!-- <h4>{{programmes_forum_articles.count}} Post{{programmes_forum_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in programmes_forum_articles %}
@@ -340,14 +350,14 @@
               </div>
 
               <div class="row row-f">
-                <a class="panelsuccesscolor" href="{% url 'appswebsites' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'appswebsites' %}"> -->
                 <div class="col-sm-8">
                   <h4>Apps and Websites</h4>
                   <p>Discuss about various applications and websites with the community</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{apps_websites_articles.count}} Post{{apps_websites_articles|pluralize}}</h4>
+                  <!-- <h4>{{apps_websites_articles.count}} Post{{apps_websites_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in apps_websites_articles %}
@@ -364,14 +374,14 @@
               </div>
 
               <div class="row row-e">
-                <a class="panelsuccesscolor" href="{% url 'operatingsystems' %}">
+                <!-- <a class="panelsuccesscolor" href="{% url 'operatingsystems' %}"> -->
                 <div class="col-sm-8">
                   <h4>Operating Systems</h4>
                   <p>Discuss abot topics on Operating Systems with the communiity.</p><br>
                 </div>
-              </a>
+              <!-- </a> -->
                 <div class="col-sm-4">
-                  <h4>{{operating_systems_articles.count}} Post{{operating_systems_articles|pluralize}}</h4>
+                  <!-- <h4>{{operating_systems_articles.count}} Post{{operating_systems_articles|pluralize}}</h4> -->
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in operating_systems_articles %}
