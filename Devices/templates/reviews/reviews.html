@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="description" content="TechEleza is your premier source for latest technology products reviews in Africa, technology news in Africa, Specifications for mobile phones in Africa, laptops in Africa, tablets in Africa, and unbiased expert product reviews of HDTVs, laptops, smartphones and more.">
     <link rel="canonical" href="https://www.techeleza.com/reviews/">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Technology product Reviews in Africa, smartphones Reviews &amp; Mobile Phone Reviews |  TechEleza">
@@ -26,8 +27,10 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}"> -->
     {% endblock %}
   </head>
   <body>
@@ -35,6 +38,19 @@
     {% block content %}
     <div class="container-fluid">
       <br><br><br>
+
+      <!-- Social media -->
+      <div class="container">
+        <div class="row">
+          <br>
+          <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+          <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+          <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+          <a href="#" class="fa fa-youtube"></a>
+        </div>
+      </div>
+      <!-- Social media end -->
+
       <div class="container-fluid">
         <h2> Reviews</h2>
         <div class="row infinite-container">

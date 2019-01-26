@@ -21,6 +21,7 @@
     <meta name="keywords" itemprop="keywords" content="{{reviewarticle.keywords}}" ng-attr-content="{{reviewarticle.keywords}}">
     <meta name="description" content="{{reviewarticle.description}}">
     <link rel="canonical" href="https://www.techeleza.com/">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{reviewarticle.title}}">
@@ -37,6 +38,7 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
     {% endblock %}
@@ -46,6 +48,19 @@
 
     {% block content %}
       <br><br><br>
+
+      <!-- Social media -->
+      <div class="container">
+        <div class="row">
+          <br>
+          <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+          <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+          <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+          <a href="#" class="fa fa-youtube"></a>
+        </div>
+      </div>
+      <!-- Social media end -->
+
       <div class="container-fluid">
         <div class="row">
           <h2>{{reviewarticle.title}}</h2>

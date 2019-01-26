@@ -51,7 +51,7 @@
       <br><br><br>
 
       <!-- Social media -->
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
           <br>
           <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
@@ -80,12 +80,15 @@
             {% for review in reviews %}
             <div class="carousel-padding">
               <a href="{% url 'review_article' pk=review.pk %}">
-                <div  class="panel vergecolor panelstuff panel-default">
+                <div  class="panel vergecolor panelreview panel-default">
                   <div class="panel-body">
                     <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
                   </div>
                   <div class="panel-footer">
-                    <p>{{review.title|safe}}</p>
+                    <h4>{{review.title|safe}}</h4>
+                    {% if review.description %}
+                    <p>{{review.description|truncatechars:50}}</p>
+                    {% endif %}
                   </div>
                 </div>
               </a>
@@ -349,6 +352,7 @@
         </div>
       </div> -->
       <!-- News end -->
+
     </div>
 
 

@@ -21,6 +21,7 @@
     <meta name="keywords" itemprop="keywords" content="{{specsarticle.keywords}}" ng-attr-content="{{specsarticle.keywords}}">
     <meta name="description" content="{{specsarticle.description}}">
     <link rel="canonical" href="https://www.techeleza.com/">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{specsarticle.title}}">
@@ -37,6 +38,7 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
@@ -45,10 +47,23 @@
   <body>
 
     {% block content %}
-      <br><br><br>
+    <br><br><br>
+
+    <!-- Social media -->
+    <div class="container">
+      <div class="row">
+        <br>
+        <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+        <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-youtube"></a>
+      </div>
+    </div>
+    <!-- Social media end -->
+
       <div class="container-fluid">
         <div class="row">
-          <h2>{{specsarticle.title}}</h2>
+          <h1 style="text-align: center;">{{specsarticle.title}}</h1>
         </div>
       </div>
 
@@ -223,10 +238,6 @@
 
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Sound</h3> </th></tr>
-          <tr>
-              <td> <h4>Alert types</h4> </td>
-              <td> {% if specsarticle.soundalerttypes %} <p>{{specsarticle.soundalerttypes| safe}}</p> {% endif %}</td>
-          </tr>
 
           <tr>
             <td> <h4>Loud Speaker</h4> </td>
@@ -277,16 +288,6 @@
               <td> {% if specsarticle.featuressensors %} <p>{{specsarticle.featuressensors| safe}}</p> {% endif %}</td>
           </tr>
 
-          <tr>
-            <td> <h4>Messaging</h4> </td>
-            <td> {% if specsarticle.featuresmessaging %} <p>{{specsarticle.featuresmessaging| safe}}</p> {% endif %}</td>
-          </tr>
-
-          <tr>
-            <td> <h4>Browser</h4> </td>
-            <td> {% if specsarticle.featuresbrowser %} <p>{{specsarticle.featuresbrowser| safe}}</p> {% endif %}</td>
-          </tr>
-
 
           <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Battery</h3> </th></tr>
           <tr>
@@ -299,38 +300,6 @@
           <tr>
               <td> <h4>Device Colors</h4> </td>
               <td> {% if specsarticle.devicecolors %} <p>{{specsarticle.devicecolors| safe}}</p> {% endif %}</td>
-          </tr>
-
-
-          <tr><th colspan="3"> <h3 style="color: darkred; text-align: center;">Tests</h3> </th></tr>
-          <tr>
-              <td> <h4>Performance</h4> </td>
-              <td> {% if specsarticle.performancetests %} <p>{{specsarticle.performancetests| safe}}</p> {% endif %}</td>
-          </tr>
-
-          <tr>
-              <td> <h4>Display</h4> </td>
-              <td> {% if specsarticle.displaytest %} <p>{{specsarticle.displaytest| safe}}</p> {% endif %}</td>
-          </tr>
-
-          <tr>
-              <td> <h4>Camera</h4> </td>
-              <td> {% if specsarticle.cameratest %} <p>{{specsarticle.cameratest| safe}}</p> {% endif %}</td>
-          </tr>
-
-          <tr>
-              <td> <h4>Loud Speaker</h4> </td>
-              <td> {% if specsarticle.loudspeakertest %} <p>{{specsarticle.loudspeakertest| safe}}</p> {% endif %}</td>
-          </tr>
-
-          <tr>
-              <td> <h4>Audio</h4> </td>
-              <td> {% if specsarticle.audiotest %} <p>{{specsarticle.audiotest| safe}}</p> {% endif %}</td>
-          </tr>
-
-          <tr>
-              <td> <h4>Battery</h4> </td>
-              <td> {% if specsarticle.batterytest %} <p>{{specsarticle.batterytest| safe}}</p> {% endif %}</td>
           </tr>
 
 

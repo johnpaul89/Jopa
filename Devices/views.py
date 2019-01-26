@@ -171,20 +171,20 @@ def search_results(request):
     if 'article' in request.GET and request.GET["article"]:
         search_reviews_term = request.GET.get("article")
         search_specs_term = request.GET.get("article")
-        search_news_term = request.GET.get("article")
+        # search_news_term = request.GET.get("article")
         search_forums_term = request.GET.get("article")
 
         searched_reviews_articles = PhoneReview.search_by_title(search_reviews_term).order_by('-id')[:50]
         searched_specs_articles = PhoneSpecs.search_by_title(search_reviews_term).order_by('-id')[:50]
-        searched_news_articles = NewsArticle.search_by_title(search_news_term).order_by('-id')[:50]
+        # searched_news_articles = NewsArticle.search_by_title(search_news_term).order_by('-id')[:50]
         searched_forums_articles = Article.search_by_title(search_forums_term).order_by('-id')[:50]
 
         message_reviews = f"{search_reviews_term}"
-        message_news = f"{search_news_term}"
+        # message_news = f"{search_news_term}"
         message_specs = f"{search_specs_term}"
         message_forums = f"{search_forums_term}"
 
-        return render(request, 'index/search.html',{"message_reviews":message_reviews, "message_news": message_news, "message_specs": message_specs, "message_forums": message_forums, "searched_reviews_articles": searched_reviews_articles,  "reviews_articles": searched_reviews_articles, "specs_articles": searched_specs_articles, "forums_articles": searched_forums_articles, "news_articles": searched_news_articles})
+        return render(request, 'index/search.html',{"message_reviews":message_reviews, "message_specs": message_specs, "message_forums": message_forums, "searched_reviews_articles": searched_reviews_articles,  "reviews_articles": searched_reviews_articles, "specs_articles": searched_specs_articles, "forums_articles": searched_forums_articles})
 
     else:
         message_reviews = "You haven't searched for any term"

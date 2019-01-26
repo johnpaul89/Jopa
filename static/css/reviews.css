@@ -42,3 +42,19 @@ h4{
   color: black;
   padding-left: 20px;
 }
+.fa{
+  font-size: 24px;
+  padding-left: 50px;
+}
+.fa-facebook{
+  color: darkblue;
+}
+.fa-instagram{
+  color: darkred;
+}
+.fa-twitter{
+  color: blue;
+}
+.fa-youtube{
+  color: red;
+}

@@ -17,12 +17,29 @@ a:hover {
   /* background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); */
 
 }
+.container-border{
+  border-color: rgba(21, 30, 39, 1);
+  border-style: solid;
+  border-width: thin;
+}
 .panelstuff{
   height: 263px;
   width: 175px;
   border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
   margin-left: -8px;
   /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
+}
+.panelreview{
+  height: auto;
+  width: 175px;
+  border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
+  margin-left: -8px;
+  /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
+}
+.panelreviewfoot{
+  height: 200px;
+  width: 175px;
+  margin-left: -8px;
 }
 .panelsearch{
   height: 300px;
@@ -153,4 +170,9 @@ a:hover {
 }
 .specsarticle{
   background-color: white;
+}
+footer{
+  width: auto;
+  background-color: rgba(21, 30, 39, 1);
+  height: auto;
 }
