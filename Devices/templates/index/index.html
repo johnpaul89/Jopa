@@ -85,9 +85,9 @@
                     <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
                   </div>
                   <div class="panel-footer">
-                    <h4>{{review.title|safe}}</h4>
+                    <h4 style="color: darkred;">{{review.title|safe}}</h4>
                     {% if review.description %}
-                    <p>{{review.description|truncatechars:50}}</p>
+                    <p>{{review.description|truncatechars:100}}</p>
                     {% endif %}
                   </div>
                 </div>
@@ -122,7 +122,7 @@
                   <img src="{{spec.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{spec.title|safe}}">
                 </div>
                 <div class="panel-footer">
-                  <h5>{{spec.title}}</h5>
+                  <h4 style="color: darkred;">{{spec.title}}</h4>
                   {% if spec.description %}
                   <p>{{spec.description}}</p>
                   {% endif %}
