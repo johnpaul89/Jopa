@@ -15,6 +15,7 @@ class PhoneReview(models.Model):
 
     title = models.CharField(max_length =500,  blank=True, null=True)
     description = models.CharField(max_length =500,  blank=True, null=True)
+    keywords = models.CharField(max_length =500,  blank=True, null=True)
     introduction_releasedate = RichTextField(blank=True, null=True)
     introduction_releasedate_image = models.URLField(max_length =500,  blank=True, null=True)
     performance_price = RichTextField(blank=True, null=True)
@@ -73,6 +74,7 @@ class PhoneSpecs(models.Model):
 
     title = models.CharField(max_length =500,  blank=True, null=True)
     description = models.CharField(max_length =500,  blank=True, null=True)
+    keywords = models.CharField(max_length =500,  blank=True, null=True)
     network2G = RichTextField(max_length =500,  blank=True, null=True)
     network3G = RichTextField(max_length =500,  blank=True, null=True)
     network4G = RichTextField(max_length =500,  blank=True, null=True)
