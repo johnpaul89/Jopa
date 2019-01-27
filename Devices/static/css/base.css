@@ -29,6 +29,13 @@ a:hover {
   margin-left: -8px;
   /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
 }
+.panelspecs{
+  height: 263px;
+  width: 175px;
+  border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
+  margin-left: -8px;
+  /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
+}
 .panelreview{
   height: auto;
   width: 175px;
@@ -175,4 +182,8 @@ footer{
   width: auto;
   background-color: rgba(21, 30, 39, 1);
   height: auto;
+  color: white;
+}
+.panelforum{
+  margin-top: -19px;
 }

@@ -12,7 +12,7 @@ nav.hidden {
 .navbar{
   background-color: rgba(21, 30, 39, 1);
   color: white;
-  height: 50px;
+  height: 45px;
 }
 .navbar-collapse {
     height: 100vh;
@@ -20,4 +20,8 @@ nav.hidden {
 }
 ul{
   color: darkred;
+}
+h4{
+  text-align: center;
+  color: black;
 }
