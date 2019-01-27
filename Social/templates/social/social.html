@@ -39,6 +39,7 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/social.css' %}">
@@ -49,6 +50,18 @@
     {% block content %}
     <div class="container">
       <br><br><br><br>
+
+      <!-- Social media -->
+      <div class="container">
+        <div class="row">
+          <br>
+          <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+          <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+          <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+          <a href="#" class="fa fa-youtube"></a>
+        </div>
+      </div>
+      <!-- Social media end -->
 
       <div class="container-fluid">
         <h2>Forums</h2>
@@ -404,6 +417,27 @@
       </div>
       </div>
     </div>
+
+    <footer>
+      <div class="container-fluid">
+        <div class="row"><br>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-5">
+            <br>
+            <p style="color: white;"> &copy; Copyright  <a target="_blank" style="color: white; font-weight: bold;" href="https://www.techeleza.com/">TechEleza</a>  2019.  All Rights Reserved. </p>
+            <p style="color: white;"><a style="color: white;" href="#">Terms of Use</a></p>
+          </div>
+          <div class="col-sm-5">
+            <h5 style="color: white; text-align: center;">Contact Us</h5>
+            <a target="_blank" href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+            <a target="_blank" href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+            <a target="_blank" href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-youtube"></a>
+          </div>
+          <div class="col-sm-1"></div>
+        </div> <br>
+      </div>
+    </footer>
     {% endblock %}
 
     {% block scripts %}

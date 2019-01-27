@@ -72,6 +72,7 @@ class ReviewComment(models.Model):
 class PhoneSpecs(models.Model):
 
     title = models.CharField(max_length =500,  blank=True, null=True)
+    description = models.CharField(max_length =500,  blank=True, null=True)
     network2G = RichTextField(max_length =500,  blank=True, null=True)
     network3G = RichTextField(max_length =500,  blank=True, null=True)
     network4G = RichTextField(max_length =500,  blank=True, null=True)
