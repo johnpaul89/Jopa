@@ -6,7 +6,7 @@
 <html lang="en" dir="ltr">
   <head>
 
-    {% block adsense %}
+    <!-- {% block adsense %}
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -14,7 +14,7 @@
         enable_page_level_ads: true
       });
     </script>
-    {% endblock %}
+    {% endblock %} -->
 
     {% block meta %}
     <meta charset="utf-8">
@@ -62,6 +62,42 @@
       </div>
       <!-- Social media end -->
 
+      <!-- Specs -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="row">
+            <div class="col-xs-8">
+              <a href="/specs/">
+              <h2>Phone Specs</h2></a>
+            </div>
+            <div class="col-xs-4">
+              <a href="/specs/">
+              <p class="btn-view-more">More Specs ></p></a>
+            </div>
+          </div>
+
+          <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+            {% for spec in specs %}
+            <div class="carousel-padding carousel-cell">
+              <a href="{% url 'specs_article' pk=spec.pk %}">
+              <div  class="panel panelspecs panel-default">
+                <div class="panel-body">
+                  <img src="{{spec.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{spec.title|safe}}">
+                </div>
+                <div class="panel-footer">
+                  <h4 style="color: darkred;">{{spec.title}}</h4>
+                  {% if spec.description %}
+                  <p>{{spec.description}}</p>
+                  {% endif %}
+                </div>
+              </div></a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- Specs end -->
+
       <!-- Reviews -->
       <div class="container-fluid">
         <div class="row">
@@ -98,42 +134,6 @@
         </div>
       </div>
       <!-- Review end -->
-
-      <!-- Specs -->
-      <div class="container-fluid">
-        <div class="row">
-          <div class="row">
-            <div class="col-xs-8">
-              <a href="/specs/">
-              <h2>Phone Specs</h2></a>
-            </div>
-            <div class="col-xs-4">
-              <a href="/specs/">
-              <p class="btn-view-more">More Specs ></p></a>
-            </div>
-          </div>
-
-          <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
-            {% for spec in specs %}
-            <div class="carousel-padding carousel-cell">
-              <a href="{% url 'specs_article' pk=spec.pk %}">
-              <div  class="panel panelspecs panel-default">
-                <div class="panel-body">
-                  <img src="{{spec.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{spec.title|safe}}">
-                </div>
-                <div class="panel-footer">
-                  <h4 style="color: darkred;">{{spec.title}}</h4>
-                  {% if spec.description %}
-                  <p>{{spec.description}}</p>
-                  {% endif %}
-                </div>
-              </div></a>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-      <!-- Specs end -->
 
       <div class="container-fluid">
 

@@ -6,7 +6,7 @@
 <html lang="en" dir="ltr">
   <head>
 
-    {% block adsense %}
+    <!-- {% block adsense %}
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -14,13 +14,13 @@
         enable_page_level_ads: true
       });
     </script>
-    {% endblock %}
+    {% endblock %} -->
 
     {% block meta %}
     <meta charset="utf-8">
     <meta name="keywords" itemprop="keywords" content="{{specsarticle.keywords}}" ng-attr-content="{{specsarticle.keywords}}">
     <meta name="description" content="{{specsarticle.description}}">
-    <link rel="canonical" href="https://www.techeleza.com/">
+    <link rel="canonical" href="https://www.techeleza.com{{request.path}}">
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
@@ -112,7 +112,7 @@
           </tr>
 
           <tr>
-            <td> <h4>3G Network</h4> </td>
+            <td> <h4>4G Network</h4> </td>
             <td> {% if specsarticle.network4G %} <p>{{specsarticle.network4G| safe}}</p> {% endif %}</td>
           </tr>
 
