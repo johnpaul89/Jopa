@@ -35,7 +35,6 @@
   <body>
 
     {% block content %}
-    <div class="container">
       <br><br><br><br>
         <h2>Cars Topics</h2><br>
         {% for article in articles %}
@@ -59,7 +58,7 @@
                         <div class="row">
                           <div class="col-sm-6">
                             {% if article.article_image %}
-                            <img class="forums-images img-responsive" src="{{article.article_image.url}}" alt="{{article.title}}">
+                            <img class=" img-responsive" src="{{article.article_image.url}}" alt="{{article.title}}">
                             {% endif %}
                           </div>
                           <div class="col-sm-6">
@@ -96,7 +95,6 @@
           </div>
 
           {% endfor %}
-    </div>
     {% endblock %}
 
     {% block scripts %}
