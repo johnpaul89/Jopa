@@ -51,6 +51,14 @@ a:hover {
 .panelsearch{
   height: 300px;
 }
+.panel-border{
+  border: solid;
+  border-right-color: black;
+  border-top-color: white;
+  border-bottom-color: white;
+  border-left-color: white;
+  border-width: 1px;
+}
 .glyphicon-like{
   margin-top: 25px;
   font-size: 36px;

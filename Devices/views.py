@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.shortcuts import render_to_response
 from Devices.models import PhoneSpecs, PhoneReview, SpecsComment, ReviewComment
 from News.models import NewsArticle
-from Social.models import Article
+from Social.models import Article, Comment
 from .forms import ReviewCommentForm, SpecsCommentForm
 from django.db.models import Q
 
@@ -14,9 +14,11 @@ from django.db.models import Q
 def devices(request, pk=None):
     specs = PhoneSpecs.objects.filter().order_by('-id')[:10]
     reviews = PhoneReview.objects.filter().order_by('-id')[:10]
-    # news_articles = NewsArticle.objects.filter()
+    articles = Article.objects.filter().order_by('-id')[:10]
+    comments = Article.objects.all().order_by('-id')[:10]
+    likes = Article.objects.all()
 
-    return render(request, 'index/index.html', {"specs": specs, "reviews": reviews})
+    return render(request, 'index/index.html', {"specs": specs, "reviews": reviews, "articles": articles, "likes": likes, "comments": comments})
 
 def phone_specs(request):
     specifications = PhoneSpecs.objects.all().order_by('-id')[:400]
