@@ -76,12 +76,30 @@
         </div>
       </div>
 
-      <div class="loading" >
-        Loading...
-      </div>
-
-      {% if review_pages.has_next %}
+      <!-- {% if review_pages.has_next %}
       <a class="infinite-more-link" href="?page={{ review_pages.next_page_number }}">More</a>
+      {% endif %} -->
+
+      {% if review_pages.has_other_pages %}
+        <ul class="pagination">
+          {% if review_pages.has_previous %}
+            <li><a href="?page={{ review_pages.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+          {% endif %}
+          {% for i in review_pages.paginator.page_range %}
+            {% if review_pages.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if review_pages.has_next %}
+            <li><a href="?page={{ review_pages.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
       {% endif %}
 
     </div>
@@ -90,7 +108,7 @@
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'js/infinite.min.js' %}"></script>
+    <!-- <script src="{% static 'js/infinite.min.js' %}"></script> -->
     <script src="{% static 'js/navbar.js' %}"></script>
     <script>
     var infinite = new Waypoint.Infinite({

@@ -100,7 +100,7 @@ class Article(models.Model):
 
     @classmethod
     def tech_tips_articles(cls):
-        articles = cls.objects.filter(tags__name__startswith='Tech-_Tips').order_by('-id')
+        articles = cls.objects.filter(tags__name__startswith='Tech_Tips').order_by('-id')
         return articles
 
     @classmethod

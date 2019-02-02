@@ -24,7 +24,7 @@ def phone_specs(request):
     specifications = PhoneSpecs.objects.all().order_by('-id')[:400]
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(specifications, 10)
+    paginator = Paginator(specifications, 1)
     try:
         specs_pages = paginator.page(page)
     except PageNotAnInteger:
@@ -38,7 +38,7 @@ def phone_reviews(request):
     reviews = PhoneReview.objects.filter().order_by('-id')[:400]
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(reviews, 10)
+    paginator = Paginator(reviews, 2)
     try:
         review_pages = paginator.page(page)
     except PageNotAnInteger:
