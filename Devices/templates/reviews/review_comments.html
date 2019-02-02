@@ -17,7 +17,7 @@
 {% for comment in reviewcomments %}
 <blockquote class="blockquote">
   <p class="mb-0" id="comment">{{comment.review_content}}</p>
-  <footer class="blockquote-footer">by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=comment.review_user.pk %}">{{comment.review_user|capfirst }}</a></cite>
+  <footer style="background-color: white;" class="blockquote-footer">by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=comment.review_user.pk %}">{{comment.review_user|capfirst }}</a></cite>
     <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button>
     <h5>{{comment.reviewreplies.count}} Reply{{comment.reviewreplies.count|pluralize}}</h5>
   </footer>
@@ -27,7 +27,7 @@
   {% for reply in comment.reviewreplies.all %}
   <blockquote class="blockquote">
     <p class="mb-0" id="comment"><small>{{reply.review_content}}</small></p>
-    <footer class="blockquote-footer"><small>by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=reply.review_user.pk %}">{{reply.review_user|capfirst }}</a></cite></small></footer>
+    <footer style="background-color: white;" class="blockquote-footer"><small>by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=reply.review_user.pk %}">{{reply.review_user|capfirst }}</a></cite></small></footer>
   </blockquote>
   {% endfor %}
   <div class="form-group row">

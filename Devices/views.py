@@ -21,10 +21,10 @@ def devices(request, pk=None):
     return render(request, 'index/index.html', {"specs": specs, "reviews": reviews, "articles": articles, "likes": likes, "comments": comments})
 
 def phone_specs(request):
-    specifications = PhoneSpecs.objects.all().order_by('-id')[:400]
+    specifications = PhoneSpecs.objects.all().order_by('-id')[:1000]
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(specifications, 1)
+    paginator = Paginator(specifications, 15)
     try:
         specs_pages = paginator.page(page)
     except PageNotAnInteger:
@@ -35,10 +35,10 @@ def phone_specs(request):
     return render(request, 'specs/specs.html', {"specifications": specifications, "specs_pages": specs_pages})
 
 def phone_reviews(request):
-    reviews = PhoneReview.objects.filter().order_by('-id')[:400]
+    reviews = PhoneReview.objects.filter().order_by('-id')[:1000]
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(reviews, 2)
+    paginator = Paginator(reviews, 15)
     try:
         review_pages = paginator.page(page)
     except PageNotAnInteger:
@@ -53,10 +53,10 @@ def review_article(request, pk):
     reviewarticle = get_object_or_404(PhoneReview, pk = pk)
     reviewpost = get_object_or_404(PhoneReview, pk=pk)
     reviewcomments = ReviewComment.objects.filter(review_post=reviewpost, review_reply=None).order_by('-id')
-    similar = PhoneReview.objects.all().order_by('-id')[:20]
+    similar = PhoneReview.objects.all().order_by('-id')[:10]
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(reviews, 8)
+    paginator = Paginator(reviews, 15)
     try:
         review_article_pages = paginator.page(page)
     except PageNotAnInteger:
@@ -112,7 +112,7 @@ def specs_article(request, pk):
     specifications = PhoneSpecs.objects.filter()
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(specifications, 2)
+    paginator = Paginator(specifications, 10)
     try:
         specs_article_pages = paginator.page(page)
     except PageNotAnInteger:

@@ -50,6 +50,9 @@ a:hover {
 }
 .panelsearch{
   height: 300px;
+  width: 175px;
+  border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
+  margin-left: -8px;
 }
 .panel-border{
   border: solid;

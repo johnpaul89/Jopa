@@ -46,7 +46,7 @@
                 <div class="container-fluid">
                   <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
                     <h3 class="panelsuccesscolor">{{article.title}}</h3>
-                  </a>
+
                 </div>
 
               </div>
@@ -60,7 +60,7 @@
                             {% if article.article_image %}
                             <img class=" img-responsive" src="{{article.article_image.url}}" alt="{{article.title}}">
                             {% endif %}
-                          </div>
+                          </div></a>
                           <div class="col-sm-6">
                             <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
                              <p style="color:black;">{{article.post|truncatechars:100|safe}}</p>

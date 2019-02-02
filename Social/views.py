@@ -23,8 +23,21 @@ def social(request):
     users = User.objects.all()
     car_articles = Article.car_articles()
     latest_car_articles = Article.objects.filter(tags__name__startswith='Cars').order_by('-id')[:1]
+    tech_tips_articles = Article.objects.filter(tags__name__startswith='Tech_Tips').order_by('-id')[:1]
+    apps_websites_articles = Article.objects.filter(tags__name__startswith='Apps_and_Website').order_by('-id')[:1]
+    general_discussion_articles = Article.objects.filter(tags__name__startswith='General_Discussion').order_by('-id')[:1]
+    laptops_forum_articles = Article.objects.filter(tags__name__startswith='Laptops').order_by('-id')[:1]
+    off_topic_articles = Article.objects.filter(tags__name__startswith='Off_Topic').order_by('-id')[:1]
+    operating_systems_articles = Article.objects.filter(tags__name__startswith='Operating_Systems').order_by('-id')[:1]
+    programmes_forum_articles = Article.objects.filter(tags__name__startswith='Programmes').order_by('-id')[:1]
+    smartphones_tablets_articles = Article.objects.filter(tags__name__startswith='SmartPhones_Tablets').order_by('-id')[:1]
+    sound_system_articles = Article.objects.filter(tags__name__startswith='Sound_System').order_by('-id')[:1]
+    photography_videography_articles = Article.objects.filter(tags__name__startswith='Photography_Videography').order_by('-id')[:1]
+    tech_news_articles = Article.objects.filter(tags__name__startswith='Tech_News').order_by('-id')[:1]
+    televisions_forum_articles = Article.objects.filter(tags__name__startswith='Televisions').order_by('-id')[:1]
 
-    return render(request, 'social/social.html', {"users": users, "car_articles": car_articles, "latest_car_articles": latest_car_articles})
+
+    return render(request, 'social/social.html', {"users": users, "tech_tips_articles": tech_tips_articles, "car_articles": car_articles, "latest_car_articles": latest_car_articles})
 
 @login_required
 def login_view(request):

@@ -93,7 +93,7 @@
           {% for i in specs_pages.paginator.page_range %}
             {% if specs_pages.number == i %}
               <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-            {% else %}
+            {% elif i > specs_pages.number|add:'-3' and i < specs_pages.number|add:'4' %}
               <li><a href="?page={{ i }}">{{ i }}</a></li>
             {% endif %}
           {% endfor %}

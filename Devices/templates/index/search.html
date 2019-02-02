@@ -22,9 +22,9 @@
       <div class="col-xs-12">
         <div id="Reviews" class="tabcontent">
           {% if reviews_articles%}
-            <h2>Found {{ reviews_articles|length }} of searched term <strong>{{message_reviews}}</strong> in reviews</h2>
+            <h3>Found {{ reviews_articles|length }} of searched term <strong>{{message_reviews}}</strong> in reviews only 50 ot the most popular ones will be shown.</h3>
           {% else %}
-            <h2> Found 0 articles for the search term <strong>{{message_reviews}}</strong> in reviews</h2>
+            <h3> Found 0 articles for the search term <strong>{{message_reviews}}</strong> in reviews</h3>
           {% endif %}
           {% for article in reviews_articles %}
           <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
@@ -44,9 +44,9 @@
 
         <div id="Specs" class="tabcontent">
           {% if specs_articles%}
-            <h2>Found {{ specs_articles|length }} of searched term <strong>{{message_specs}}</strong> in specs</h2>
+            <h3>Found {{ specs_articles|length }} of searched term <strong>{{message_specs}}</strong> in specs only 50 ot the most popular ones will be shown</h3>
           {% else %}
-            <h2> Found 0 articles for the search term <strong>{{message_specs}}</strong> in specs</h2>
+            <h3> Found 0 articles for the search term <strong>{{message_specs}}</strong> in specs</h3>
           {% endif %}
           {% for article in specs_articles %}
           <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
@@ -66,9 +66,9 @@
 
         <div id="Forums" class="tabcontent">
           {% if forums_articles%}
-            <h2>Found {{ forums_articles|length }} of searched term <strong>{{message_forums}}</strong> in forums</h2>
+            <h3>Found {{ forums_articles|length }} of searched term <strong>{{message_forums}}</strong> in forums only 50 ot the most popular ones will be shown</h3>
           {% else %}
-            <h2> Found 0 articles for the search term <strong>{{message_forums}}</strong> in forums</h2>
+            <h3> Found 0 articles for the search term <strong>{{message_forums}}</strong> in forums</h3>
           {% endif %}
           {% for article in forums_articles %}
           <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
@@ -89,9 +89,9 @@
 
         <!-- <div id="News" class="tabcontent">
           {% if news_articles%}
-            <h2>Found {{ news_articles|length }} of searched term <strong>{{message_news}}</strong> in news</h2>
+            <h3>Found {{ news_articles|length }} of searched term <strong>{{message_news}}</strong> in news</h3>
           {% else %}
-            <h2> Found 0 articles for the search term <strong>{{message_news}}</strong> in news</h2>
+            <h3> Found 0 articles for the search term <strong>{{message_news}}</strong> in news</h3>
           {% endif %}
           {% for article in news_articles %}
           <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">

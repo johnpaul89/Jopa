@@ -29,7 +29,7 @@
   {% for reply in comment.replies.all %}
   <blockquote class="blockquote">
     <p class="mb-0" id="comment">{{reply.content}}</p>
-    <footer class="blockquote-footer"><small>by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=reply.user.pk %}"> {{reply.user|capfirst }}</a></cite></small></footer>
+    <footer style="background-color: white;" class="blockquote-footer"><small>by <cite title="Source Title"><a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=reply.user.pk %}"> {{reply.user|capfirst }}</a></cite></small></footer>
   </blockquote>
   {% endfor %}
   <div class="form-group row">
