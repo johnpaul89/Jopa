@@ -116,11 +116,14 @@
                 </div>
 
                 <div class="col-xs-9">
-                  <div style="padding-left: -30px;" class="col-xs-12">
-                     <br>
-                  </div>
-                   <br>
-                  <h4>{{article.title}}</h4>
+                   <div class="row">
+                     <div class="col-xs-8">
+                       <h3>{{article.title}}</h3>
+                     </div>
+                     <div class="col-xs-4">
+                       <h5 style="color: darkred;">{{article.pub_date|timesince}} ago</h5>
+                     </div>
+                   </div>
                   <p>{{article.post|truncatechars:100|safe}}</p>
                 </div>
               </div>
