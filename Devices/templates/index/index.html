@@ -7,16 +7,6 @@
 <html lang="en" dir="ltr">
   <head>
 
-    <!-- {% block adsense %}
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-3710297308109999",
-        enable_page_level_ads: true
-      });
-    </script>
-    {% endblock %} -->
-
     {% block meta %}
     <meta charset="utf-8">
     <meta name="description" content="TechEleza is your premier source for latest technology products reviews in Africa, technology news in Africa, Specifications for mobile phones in Africa, laptops in Africa, tablets in Africa, and unbiased expert product reviews of HDTVs, laptops, smartphones and more.">
@@ -49,7 +39,24 @@
 
     {% block content %}
     <div class="container-fluid">
-      <br><br><br>
+      <br><br><br><br>
+
+      <!-- Alert -->
+      {% if  user.is_authenticated %}
+      <div class=""></div>
+      {% else %}
+      <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <h4>Please <strong>Sign in/Sign Up</strong> to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
+      </div>
+      {% endif %}
+      <!-- Alert End -->
+
+      {% if  user.is_authenticated %}
+      <div style="z-index: 1;" class="icon-bar-article">
+        <a href="{% url 'newarticle' %}" class="twitter"> <button class="btn btn-sm btn-info" name="button">Start new topic</button> </a>
+      </div>
+      {% endif %}
 
       <!-- Social media -->
       <div class="container">

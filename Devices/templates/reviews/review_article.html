@@ -6,30 +6,27 @@
 <html lang="en" dir="ltr">
   <head>
 
-    <!-- {% block adsense %}
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-3710297308109999",
-        enable_page_level_ads: true
-      });
-    </script>
-    {% endblock %} -->
-
     {% block meta %}
     <meta charset="utf-8">
     <meta name="keywords" itemprop="keywords" content="{{reviewarticle.keywords}}" ng-attr-content="{{reviewarticle.keywords}}">
     <meta name="description" content="{{reviewarticle.description}}">
-    <link rel="canonical" href="https://www.techeleza.com/">
+    <link rel="canonical" href="https://www.techeleza.com{{request.path}}">
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{reviewarticle.title}}">
     <meta property="og:description" content="{{reviewarticle.description}}">
-    <meta property="og:url" content="https://www.techeleza.com/">
+    <meta property="og:url" content="https://www.techeleza.com{{request.path}}">
     <meta property="og:site_name" content="TechEleza">
     <meta property="og:image" content="https://www.techeleza.com{{reviewarticle.review_image.url}}">
     <meta property="og:image:secure_url" content="https://www.techeleza.com{{reviewarticle.review_image.url}}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ElezaTech">
+    <meta name="twitter:url" content="https://www.techeleza.com{{request.path}}">
+    <meta name="twitter:title" content="{{reviewarticle.title}}">
+    <meta name="twitter:description" content="{{reviewarticle.description}}">
+    <meta name="twitter:image" content="https://www.techeleza.com{{reviewarticle.specs_image.url}}">
     {% endblock %}
 
     {% block title %}

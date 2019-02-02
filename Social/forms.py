@@ -38,14 +38,14 @@ class NewArticleForm(forms.ModelForm):
     tags = forms.RadioSelect()
     class Meta:
         model = Article
-        exclude = ['editor', 'pub_date', 'likes']
+        exclude = ['editor', 'pub_date', 'likes', 'article_views']
 
 
 class EditArticleForm(forms.ModelForm):
     tags = forms.RadioSelect()
     class Meta:
         model = Article
-        exclude = ['editor', 'pub_date', 'likes', 'article_image']
+        exclude = ['editor', 'pub_date', 'likes', 'article_image', 'article_views']
 
 
 class CommentForm(forms.ModelForm):

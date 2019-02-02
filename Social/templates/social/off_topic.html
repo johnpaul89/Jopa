@@ -36,6 +36,11 @@
 
     {% block content %}
       <br><br><br><br>
+      {% if  user.is_authenticated %}
+      <div style="z-index: 1;" class="icon-bar-article">
+        <a href="{% url 'newarticle' %}" class="twitter"> <button class="btn btn-sm btn-info" name="button">Start new topic</button> </a>
+      </div>
+      {% endif %}
         <h2>Off Topic Topics</h2><br>
         {% for article in articles %}
         <div class="container-fluid">

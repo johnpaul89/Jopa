@@ -7,16 +7,6 @@
 <html lang="en" dir="ltr">
   <head>
 
-    <!-- {% block adsense %}
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-3710297308109999",
-        enable_page_level_ads: true
-      });
-    </script>
-    {% endblock %} -->
-
     {% block meta %}
     <meta charset="utf-8">
     <!-- <meta name="keywords" itemprop="keywords" content="manufacturing, factories, assembly, automation, 3d printing" ng-attr-content="{{meta.keywords}}"> -->
@@ -46,6 +36,12 @@
     {% endblock %}
   </head>
   <body>
+
+    {% if  user.is_authenticated %}
+    <div style="z-index: 1;" class="icon-bar-article">
+      <a href="{% url 'newarticle' %}" class="twitter"> <button class="btn btn-sm btn-info" name="button">Start new topic</button> </a>
+    </div>
+    {% endif %}
 
     {% block content %}
     <div class="container">
