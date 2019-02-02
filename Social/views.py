@@ -22,6 +22,19 @@ from avatar.utils import (get_primary_avatar, get_default_avatar_url,
 def social(request):
     users = User.objects.all()
     car_articles = Article.car_articles()
+    apps_websites_articles = Article.apps_websites_articles()
+    general_discussion_articles = Article.general_discussion_articles()
+    laptops_forum_articles = Article.laptops_forum_articles()
+    off_topic_articles = Article.off_topic_articles()
+    operating_systems_articles = Article.operating_systems_articles()
+    programmes_forum_articles = Article.programmes_forum_articles()
+    smartphones_tablets_articles = Article.smartphones_tablets_articles()
+    sound_system_articles = Article.sound_system_articles()
+    photography_videography_articles = Article.photography_videography_articles()
+    tech_news_articles = Article.tech_news_articles()
+    tech_tips_articles = Article.tech_tips_articles()
+    televisions_forum_articles = Article.televisions_forum_articles()
+
     latest_car_articles = Article.objects.filter(tags__name__startswith='Cars').order_by('-id')[:1]
     tech_tips_articles = Article.objects.filter(tags__name__startswith='Tech_Tips').order_by('-id')[:1]
     apps_websites_articles = Article.objects.filter(tags__name__startswith='Apps_and_Website').order_by('-id')[:1]
@@ -37,7 +50,8 @@ def social(request):
     televisions_forum_articles = Article.objects.filter(tags__name__startswith='Televisions').order_by('-id')[:1]
 
 
-    return render(request, 'social/social.html', {"users": users, "tech_tips_articles": tech_tips_articles, "car_articles": car_articles, "latest_car_articles": latest_car_articles})
+    return render(request, 'social/social.html', {"users": users, "televisions_forum_articles": televisions_forum_articles, "tech_tips_articles": tech_tips_articles, "tech_news_articles": tech_news_articles, "photography_videography_articles": photography_videography_articles, "sound_system_articles": sound_system_articles, "programmes_forum_articles": programmes_forum_articles, "operating_systems_articles": operating_systems_articles, "off_topic_articles": off_topic_articles, "tech_tips_articles": tech_tips_articles, "smartphones_tablets_articles": smartphones_tablets_articles,
+     "laptops_forum_articles": laptops_forum_articles, "general_discussion_articles": general_discussion_articles, "apps_websites_articles": apps_websites_articles, "car_articles": car_articles, "latest_car_articles": latest_car_articles})
 
 @login_required
 def login_view(request):
@@ -134,6 +148,10 @@ def read_article(request, pk):
     post = get_object_or_404(Article, pk=pk)
     comments = Comment.objects.filter(post=post, reply=None).order_by('-id')
     car_articles = Article.objects.filter(tags__name__startswith='Cars').order_by('-id')[:5]
+
+    blog_object=Article.objects.get(id=pk)
+    blog_object.article_views=blog_object.article_views+1
+    blog_object.save()
 
     is_liked = False
     if post.likes.filter(id=request.user.id).exists():

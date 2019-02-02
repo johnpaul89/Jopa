@@ -35,6 +35,7 @@ class Article(models.Model):
     editor = models.ForeignKey(User,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name="likes", blank=True)
+    article_views=models.IntegerField(default=0)
     article_image = models.ImageField(upload_to='social_articles/', blank=True)
 
     def __str__(self):

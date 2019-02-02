@@ -18,7 +18,22 @@ def devices(request, pk=None):
     comments = Article.objects.all().order_by('-id')[:10]
     likes = Article.objects.all()
 
-    return render(request, 'index/index.html', {"specs": specs, "reviews": reviews, "articles": articles, "likes": likes, "comments": comments})
+    car_articles = Article.car_articles()
+    apps_websites_articles = Article.apps_websites_articles()
+    general_discussion_articles = Article.general_discussion_articles()
+    laptops_forum_articles = Article.laptops_forum_articles()
+    off_topic_articles = Article.off_topic_articles()
+    operating_systems_articles = Article.operating_systems_articles()
+    programmes_forum_articles = Article.programmes_forum_articles()
+    smartphones_tablets_articles = Article.smartphones_tablets_articles()
+    sound_system_articles = Article.sound_system_articles()
+    photography_videography_articles = Article.photography_videography_articles()
+    tech_news_articles = Article.tech_news_articles()
+    tech_tips_articles = Article.tech_tips_articles()
+    televisions_forum_articles = Article.televisions_forum_articles()
+
+    return render(request, 'index/index.html', {"specs": specs, "televisions_forum_articles": televisions_forum_articles, "tech_tips_articles": tech_tips_articles, "tech_news_articles": tech_news_articles, "photography_videography_articles": photography_videography_articles, "sound_system_articles": sound_system_articles, "programmes_forum_articles": programmes_forum_articles, "operating_systems_articles": operating_systems_articles, "off_topic_articles": off_topic_articles, "car_articles": car_articles, "laptops_forum_articles": laptops_forum_articles,
+    "smartphones_tablets_articles": smartphones_tablets_articles, "general_discussion_articles": general_discussion_articles, "apps_websites_articles": apps_websites_articles, "reviews": reviews, "articles": articles, "likes": likes, "comments": comments})
 
 def phone_specs(request):
     specifications = PhoneSpecs.objects.all().order_by('-id')[:1000]

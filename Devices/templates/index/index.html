@@ -103,19 +103,21 @@
       <div class="container">
         <div class="container-fluid">
           <div class="row">
-            <h2>Latest Forum Articles</h2> <br>
+            <h2>Latest Forum Posts</h2> <br>
             {% for article in articles %}
             <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
             <div style="margin-top: -15px;" class="panel panel-default">
               <div class="panel-body">
                 <div class="panel-border col-xs-3">
-                  <i class="glyphicon glyphicon-like glyphicon-heart" ><h5>{{article.likes.count}} </h5></i>
+                  {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                  <i class="glyphicon glyphicon-like glyphicon-heart" ><h5>{{article.likes.count}} Likes</h5></i>
+                  <h5>{{article.article_views}} Views</h5>
 
                 </div>
 
                 <div class="col-xs-9">
                   <div style="padding-left: -30px;" class="col-xs-12">
-                    {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %} <br>
+                     <br>
                   </div>
                    <br>
                   <h4>{{article.title}}</h4>
@@ -186,7 +188,14 @@
               <a class="panelsuccesscolor" href="{% url 'technews' %}">
             <div class="panel panel-info">
               <div class="panel-heading">
-                <h4>Tech News</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Tech News</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{tech_news_articles.count}} Post{{tech_news_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Talk about latest and trending tech news in the community</p>
@@ -199,7 +208,14 @@
             <a class="panelsuccesscolor" href="{% url 'techtips' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Tech Tips</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Tech Tips</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{tech_tips_articles.count}} Post{{tech_tips_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Share your technology tips with others in the community.</p>
@@ -212,7 +228,14 @@
             <a class="panelsuccesscolor" href="{% url 'offtopic' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Off Topic</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Off Topic</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{off_topic_articles.count}} Post{{off_topic_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Any topic which is not technology related goes here e.g welcoming a new member.</p>
@@ -225,7 +248,14 @@
             <a class="panelsuccesscolor" href="{% url 'generaldiscussion' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>General Discussion</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>General Discussion</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{general_discussion_articles.count}} Post{{general_discussion_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Talk about general tech topics which might not be icluded in the other forums</p>
@@ -238,7 +268,14 @@
             <a class="panelsuccesscolor" href="{% url 'smartphonestablets' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>SmartPhones and Tablets</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>SmartPhones and Tablets</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{smartphones_tablets_articles.count}} Post{{smartphones_tablets_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Contribute to topics about SmartPhones and tablets</p>
@@ -251,7 +288,14 @@
             <a class="panelsuccesscolor" href="{% url 'laptopsforum' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Laptops</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Laptops</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{laptops_forum_articles.count}} Post{{laptops_forum_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Contribute to topics about laptops</p>
@@ -264,7 +308,14 @@
             <a class="panelsuccesscolor" href="{% url 'photographyvideography' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Photography and Videography</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Photography and Videography</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{photography_videography_articles.count}} Post{{photography_videography_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Contribute to topics about photographs and videos</p>
@@ -277,7 +328,14 @@
             <a class="panelsuccesscolor" href="{% url 'televisionsforum' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Televisions</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Televisions</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{televisions_forum_articles.count}} Post{{televisions_forum_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Talk about Televisions and discuss with the communities</p>
@@ -290,7 +348,14 @@
             <a class="panelsuccesscolor" href="{% url 'soundsystem' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Sound System</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Sound System</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{sound_system_articles.count}} Post{{sound_system_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Contribute and talk on topics about sound systems with the community</p>
@@ -303,7 +368,14 @@
             <a class="panelsuccesscolor" href="{% url 'carsforum' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Cars</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Cars</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{car_articles.count}} Post{{car_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Contribute and talk about Cars with the community</p>
@@ -316,7 +388,14 @@
             <a class="panelsuccesscolor" href="{% url 'programmesforum' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Programmes</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Programmes</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{programmes_forum_articles.count}} Post{{programmes_forum_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Discuss about topics of programmes with the community</p>
@@ -329,7 +408,14 @@
             <a class="panelsuccesscolor" href="{% url 'appswebsites' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Apps and Websites</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Apps and Websites</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{apps_websites_articles.count}} Post{{apps_websites_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
                 <p>Discuss about various applications and websites with the community</p><br>
@@ -342,7 +428,14 @@
             <a class="panelsuccesscolor" href="{% url 'operatingsystems' %}">
             <div class="panel panelforum panel-info ">
               <div class="panel-heading ">
-                <h4>Operating Systems</h4>
+                <div class="container-fluid">
+                  <div class="col-xs-9">
+                    <h4>Operating Systems</h4>
+                  </div>
+                  <div class="col-xs-3">
+                    <h5 style="color: darkred; text-align: center">{{operating_systems_articles.count}} Post{{operating_systems_articles|pluralize}}</h5>
+                  </div>
+                </div>
               </div>
               <div class="panel-body">
               <p>Discuss abot topics on Operating Systems with the communiity.</p>
