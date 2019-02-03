@@ -70,15 +70,15 @@
           </div>
           <div class="col-sm-6">
             <br><br>
-            <div style="margin-left: 20px" class="tab">
-              <button class="tablinks" onclick="openCity(event, 'Articles')">Articles</button>
+            <div style="margin-left: 20px;" class="tab">
+              <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Articles')">Articles</button>
               <button class="tablinks" onclick="openCity(event, 'Comments')">Comments</button>
               <button class="tablinks" onclick="openCity(event, 'Likes')">Likes</button>
             </div>
 
             <div class="row">
               <br><br>
-            </div> <br>
+            </div><br>
 
             <div id="Articles" class="tabcontent">
               <div class="panel panel-success">
@@ -86,7 +86,7 @@
                   <h2>Articles</h2>
                 </div>
                 <div class="panel-body">
-                  {% for article in articles %}
+                  {% for article in article_pages %}
                   <h3>  <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">{{article.title}} </h3>
                   <!-- <p>{{article.post|truncatechars:50|safe}}</p> -->
                   <div class="col-xs-4">
@@ -101,6 +101,28 @@
                   <p style="color: darkred;">Posted on: {{article.pub_date}}</p></a>
                   <hr>
                   {% endfor %}
+
+                  {% if article_pages.has_other_pages %}
+                    <ul class="pagination">
+                      {% if article_pages.has_previous %}
+                        <li><a href="?page={{ article_pages.previous_page_number }}">&laquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                      {% endif %}
+                      {% for i in article_pages.paginator.page_range %}
+                        {% if article_pages.number == i %}
+                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% elif i > article_pages.number|add:'-3' and i < article_pages.number|add:'4' %}
+                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if article_pages.has_next %}
+                        <li><a href="?page={{ article_pages.next_page_number }}">&raquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -111,11 +133,34 @@
                   <h2>Comments</h2>
                 </div>
                 <div class="panel-body">
-                  {% for comment in comments %}
+                  {% for comment in comment_pages %}
                   <h3>  <a style="color: black;" href="{% url 'readarticle' pk=comment.post.pk  %} #comment">{{comment.content}} </h3>
                   <p style="color: darkred;">Posted on: {{comment.timestamp}}</p></a>
                   <hr>
                   {% endfor %}
+
+                  {% if comment_pages.has_other_pages %}
+                    <ul class="pagination">
+                      {% if comment_pages.has_previous %}
+                        <li><a href="?page={{ comment_pages.previous_page_number }}">&laquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                      {% endif %}
+                      {% for i in comment_pages.paginator.page_range %}
+                        {% if comment_pages.number == i %}
+                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% elif i > comment_pages.number|add:'-3' and i < comment_pages.number|add:'4' %}
+                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if comment_pages.has_next %}
+                        <li><a href="?page={{ comment_pages.next_page_number }}">&raquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+
                 </div>
               </div>
             </div>
@@ -126,12 +171,35 @@
                   <h2>Likes</h2>
                 </div>
                 <div class="panel-body">
-                  {% for like in likes %}
+                  {% for like in like_pages %}
                   <a style="color: black;" href="{% url 'readarticle' pk=like.pk %} #like-section">
                   <h3>{{like.title}}</h3>
                   <p style="color: darkred;">Posted on: {{like.pub_date}}</p>
                   </a>
                   {% endfor %}
+
+                  {% if like_pages.has_other_pages %}
+                    <ul class="pagination">
+                      {% if like_pages.has_previous %}
+                        <li><a href="?page={{ like_pages.previous_page_number }}">&laquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                      {% endif %}
+                      {% for i in like_pages.paginator.page_range %}
+                        {% if like_pages.number == i %}
+                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% elif i > like_pages.number|add:'-3' and i < like_pages.number|add:'4' %}
+                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if like_pages.has_next %}
+                        <li><a href="?page={{ like_pages.next_page_number }}">&raquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+
                 </div>
               </div>
           </div>

@@ -19,6 +19,7 @@
     <meta property="og:site_name" content="TechEleza">
     <meta property="og:image" content="">
     <meta property="og:image:secure_url" content="">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
     {% endblock %}
 
     {% block title %}
@@ -41,6 +42,16 @@
         <a href="{% url 'newarticle' %}" class="twitter"> <button class="btn btn-sm btn-info" name="button">Start new topic</button> </a>
       </div>
       {% endif %}
+
+      {% if  user.is_authenticated %}
+      <div class=""></div>
+      {% else %}
+      <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a>  to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
+      </div>
+      {% endif %}
+
         <h2>Laptops Topics</h2><br>
         {% for article in articles %}
         <div class="container-fluid">

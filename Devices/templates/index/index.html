@@ -47,7 +47,7 @@
       {% else %}
       <div class="alert">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <h4>Please <strong>Sign in/Sign Up</strong> to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
+        <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a>  to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
       </div>
       {% endif %}
       <!-- Alert End -->
@@ -95,7 +95,7 @@
                 <div class="panel-footer">
                   <h4 style="color: darkred;">{{spec.title}}</h4>
                   {% if spec.description %}
-                  <p>{{spec.description}}</p>
+                  <p>{{spec.description|truncatechars:100}}</p>
                   {% endif %}
                 </div>
               </div></a>
@@ -180,7 +180,7 @@
       <!-- Review end -->
 
       <!-- Forums -->
-      <div class="container-fluid">
+      <div class="container">
 
         <div class="row">
           <div class="col-xs-7">

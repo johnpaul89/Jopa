@@ -44,8 +44,19 @@
     {% endif %}
 
     {% block content %}
+
+    <br><br><br><br>
+
+    {% if  user.is_authenticated %}
+    <div class=""></div>
+    {% else %}
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a>  to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
+    </div>
+    {% endif %}
+
     <div class="container">
-      <br><br><br><br>
 
       <!-- Social media -->
       <div class="container">

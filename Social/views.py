@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from .forms import EditProfileForm, UserProfileForm, NewArticleForm, CommentForm, EditArticleForm
 from .models import UserProfile, Article, Comment
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 from avatar.conf import settings
@@ -70,7 +71,34 @@ def super_profile(request):
     likes = Article.objects.filter().order_by('-id')
     user = request.user
 
-    args = {'user': user, "articles": articles, "comments": comments, "likes": likes}
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comments, 15)
+    try:
+        comment_pages = paginator.page(page)
+    except PageNotAnInteger:
+        comment_pages = paginator.page(1)
+    except EmptyPage:
+        comment_pages = paginator.page(paginator.num_pages)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(likes, 15)
+    try:
+        like_pages = paginator.page(page)
+    except PageNotAnInteger:
+        like_pages = paginator.page(1)
+    except EmptyPage:
+        like_pages = paginator.page(paginator.num_pages)
+
+    args = {'user': user, "article_pages": article_pages, "articles": articles, "comments": comments, "likes": likes}
     return render(request, 'registration/superprofile.html', args)
 
 @login_required
@@ -79,12 +107,40 @@ def update_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
         articles = Article.objects.filter(editor__id=pk).order_by('-id')
-        comments = Comment.objects.filter(user__id=pk).order_by('-id')
+        comments = Comment.objects.filter(user__id=pk, post__id=pk).order_by('-id')
         likes = Article.objects.filter(likes__id=pk).order_by('-id')
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(articles, 15)
+        try:
+            article_pages = paginator.page(page)
+        except PageNotAnInteger:
+            article_pages = paginator.page(1)
+        except EmptyPage:
+            article_pages = paginator.page(paginator.num_pages)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(comments, 15)
+        try:
+            comment_pages = paginator.page(page)
+        except PageNotAnInteger:
+            comment_pages = paginator.page(1)
+        except EmptyPage:
+            comment_pages = paginator.page(paginator.num_pages)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(likes, 15)
+        try:
+            like_pages = paginator.page(page)
+        except PageNotAnInteger:
+            like_pages = paginator.page(1)
+        except EmptyPage:
+            like_pages = paginator.page(paginator.num_pages)
+
     else:
         user = request.user
 
-    args = {'user': user, "articles": articles, "comments": comments, "likes": likes}
+    args = {'user': user, "comment_pages": comment_pages, "like_pages": like_pages, "article_pages": article_pages, "articles": articles, "comments": comments, "likes": likes}
     return render(request, 'registration/profile.html', args)
 
 def edit_profile(request):

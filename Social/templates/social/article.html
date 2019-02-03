@@ -16,15 +16,20 @@
     <meta property="og:description" content="Get to find Topics and articles discussed by the online community in our forum">
     <meta property="og:url" content="https://www.techeleza.com{{request.path}}">
     <meta property="og:site_name" content="TechEleza">
+    {% if article.article_image %}
     <meta property="og:image" content="https://www.techeleza.com{{article.article_image.url}}">
     <meta property="og:image:secure_url" content="https://www.techeleza.com{{article.article_image.url}}">
+    {% endif %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" sizes="16x16 24x24 32x32 64x64">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@ElezaTech">
     <meta name="twitter:url" content="https://www.techeleza.com{{request.path}}">
     <meta name="twitter:title" content="{{article.title}}">
     <meta name="twitter:description" content="{{article.description}}">
+    {% if article.article_image %}
     <meta name="twitter:image" content="https://www.techeleza.com{{article.article_image.url}}">
+    {% endif %}
     {% endblock %}
 
     {% block title %}
@@ -48,6 +53,15 @@
     {% if  user.is_authenticated %}
     <div style="z-index: 1;" class="icon-bar-article">
       <a href="{% url 'newarticle' %}" class="twitter"> <button class="btn btn-sm btn-info" name="button">Start new topic</button> </a>
+    </div>
+    {% endif %}
+
+    {% if  user.is_authenticated %}
+    <div class=""></div>
+    {% else %}
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a>  to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
     </div>
     {% endif %}
 
