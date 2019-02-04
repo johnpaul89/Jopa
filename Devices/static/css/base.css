@@ -14,7 +14,7 @@ a:hover {
   text-decoration: none;
 }
 .vergecolor{
-  /* background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); */
+  background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
 
 }
 .container-border{
@@ -220,7 +220,7 @@ footer{
 }
 .icon-bar-article {
   position: fixed;
-  top: 95%;
+  top: 97%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);

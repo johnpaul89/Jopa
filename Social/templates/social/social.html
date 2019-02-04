@@ -39,7 +39,11 @@
 
     {% if  user.is_authenticated %}
     <div style="z-index: 1;" class="icon-bar-article">
-      <a href="{% url 'newarticle' %}" class="twitter"> <button class="btn btn-sm btn-info" name="button">Start new topic</button> </a>
+      <a href="{% url 'newarticle' %}" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
+    </div>
+    {% else %}
+    <div style="z-index: 1;" class="icon-bar-article">
+      <a href="/accounts/login/?next=/accounts/login" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
     </div>
     {% endif %}
 
@@ -52,9 +56,10 @@
     {% else %}
     <div class="alert">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a>  to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
+      <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a> so that you can be able to ask any Tech questions, start a Tech Topic, Comment/Like on other peoples Topics and Posts and be able to access your Profile. </h4>
     </div>
     {% endif %}
+    <!-- Alert End -->
 
     <div class="container">
 

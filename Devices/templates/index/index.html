@@ -47,14 +47,18 @@
       {% else %}
       <div class="alert">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a>  to discuss any Tech issue or ask a Tech question with fellow Tech Enthusiasts from all across Africa. </h4>
+        <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a> so that you can be able to ask any Tech questions, start a Tech Topic, Comment/Like on other peoples Topics and Posts and be able to access your Profile. </h4>
       </div>
       {% endif %}
       <!-- Alert End -->
 
       {% if  user.is_authenticated %}
       <div style="z-index: 1;" class="icon-bar-article">
-        <a href="{% url 'newarticle' %}" class="twitter"> <button class="btn btn-sm btn-info" name="button">Start new topic</button> </a>
+        <a href="{% url 'newarticle' %}" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
+      </div>
+      {% else %}
+      <div style="z-index: 1;" class="icon-bar-article">
+        <a href="/accounts/login/?next=/accounts/login" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
       </div>
       {% endif %}
 
@@ -84,9 +88,10 @@
             </div>
           </div>
 
-          <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+          <div class="vergecolor main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
             {% for spec in specs %}
             <div class="carousel-padding carousel-cell">
+              <br>
               <a href="{% url 'specs_article' pk=spec.pk %}">
               <div  class="panel panelspecs panel-default">
                 <div class="panel-body">
@@ -95,7 +100,7 @@
                 <div class="panel-footer">
                   <h4 style="color: darkred;">{{spec.title}}</h4>
                   {% if spec.description %}
-                  <p>{{spec.description|truncatechars:100}}</p>
+                  <p>{{spec.description}}</p>
                   {% endif %}
                 </div>
               </div></a>
@@ -111,32 +116,35 @@
         <div class="container-fluid">
           <div class="row">
             <h2>Latest Forum Posts</h2> <br>
-            {% for article in articles %}
-            <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
-            <div style="margin-top: -15px;" class="panel panel-default">
-              <div class="panel-body">
-                <div class="panel-border col-xs-3">
-                  {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
-                  <i class="glyphicon glyphicon-like glyphicon-heart" ><h5>{{article.likes.count}} Likes</h5></i>
-                  <h5>{{article.article_views}} Views</h5>
+            <div class="vergecolor">
+              {% for article in articles %}
+              <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
+              <div style="margin-top: -15px;" class="panel panel-default">
+                <div class="panel-body">
+                  <div class="panel-border col-xs-3">
+                    {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                    <i class="glyphicon glyphicon-like glyphicon-heart" ><h5>{{article.likes.count}} Likes</h5></i>
+                    <h5>{{article.article_views}} Views</h5>
 
-                </div>
+                  </div>
 
-                <div class="col-xs-9">
-                   <div class="row">
-                     <div class="col-xs-8">
-                       <h3>{{article.title}}</h3>
+                  <div class="col-xs-9">
+                     <div class="row">
+                       <div class="col-xs-8">
+                         <h3>{{article.title}}</h3>
+                       </div>
+                       <div class="col-xs-4">
+                         <h5 style="color: darkred;">{{article.pub_date|timesince}} ago</h5>
+                       </div>
                      </div>
-                     <div class="col-xs-4">
-                       <h5 style="color: darkred;">{{article.pub_date|timesince}} ago</h5>
-                     </div>
-                   </div>
-                  <p>{{article.post|truncatechars:100|safe}}</p>
+                    <p>{{article.post|truncatechars:100|safe}}</p>
+                  </div>
                 </div>
               </div>
+            </a>
+              {% endfor %}
             </div>
-          </a>
-            {% endfor %}
+
           </div>
         </div>
       </div>
@@ -155,12 +163,13 @@
           </div>
         </div>
 
-        <div class="row vergecolor">
-          <div class="main-carousel " data-flickity='{ "cellAlign": "left", "contain": true }'>
+        <div class="row ">
+          <div class="vergecolor  main-carousel " data-flickity='{ "cellAlign": "left", "contain": true }'>
             {% for review in reviews %}
             <div class="carousel-padding">
+              <br>
               <a href="{% url 'review_article' pk=review.pk %}">
-                <div  class="panel vergecolor panelreview panel-default">
+                <div  class="panel panelreview panel-default">
                   <div class="panel-body">
                     <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
                   </div>
@@ -180,7 +189,7 @@
       <!-- Review end -->
 
       <!-- Forums -->
-      <div class="container">
+      <div class="container-fluid">
 
         <div class="row">
           <div class="col-xs-7">
