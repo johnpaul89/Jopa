@@ -1,11 +1,15 @@
-<h4>{{ total_likes }} Like{{ total_likes|pluralize }}</h4>
+
 {% if user.is_authenticated %}
 <form action="{% url 'like_post' %}" method="post">
   {% csrf_token %}
   {% if is_liked %}
-    <i type="submit" id="like" name="post_id" value="{{ post.id }}"  class="glyphicon glyphicon-like glyphicon-heart"></i>
+    <h4>
+    <i type="submit" id="like" name="post_id" value="{{ post.id }}"  class="fa fa-heart" style=" font-size:24px; color: darkred;"></i>
+    {{ total_likes }} Like{{ total_likes|pluralize }}</h4>
    {% else %}
-   <i type="submit" id="like" name="post_id" value="{{ post.id }}" class="glyphicon glyphicon-like glyphicon-heart-empty"></i>
+   <h4>
+   <i type="submit" id="like" name="post_id" value="{{ post.id }}" class="fa fa-heart-o" style=" font-size:24px; color: darkred;"></i>
+   {{ total_likes }} Like{{ total_likes|pluralize }}</h4>
   {% endif %}
 </form>
 {% else %}

@@ -1,20 +1,74 @@
-nav {
-    position: fixed;
-    width: 100%;
-    transition: all 0.5s ease;
-    height: 60px;
-    color:
-    background-color: rgba(21, 30, 39, 1);
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: rgba(21, 30, 39, 1);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
 }
-nav.hidden {
-    transform: translate3d(0,-100%0);
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+hr{
+  color: white;
+  background-color: white;
+}
+nav {
+    width: 100%;
+    color: white
+    background-color: rgba(21, 30, 39, 1);
+    height: 45px;
 }
 .navbar{
   background-color: rgba(21, 30, 39, 1);
   color: white;
-  height: 45px;
 }
-.navbar-collapse {
+
+h3{
+  color: white;
+}
+h4{
+  color: white;
+}
+
+
+
+
+
+
+/* .navbar-collapse {
     height: 100vh;
     transition: height 0.5s
 }
@@ -25,3 +79,48 @@ h4{
   text-align: center;
   color: black;
 }
+@media (max-width: 575.98px)
+.navbar {
+    padding: .75rem;
+}
+
+@media (max-width: 991.98px)
+.navbar {
+    width: 100vw;
+}
+.navbar {
+    border-bottom: 1px solid #e5e9f2;
+}
+.bg-white {
+    background-color: #fff!important;
+}
+.navbar-expand {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+.navbar, .navbar>.container, .navbar>.container-fluid {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.navbar {
+    position: relative;
+    padding: .75rem 1.25rem;
+}
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+article, aside, footer, header, hgroup, main, nav, section {
+    display: block;
+} */

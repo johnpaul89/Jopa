@@ -10,6 +10,8 @@ from django.template.loader import render_to_string
 from .forms import EditProfileForm, UserProfileForm, NewArticleForm, CommentForm, EditArticleForm
 from .models import UserProfile, Article, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
+from django.db.models import Q
 
 
 from avatar.conf import settings
@@ -37,21 +39,21 @@ def social(request):
     televisions_forum_articles = Article.televisions_forum_articles()
 
     latest_car_articles = Article.objects.filter(tags__name__startswith='Cars').order_by('-id')[:1]
-    tech_tips_articles = Article.objects.filter(tags__name__startswith='Tech_Tips').order_by('-id')[:1]
-    apps_websites_articles = Article.objects.filter(tags__name__startswith='Apps_and_Website').order_by('-id')[:1]
-    general_discussion_articles = Article.objects.filter(tags__name__startswith='General_Discussion').order_by('-id')[:1]
-    laptops_forum_articles = Article.objects.filter(tags__name__startswith='Laptops').order_by('-id')[:1]
-    off_topic_articles = Article.objects.filter(tags__name__startswith='Off_Topic').order_by('-id')[:1]
-    operating_systems_articles = Article.objects.filter(tags__name__startswith='Operating_Systems').order_by('-id')[:1]
-    programmes_forum_articles = Article.objects.filter(tags__name__startswith='Programmes').order_by('-id')[:1]
-    smartphones_tablets_articles = Article.objects.filter(tags__name__startswith='SmartPhones_Tablets').order_by('-id')[:1]
-    sound_system_articles = Article.objects.filter(tags__name__startswith='Sound_System').order_by('-id')[:1]
-    photography_videography_articles = Article.objects.filter(tags__name__startswith='Photography_Videography').order_by('-id')[:1]
-    tech_news_articles = Article.objects.filter(tags__name__startswith='Tech_News').order_by('-id')[:1]
-    televisions_forum_articles = Article.objects.filter(tags__name__startswith='Televisions').order_by('-id')[:1]
+    latest_tech_tips_articles = Article.objects.filter(tags__name__startswith='Tech_Tips').order_by('-id')[:1]
+    latest_apps_websites_articles = Article.objects.filter(tags__name__startswith='Apps_and_Website').order_by('-id')[:1]
+    latest_general_discussion_articles = Article.objects.filter(tags__name__startswith='General_Discussion').order_by('-id')[:1]
+    latest_laptops_forum_articles = Article.objects.filter(tags__name__startswith='Laptops').order_by('-id')[:1]
+    latest_off_topic_articles = Article.objects.filter(tags__name__startswith='Off_Topic').order_by('-id')[:1]
+    latest_operating_systems_articles = Article.objects.filter(tags__name__startswith='Operating_Systems').order_by('-id')[:1]
+    latest_programmes_forum_articles = Article.objects.filter(tags__name__startswith='Programmes').order_by('-id')[:1]
+    latest_smartphones_tablets_articles = Article.objects.filter(tags__name__startswith='SmartPhones_Tablets').order_by('-id')[:1]
+    latest_sound_system_articles = Article.objects.filter(tags__name__startswith='Sound_System').order_by('-id')[:1]
+    latest_photography_videography_articles = Article.objects.filter(tags__name__startswith='Photography_Videography').order_by('-id')[:1]
+    latest_tech_news_articles = Article.objects.filter(tags__name__startswith='Tech_News').order_by('-id')[:1]
+    latest_televisions_forum_articles = Article.objects.filter(tags__name__startswith='Televisions').order_by('-id')[:1]
 
 
-    return render(request, 'social/social.html', {"users": users, "televisions_forum_articles": televisions_forum_articles, "tech_tips_articles": tech_tips_articles, "tech_news_articles": tech_news_articles, "photography_videography_articles": photography_videography_articles, "sound_system_articles": sound_system_articles, "programmes_forum_articles": programmes_forum_articles, "operating_systems_articles": operating_systems_articles, "off_topic_articles": off_topic_articles, "tech_tips_articles": tech_tips_articles, "smartphones_tablets_articles": smartphones_tablets_articles,
+    return render(request, 'social/social.html', {"users": users, "latest_car_articles": latest_car_articles, "latest_tech_tips_articles": latest_tech_tips_articles, "latest_apps_websites_articles": latest_apps_websites_articles, "latest_general_discussion_articles": latest_general_discussion_articles, "latest_laptops_forum_articles": latest_laptops_forum_articles, "latest_off_topic_articles": latest_off_topic_articles, "latest_operating_systems_articles": latest_operating_systems_articles, "latest_programmes_forum_articles": latest_programmes_forum_articles, "latest_smartphones_tablets_articles": latest_smartphones_tablets_articles, "latest_sound_system_articles": latest_sound_system_articles, "latest_photography_videography_articles":latest_photography_videography_articles, "latest_tech_news_articles": latest_tech_news_articles, "latest_televisions_forum_articles": latest_televisions_forum_articles, "televisions_forum_articles": televisions_forum_articles, "tech_tips_articles": tech_tips_articles, "tech_news_articles": tech_news_articles, "photography_videography_articles": photography_videography_articles, "sound_system_articles": sound_system_articles, "programmes_forum_articles": programmes_forum_articles, "operating_systems_articles": operating_systems_articles, "off_topic_articles": off_topic_articles, "tech_tips_articles": tech_tips_articles, "smartphones_tablets_articles": smartphones_tablets_articles,
      "laptops_forum_articles": laptops_forum_articles, "general_discussion_articles": general_discussion_articles, "apps_websites_articles": apps_websites_articles, "car_articles": car_articles, "latest_car_articles": latest_car_articles})
 
 @login_required
@@ -274,92 +276,222 @@ def cars_forum(request):
     articles = Article.car_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/cars.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/cars.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def apps_websites(request):
     articles = Article.apps_websites_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/apps_and_websites.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/apps_and_websites.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def general_discussion(request):
     articles = Article.general_discussion_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/general_discussion.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/general_discussion.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def laptops_forum(request):
     articles = Article.laptops_forum_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/laptops.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/laptops.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def off_topic(request):
     articles = Article.off_topic_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/off_topic.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/off_topic.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def operating_systems(request):
     articles = Article.operating_systems_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/operating_systems.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/operating_systems.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def photography_videography(request):
     articles = Article.photography_videography_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/photography_and_videography.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/photography_and_videography.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def programmes_forum(request):
     articles = Article.programmes_forum_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/programmes.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/programmes.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def smartphones_tablets(request):
     articles = Article.smartphones_tablets_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/smartphones_and_tablets.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/smartphones_and_tablets.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def sound_system(request):
     articles = Article.sound_system_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/sound_system.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/sound_system.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def tech_news(request):
     articles = Article.tech_news_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/tech_news.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/tech_news.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def tech_tips(request):
     articles = Article.tech_tips_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/techtips.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/techtips.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 def televisions_forum(request):
     articles = Article.televisions_forum_articles()
     users = User.objects.all()
     comments = Comment.objects.all()
+    popular_articles = Article.objects.annotate(Count('article_views')).filter(article_views__gt=5).order_by('-article_views')[:15]
 
-    return render(request, 'social/televisions.html', {"articles": articles, "comments": comments, "users": users})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
+    return render(request, 'social/televisions.html', {"articles": articles, "article_pages": article_pages, "popular_articles": popular_articles, "comments": comments, "users": users})
 
 
 

@@ -15,8 +15,4 @@
               lastScrollTop = currentScrollTop;
           });
 
-          $('.search-btn').click(function(){
-            $(this).parent().parent().next('.navbar-form').fadeToggle()
-          });
-
       })();

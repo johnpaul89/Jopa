@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load staticfiles %}
 {% load avatar_tags %}
 {% load static %}
@@ -38,471 +38,500 @@
   <body>
 
     {% block content %}
+    <br><br><br>
+
+    <!-- Alert -->
+    {% if  user.is_authenticated %}
+    <div class=""></div>
+    {% else %}
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a> so that you can be able to ask any Tech questions, start a Tech Topic, Comment/Like on other peoples Topics and Posts and be able to access your Profile. </h4>
+    </div>
+    {% endif %}
+    <!-- Alert End -->
+
+    {% if  user.is_authenticated %}
+    <div style="z-index: 1;" class="icon-bar-article">
+      <a href="{% url 'newarticle' %}" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
+    </div>
+    {% else %}
+    <div style="z-index: 1;" class="icon-bar-article">
+      <a href="/accounts/login/?next=/accounts/login" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
+    </div>
+    {% endif %}
+
     <div class="container-fluid">
-      <br><br><br><br>
+      <div class="row">
 
-      <!-- Alert -->
-      {% if  user.is_authenticated %}
-      <div class=""></div>
-      {% else %}
-      <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a> so that you can be able to ask any Tech questions, start a Tech Topic, Comment/Like on other peoples Topics and Posts and be able to access your Profile. </h4>
-      </div>
-      {% endif %}
-      <!-- Alert End -->
-
-      {% if  user.is_authenticated %}
-      <div style="z-index: 1;" class="icon-bar-article">
-        <a href="{% url 'newarticle' %}" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
-      </div>
-      {% else %}
-      <div style="z-index: 1;" class="icon-bar-article">
-        <a href="/accounts/login/?next=/accounts/login" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Start new topic</button> </a>
-      </div>
-      {% endif %}
-
-      <!-- Social media -->
-      <div class="container">
-        <div class="row">
-          <br>
-          <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
-          <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
-          <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
-          <a href="#" class="fa fa-youtube"></a>
-        </div>
-      </div>
-      <!-- Social media end -->
-
-      <!-- Specs -->
-      <div class="container-fluid">
-        <div class="row">
-          <div class="row">
-            <div class="col-xs-8">
-              <a href="/specs/">
-              <h2>Phone Specs</h2></a>
-            </div>
-            <div class="col-xs-4">
-              <a href="/specs/">
-              <p class="btn-view-more">More Specs ></p></a>
-            </div>
-          </div>
-
-          <div class="vergecolor main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+        <!-- Specs -->
+        <div class="col-sm-3">
+          <a href="/specs">
+          <h2>Phone Specs</h2></a>
+          <div class="carousel" data-flickity='{ "autoPlay": true }'>
             {% for spec in specs %}
-            <div class="carousel-padding carousel-cell">
-              <br>
-              <a href="{% url 'specs_article' pk=spec.pk %}">
-              <div  class="panel panelspecs panel-default">
-                <div class="panel-body">
-                  <img src="{{spec.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{spec.title|safe}}">
+            <a href="{% url 'specs_article' pk=spec.pk %}">
+              <div class="card carousel-card">
+                <div class="card-header">
+                <img class="card-img-top carousel_image"  src="{{spec.specs_image.url}}" alt="{{spec.title|safe}}">
                 </div>
-                <div class="panel-footer">
-                  <h4 style="color: darkred;">{{spec.title}}</h4>
-                  {% if spec.description %}
-                  <p>{{spec.description}}</p>
-                  {% endif %}
+                <div class="text-center card-body">
+                  <p style="color: darkred;" class="card-text"><small>{{spec.title}}</small></p>
                 </div>
               </div></a>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-      <!-- Specs end -->
-
-      <!-- Forum Articles -->
-      <div class="container">
-        <div class="container-fluid">
-          <div class="row">
-            <h2>Latest Forum Posts</h2> <br>
-            <div class="vergecolor">
-              {% for article in articles %}
-              <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
-              <div style="margin-top: -15px;" class="panel panel-default">
-                <div class="panel-body">
-                  <div class="panel-border col-xs-3">
-                    {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
-                    <i class="glyphicon glyphicon-like glyphicon-heart" ><h5>{{article.likes.count}} Likes</h5></i>
-                    <h5>{{article.article_views}} Views</h5>
-
-                  </div>
-
-                  <div class="col-xs-9">
-                     <div class="row">
-                       <div class="col-xs-8">
-                         <h3>{{article.title}}</h3>
-                       </div>
-                       <div class="col-xs-4">
-                         <h5 style="color: darkred;">{{article.pub_date|timesince}} ago</h5>
-                       </div>
-                     </div>
-                    <p>{{article.post|truncatechars:100|safe}}</p>
-                  </div>
-                </div>
-              </div>
-            </a>
               {% endfor %}
-            </div>
-
           </div>
         </div>
-      </div>
-      <!-- End Forum Articles -->
+        <!-- Specs End -->
 
-      <!-- Reviews -->
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-7">
-              <a href="/reviews/">
-            <h2>Phone Reviews</h2></a>
-          </div>
-          <div class="col-xs-5">
-            <a href="/reviews/">
-            <p class="btn-view-more">More Reviews ></p></a>
-          </div>
-        </div>
-
-        <div class="row ">
-          <div class="vergecolor  main-carousel " data-flickity='{ "cellAlign": "left", "contain": true }'>
-            {% for review in reviews %}
-            <div class="carousel-padding">
-              <br>
-              <a href="{% url 'review_article' pk=review.pk %}">
-                <div  class="panel panelreview panel-default">
-                  <div class="panel-body">
-                    <img src="{{review.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
+        <!-- Latest Posts -->
+        <div class="col-sm-6">
+          <h2>Latest Posts</h2>
+          {% for article in article_pages %}
+          <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">
+            <div class="card border-secondary" ><br>
+              <div class="row">
+                <div style="padding-left: 20px;" class="col-xs-2">
+                  {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                </div>
+                <div style="margin-left: 20px; padding-right: 10px;"  class="col-xs-10">
+                  <div class="card-header bg-transparent">
+                    <h4 class="text-center text-dark" style="color: darkred;">{{article.title}}</h4>
+                    <p class="card-paragagraph">{{article.post|truncatechars:100|safe}}</p>
                   </div>
-                  <div class="panel-footer">
-                    <h4 style="color: darkred;">{{review.title|safe}}</h4>
-                    {% if review.description %}
-                    <p>{{review.description|truncatechars:100}}</p>
-                    {% endif %}
+
+                <div class="card-body">
+                  {% if article.article_image %}
+                  <img class="card-img-top img-card img-fluid" src="{{article.article_image.url}}" alt="{{article.title|safe}}">
+                  {% else %}
+                  {% endif %}
+                </div>
+
+                <div class="card-footer">
+                  <div class="row">
+                    <div style="margin-left: 10px;" class="col-xs-3">
+                      <h5><i class="fa fa-heart" style="font-size:24px;color:darkred"></i> {{article.likes.count}} Likes</h5>
+                    </div>
+                    <div style="margin-left: 10px;" class="col-xs-3">
+                      <small ><h5><i class="fa fa-eye" style="font-size:24px;color:darkred"></i> {{article.article_views}} Views</h5></small>
+                    </div>
+                    <div style="margin-left: 10px;" class="col-xs-3">
+                      <small> <h6 style="color: darkred;">Posted by <strong>{{user.username}}</strong> {{article.pub_date|timesince}} ago</h6></small>
+                    </div>
                   </div>
                 </div>
-              </a>
-            </div>
-            {% endfor %}
+
+              </div>
+              </div>
+          </div> </a>
+          {% endfor %}
+
+          <nav aria-label="...">
+          {% if article_pages.has_other_pages %}
+            <ul class="pagination justify-content-center pagination-lg">
+              {% if article_pages.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ article_pages.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+              {% endif %}
+              {% for i in article_pages.paginator.page_range %}
+                {% if article_pages.number == i %}
+                  <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% elif i > article_pages.number|add:'-3' and i < article_pages.number|add:'4' %}
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if article_pages.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ article_pages.next_page_number }}">&raquo;</a></li>
+              {% else %}
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+              {% endif %}
+            </ul>
+          {% endif %}
+          </nav>
+
+        </div>
+        <!-- End of latest Posts -->
+
+        <div class="col-sm-3">
+          <br>
+          <a href="/reviews/">
+          <h2>Mobile Reviews</h2></a>
+          <div class="carousel" data-flickity='{ "autoPlay": true }'>
+            {% for review in reviews %}
+            <a href="{% url 'review_article' pk=review.pk %}">
+              <div class="card carousel-card">
+                <div class="card-header">
+                <img class="card-img-top carousel_image img-responsive"  src="{{review.review_image.url}}" alt="{{review.title|safe}}">
+                </div>
+                <div class="card-body text-center">
+                  <p style="color: darkred;"> <small>{{review.title}}</small> </p>
+                </div>
+              </div></a>
+              {% endfor %}
           </div>
         </div>
       </div>
-      <!-- Review end -->
+    </div>
 
       <!-- Forums -->
       <div class="container-fluid">
+        <br><br>
+        <div class="container-fluid">
+          <a href="/social/"> <h2 class="text-center text-dark">Trending Forums</h2></a>
+          <div class="row">
+            <div style="width: 100%;" class="card ">
+              <div class="text-white bg-success card-header">
+                <h2>General Topics</h2>
+              </div>
+              <div class="card-body">
+                <div class="justify-content-between row ">
+                  <a class="" href="{% url 'generaldiscussion' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-dark" >General Discussion</h4>
+                    <p>Talk about general tech topics which might not be icluded in the other forums</p><br></a>
+                  </div>
 
-        <div class="row">
-          <div class="col-xs-7">
-            <a href="/social/">
-            <h2>Trending Forums</h2></a>
-          </div>
-          <div class="col-xs-5">
-            <a href="/social/">
-            <p class="btn-view-more">More Forums ></p></a>
+                  <div class="col-sm-4">
+                    <h4 class="text-dark">{{general_discussion_articles.count}} Post{{general_discussion_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="d-xl-inline-block col-xs-8">
+                        {% for article in latest_general_discussion_articles %}
+                        <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="d-xl-inline-block col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-success text-white justify-content-between row ">
+                  <a class="" href="{% url 'technews' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-white text-center" >Tech News</h4>
+                    <p class="text-white">Talk about latest and trending tech news in the community</p><br></a>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-white">{{tech_news_articles.count}} Post{{tech_news_articles|pluralize}}</h4>
+                    <div class="justify-content-between row">
+                      <div class="col-xs-8">
+                        {% for article in latest_tech_news_articles %}
+                        <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="justify-content-between row ">
+                  <a class="" href="{% url 'techtips' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-dark text-dark" >Tech Tips</h4>
+                    <p>Share your technology tips with others in the community.</p><br></a>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-dark">{{tech_tips_articles.count}} Post{{tech_tips_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="d-xl-inline-block col-xs-8">
+                        {% for article in latest_tech_tips_articles %}
+                        <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="d-xl-inline-block col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-success text-white justify-content-between row ">
+                  <a class="" href="{% url 'offtopic' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-white text-center">Off Topic</h4>
+                    <p class="text-white">Any topic which is not technology related goes here e.g welcoming a new member.</p><br></a>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-white">{{off_topic_articles.count}} Post{{off_topic_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_off_topic_articles %}
+                        <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-sm-12">
-              <a class="panelsuccesscolor" href="{% url 'technews' %}">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Tech News</h4>
+            <br>
+        <div class="container-fluid">
+          <div class="row">
+            <div style="width: 100%;" class="card">
+              <div class="bg-info card-header">
+                <h2 class="text-center text-white">Consumer Electronics</h2>
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-between">
+                  <a class="" href="{% url 'smartphonestablets' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-dark">SmartPhones and Tablets</h4>
+                    <p>Contribute to topics about SmartPhones and tablets</p><br></a>
                   </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{tech_news_articles.count}} Post{{tech_news_articles|pluralize}}</h5>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-dark">{{smartphones_tablets_articles.count}} Post{{smartphones_tablets_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_smartphones_tablets_articles %}
+                        <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="panel-body">
-                <p>Talk about latest and trending tech news in the community</p>
-              </div>
-            </div>
-          </a>
-          </div>
 
-          <div class="col-sm-12  ">
-            <a class="panelsuccesscolor" href="{% url 'techtips' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Tech Tips</h4>
+                <div class="bg-info row justify-content-between">
+                  <a class="" href="{% url 'laptopsforum' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-white">Laptops</h4>
+                    <p class="text-white">Contribute to topics about laptops</p><br></a>
                   </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{tech_tips_articles.count}} Post{{tech_tips_articles|pluralize}}</h5>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-white">{{laptops_forum_articles.count}} Post{{laptops_forum_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_laptops_forum_articles %}
+                        <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="panel-body">
-                <p>Share your technology tips with others in the community.</p>
-              </div>
-            </div>
-          </a>
-          </div>
 
-          <div class="col-sm-12  ">
-            <a class="panelsuccesscolor" href="{% url 'offtopic' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Off Topic</h4>
+                <div class="row justify-content-between">
+                  <a class="" href="{% url 'photographyvideography' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-dark">Photography and Videography</h4>
+                    <p>Contribute to topics about photographs and videos</p><br></a>
                   </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{off_topic_articles.count}} Post{{off_topic_articles|pluralize}}</h5>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-dark">{{photography_videography_articles.count}} Post{{photography_videography_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_photography_videography_articles %}
+                        <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="panel-body">
-                <p>Any topic which is not technology related goes here e.g welcoming a new member.</p>
-              </div>
-            </div>
-          </a>
-          </div>
 
-          <div class="col-sm-12  ">
-            <a class="panelsuccesscolor" href="{% url 'generaldiscussion' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>General Discussion</h4>
+                <div class="bg-info row justify-content-between">
+                  <a class="" href="{% url 'televisionsforum' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-white">Gaming and Televisions</h4>
+                    <p class="text-white">Talk about Gaming and Televisions and discuss with the communities</p><br></a>
                   </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{general_discussion_articles.count}} Post{{general_discussion_articles|pluralize}}</h5>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-white">{{televisions_forum_articles.count}} Post{{televisions_forum_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_televisions_forum_articles %}
+                        <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="panel-body">
-                <p>Talk about general tech topics which might not be icluded in the other forums</p>
-              </div>
-            </div>
-          </a>
-          </div>
 
-          <div class="col-sm-12  ">
-            <a class="panelsuccesscolor" href="{% url 'smartphonestablets' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>SmartPhones and Tablets</h4>
+                <div class="row justify-content-between">
+                  <a class="" href="{% url 'soundsystem' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-dark">Sound System</h4>
+                    <p>Contribute and talk on topics about sound systems with the community</p><br></a>
                   </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{smartphones_tablets_articles.count}} Post{{smartphones_tablets_articles|pluralize}}</h5>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-dark">{{sound_system_articles.count}} Post{{sound_system_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_sound_system_articles %}
+                        <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="panel-body">
-                <p>Contribute to topics about SmartPhones and tablets</p>
-              </div>
-            </div>
-          </a>
-          </div>
 
-          <div class="col-sm-12 ">
-            <a class="panelsuccesscolor" href="{% url 'laptopsforum' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Laptops</h4>
+                <div class="bg-info row justify-content-between">
+                  <a class="" href="{% url 'carsforum' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-center text-white" >Cars</h4>
+                    <p class="text-white">Contribute and talk about Cars with the community</p><br></a>
                   </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{laptops_forum_articles.count}} Post{{laptops_forum_articles|pluralize}}</h5>
+
+                  <div class="col-sm-4">
+                      <h4 class="text-white">{{car_articles.count}} Post{{car_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_car_articles %}
+                        <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
-              </div>
-              <div class="panel-body">
-                <p>Contribute to topics about laptops</p>
+
               </div>
             </div>
-          </a>
           </div>
-
-          <div class="col-sm-12  ">
-            <a class="panelsuccesscolor" href="{% url 'photographyvideography' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Photography and Videography</h4>
-                  </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{photography_videography_articles.count}} Post{{photography_videography_articles|pluralize}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>Contribute to topics about photographs and videos</p>
-              </div>
-            </div>
-          </a>
-          </div>
-
-          <div class="col-sm-12 ">
-            <a class="panelsuccesscolor" href="{% url 'televisionsforum' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Televisions</h4>
-                  </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{televisions_forum_articles.count}} Post{{televisions_forum_articles|pluralize}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>Talk about Televisions and discuss with the communities</p>
-              </div>
-            </div>
-          </a>
-          </div>
-
-          <div class="col-sm-12 ">
-            <a class="panelsuccesscolor" href="{% url 'soundsystem' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Sound System</h4>
-                  </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{sound_system_articles.count}} Post{{sound_system_articles|pluralize}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>Contribute and talk on topics about sound systems with the community</p>
-              </div>
-            </div>
-          </a>
-          </div>
-
-          <div class="col-sm-12  ">
-            <a class="panelsuccesscolor" href="{% url 'carsforum' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Cars</h4>
-                  </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{car_articles.count}} Post{{car_articles|pluralize}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>Contribute and talk about Cars with the community</p>
-              </div>
-            </div>
-          </a>
-          </div>
-
-          <div class="col-sm-12 ">
-            <a class="panelsuccesscolor" href="{% url 'programmesforum' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Programmes</h4>
-                  </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{programmes_forum_articles.count}} Post{{programmes_forum_articles|pluralize}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>Discuss about topics of programmes with the community</p>
-              </div>
-            </div>
-          </a>
-          </div>
-
-          <div class="col-sm-12  ">
-            <a class="panelsuccesscolor" href="{% url 'appswebsites' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Apps and Websites</h4>
-                  </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{apps_websites_articles.count}} Post{{apps_websites_articles|pluralize}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-                <p>Discuss about various applications and websites with the community</p><br>
-              </div>
-            </div>
-          </a>
-          </div>
-
-          <div class="col-sm-12 ">
-            <a class="panelsuccesscolor" href="{% url 'operatingsystems' %}">
-            <div class="panel panelforum panel-info ">
-              <div class="panel-heading ">
-                <div class="container-fluid">
-                  <div class="col-xs-9">
-                    <h4>Operating Systems</h4>
-                  </div>
-                  <div class="col-xs-3">
-                    <h5 style="color: darkred; text-align: center">{{operating_systems_articles.count}} Post{{operating_systems_articles|pluralize}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-              <p>Discuss abot topics on Operating Systems with the communiity.</p>
-              </div>
-            </div>
-          </a>
-          </div>
-
         </div>
-      </div>
+            <br>
 
+        <div class="container-fluid">
+          <div class="row">
+            <div style="width: 100%;" class="card">
+              <div class="bg-dark text-white card-header">
+                <h2>Software</h2>
+              </div>
+              <div class="card-body">
+
+                <div class="row ">
+                  <a class="" href="{% url 'programmesforum' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-dark text-center">Programmes</h4>
+                    <p>Discuss about topics of programmes with the community</p><br></a>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-dark">{{programmes_forum_articles.count}} Post{{programmes_forum_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_programmes_forum_articles %}
+                        <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row bg-dark">
+                  <a class="" href="{% url 'appswebsites' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-white text-center">Apps and Websites</h4>
+                    <p class="text-white">Discuss about various applications and websites with the community</p><br></a>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-white">{{apps_websites_articles.count}} Post{{apps_websites_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_apps_websites_articles %}
+                        <p>class="text-white"Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row ">
+                  <a class="" href="{% url 'operatingsystems' %}">
+                  <div class="col-sm-8">
+                    <h4 class="text-dark text-center">Operating Systems</h4>
+                    <p>Discuss abot topics on Operating Systems with the communiity.</p><br></a>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <h4 class="text-dark">{{operating_systems_articles.count}} Post{{operating_systems_articles|pluralize}}</h4>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        {% for article in latest_operating_systems_articles %}
+                        <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                          {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
       <!-- Forums End -->
 
-      <!-- News -->
-      <!-- <div class="container-fluid">
-        <div class="row">
-          <div class="row">
-            <div class="col-xs-8">
-              <a href="/news/">
-              <h2>News</h2></a>
-            </div>
-            <div class="col-xs-4">
-              <a href="/news/">
-              <p class="btn-view-more">More News ></p></a>
-            </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            {% for news in news_articles %}
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <a href="{% url 'read_news_article' id=news.id %}">
-                <h5>Source:{{news.source|safe}}</h5>
-                <h2 style="color: black;">{{news.title|safe}}</h2></a>
-              </div>
-              <div class="panel-body">
-                      <img src="{{news.imageUrl}}" class="img-responsive" alt="{{news.title|safe}}">
-
-                <p>{{news.article|truncatechars:100|safe}}</p>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div> -->
-      <!-- News end -->
-
-    </div>
     <footer>
       <div class="container-fluid">
         <div class="row"><br>
@@ -514,10 +543,10 @@
           </div>
           <div class="col-sm-5">
             <h5 style="text-align: center;">Contact Us</h5>
-            <a target="_blank" href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
-            <a target="_blank" href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
-            <a target="_blank" href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
-            <a href="#" class="fa fa-youtube"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+            <a style="padding-left: 50px;" href="#" class="fa fa-youtube"></a>
           </div>
           <div class="col-sm-1"></div>
         </div> <br>
@@ -530,8 +559,7 @@
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/flickity.pkgd.min.js' %}">  </script>
     <script src="{% static 'js/base.js' %}"></script>
     <script src="{% static 'js/search_ajax.js' %}"></script>
     {% bootstrap_javascript %}

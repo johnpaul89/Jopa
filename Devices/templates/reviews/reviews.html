@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load staticfiles %}
 {% load static %}
 <!DOCTYPE html>
@@ -17,8 +17,6 @@
     <meta property="og:description" content="TechEleza is your home for Africa technology reviews,  product reviews , mobile app reviews and smartphones Reviews.">
     <meta property="og:url" content="https://www.techeleza.com/reviews/">
     <meta property="og:site_name" content="TechEleza">
-    <meta property="og:image" content="">
-    <meta property="og:image:secure_url" content="">
     {% endblock %}
 
     {% block title %}
@@ -30,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
-    <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
   </head>
   <body>
@@ -39,68 +37,51 @@
     <div class="container-fluid">
       <br><br><br>
 
-      <!-- Social media -->
-      <div class="container">
-        <div class="row">
-          <br>
-          <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
-          <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
-          <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
-          <a href="#" class="fa fa-youtube"></a>
-        </div>
-      </div>
-      <!-- Social media end -->
-
       <div class="container-fluid">
         <h2> Reviews</h2>
         <div class="row infinite-container">
 
           {% for number in review_pages %}
-          <div class="infinite-item">
-            <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <div class="col-sm-6 col-md-4 col-lg-3">
               <a href="{% url 'review_article' pk=number.pk %}">
-              <div class="panel panelstuff panel-default">
-                <div class="panel-body">
-
-                  <img src="{{number.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{number.title|safe}}">
+              <div class="card">
+                <div class="card-header">
+                  <img src="{{number.review_image.url}}" class="card-img-top img-fluid review-image" alt="{{number.title|safe}}">
                 </div>
-                <div class="panel-footer">
-                  <p class="panel-paragraph">{{number.title|safe}}</p>
+                <div class="card-body">
+                  <h5 style="color: darkred;" class="card-heading">{{number.title|safe}}</h5>
                 </div>
               </div></a>
             </div>
-          </div>
 
           {% endfor %}
 
         </div>
       </div>
 
-      <!-- {% if review_pages.has_next %}
-      <a class="infinite-more-link" href="?page={{ review_pages.next_page_number }}">More</a>
-      {% endif %} -->
-
+      <nav aria-label="...">
       {% if review_pages.has_other_pages %}
-        <ul class="pagination">
+        <ul class="pagination justify-content-center pagination-lg">
           {% if review_pages.has_previous %}
-            <li><a href="?page={{ review_pages.previous_page_number }}">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ review_pages.previous_page_number }}">&laquo;</a></li>
           {% else %}
-            <li class="disabled"><span>&laquo;</span></li>
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
           {% endif %}
           {% for i in review_pages.paginator.page_range %}
             {% if review_pages.number == i %}
-              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
             {% elif i > review_pages.number|add:'-3' and i < review_pages.number|add:'4' %}
-              <li><a href="?page={{ i }}">{{ i }}</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
             {% endif %}
           {% endfor %}
           {% if review_pages.has_next %}
-            <li><a href="?page={{ review_pages.next_page_number }}">&raquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ review_pages.next_page_number }}">&raquo;</a></li>
           {% else %}
-            <li class="disabled"><span>&raquo;</span></li>
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
           {% endif %}
         </ul>
       {% endif %}
+      </nav>
 
     </div>
     {% endblock %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load avatar_tags %}
 {% load staticfiles %}
 {% load static %}
@@ -49,55 +49,44 @@
 
     {% block content %}
 
-    <br><br><br><br>
+    <br><br><br>
 
     {% if  user.is_authenticated %}
     <div class=""></div>
     {% else %}
     <div class="alert">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a> so that you can be able to ask any Tech questions, start a Tech Topic, Comment/Like on other peoples Topics and Posts and be able to access your Profile. </h4>
+      <h4 >Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a> so that you can be able to ask any Tech questions, start a Tech Topic, Comment/Like on other peoples Topics and Posts and be able to access your Profile. </h4>
     </div>
     {% endif %}
     <!-- Alert End -->
 
     <div class="container">
 
-      <!-- Social media -->
-      <div class="container">
-        <div class="row">
-          <br>
-          <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
-          <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
-          <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
-          <a href="#" class="fa fa-youtube"></a>
-        </div>
-      </div>
-      <!-- Social media end -->
-
+      <br><br>
       <div class="container-fluid">
-        <h2>Forums</h2>
+        <a href="/social/"> <h2 class="text-center text-dark">Trending Forums</h2></a>
         <div class="row">
-          <div class="panel panel-info">
-            <div class="panel-heading">
+          <div style="width: 100%;" class="card ">
+            <div class="text-white bg-success card-header">
               <h2>General Topics</h2>
             </div>
-            <div class="panel-body">
-              <div class="row row-a">
-                <a class="panelsuccesscolor" href="{% url 'generaldiscussion' %}">
+            <div class="card-body">
+              <div class="justify-content-between row ">
+                <a class="" href="{% url 'generaldiscussion' %}">
                 <div class="col-sm-8">
-                  <h4>General Discussion</h4>
-                  <p>Talk about general tech topics which might not be icluded in the other forums</p><br>
+                  <h4 class="text-center text-dark" >General Discussion</h4>
+                  <p>Talk about general tech topics which might not be icluded in the other forums</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{general_discussion_articles.count}} Post{{general_discussion_articles|pluralize}}</h4>
+                  <h4 class="text-dark">{{general_discussion_articles.count}} Post{{general_discussion_articles|pluralize}}</h4>
                   <div class="row">
-                    <div class="col-xs-8">
-                      {% for article in general_discussion_articles %}
+                    <div class="d-xl-inline-block col-xs-8">
+                      {% for article in latest_general_discussion_articles %}
                       <p>Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="d-xl-inline-block col-xs-4">
                       <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
                         {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
                       </a>
@@ -106,19 +95,19 @@
                   </div>
                 </div>
               </div>
-              <div class="row row-b">
-                <a class="panelsuccesscolor" href="{% url 'technews' %}">
+              <div class="bg-success text-white justify-content-between row ">
+                <a class="" href="{% url 'technews' %}">
                 <div class="col-sm-8">
-                  <h4>Tech News</h4>
-                  <p>Talk about latest and trending tech news in the community</p><br>
+                  <h4 class="text-white text-center" >Tech News</h4>
+                  <p class="text-white">Talk about latest and trending tech news in the community</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{tech_news_articles.count}} Post{{tech_news_articles|pluralize}}</h4>
-                  <div class="row">
+                  <h4 class="text-white">{{tech_news_articles.count}} Post{{tech_news_articles|pluralize}}</h4>
+                  <div class="justify-content-between row">
                     <div class="col-xs-8">
-                      {% for article in tech_news_articles %}
-                      <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      {% for article in latest_tech_news_articles %}
+                      <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
                       <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
@@ -130,21 +119,21 @@
                 </div>
               </div>
 
-              <div class="row row-a">
-                <a class="panelsuccesscolor" href="{% url 'techtips' %}">
+              <div class="justify-content-between row ">
+                <a class="" href="{% url 'techtips' %}">
                 <div class="col-sm-8">
-                  <h4>Tech Tips</h4>
-                  <p>Share your technology tips with others in the community.</p><br>
+                  <h4 class="text-center text-dark text-dark" >Tech Tips</h4>
+                  <p>Share your technology tips with others in the community.</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{tech_tips_articles.count}} Post{{tech_tips_articles|pluralize}}</h4>
+                  <h4 class="text-dark">{{tech_tips_articles.count}} Post{{tech_tips_articles|pluralize}}</h4>
                   <div class="row">
-                    <div class="col-xs-8">
-                      {% for article in tech_tips_articles %}
+                    <div class="d-xl-inline-block col-xs-8">
+                      {% for article in latest_tech_tips_articles %}
                       <p>Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="d-xl-inline-block col-xs-4">
                       <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
                         {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
                       </a>
@@ -154,19 +143,19 @@
                 </div>
               </div>
 
-              <div class="row row-b">
-                <a class="panelsuccesscolor" href="{% url 'offtopic' %}">
+              <div class="bg-success text-white justify-content-between row ">
+                <a class="" href="{% url 'offtopic' %}">
                 <div class="col-sm-8">
-                  <h4>Off Topic</h4>
-                  <p>Any topic which is not technology related goes here e.g welcoming a new member.</p><br>
+                  <h4 class="text-white text-center">Off Topic</h4>
+                  <p class="text-white">Any topic which is not technology related goes here e.g welcoming a new member.</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{off_topic_articles.count}} Post{{off_topic_articles|pluralize}}</h4>
+                  <h4 class="text-white">{{off_topic_articles.count}} Post{{off_topic_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
-                      {% for article in off_topic_articles %}
-                      <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      {% for article in latest_off_topic_articles %}
+                      <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
                       <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
@@ -186,23 +175,23 @@
           <br>
       <div class="container-fluid">
         <div class="row">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h2>Consumer Electronics</h2>
+          <div style="width: 100%;" class="card">
+            <div class="bg-info card-header">
+              <h2 class="text-center text-white">Consumer Electronics</h2>
             </div>
-            <div class="panel-body">
-              <div class="row row-c">
-                <a class="panelsuccesscolor" href="{% url 'smartphonestablets' %}">
+            <div class="card-body">
+              <div class="row justify-content-between">
+                <a class="" href="{% url 'smartphonestablets' %}">
                 <div class="col-sm-8">
-                  <h4>SmartPhones and Tablets</h4>
-                  <p>Contribute to topics about SmartPhones and tablets</p><br>
+                  <h4 class="text-center text-dark">SmartPhones and Tablets</h4>
+                  <p>Contribute to topics about SmartPhones and tablets</p><br></a>
                 </div>
-              <!-- </a> -->
+
                 <div class="col-sm-4">
-                  <h4>{{smartphones_tablets_articles.count}} Post{{smartphones_tablets_articles|pluralize}}</h4>
+                  <h4 class="text-dark">{{smartphones_tablets_articles.count}} Post{{smartphones_tablets_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
-                      {% for article in smartphones_tablets_articles %}
+                      {% for article in latest_smartphones_tablets_articles %}
                       <p>Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
@@ -215,18 +204,42 @@
                 </div>
               </div>
 
-              <div class="row row-d">
-                <a class="panelsuccesscolor" href="{% url 'laptopsforum' %}">
+              <div class="bg-info row justify-content-between">
+                <a class="" href="{% url 'laptopsforum' %}">
                 <div class="col-sm-8">
-                  <h4>Laptops</h4>
-                  <p>Contribute to topics about laptops</p><br>
+                  <h4 class="text-center text-white">Laptops</h4>
+                  <p class="text-white">Contribute to topics about laptops</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{laptops_forum_articles.count}} Post{{laptops_forum_articles|pluralize}}</h4>
+                  <h4 class="text-white">{{laptops_forum_articles.count}} Post{{laptops_forum_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
-                      {% for article in laptops_forum_articles %}
+                      {% for article in latest_laptops_forum_articles %}
+                      <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                        {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                      </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-between">
+                <a class="" href="{% url 'photographyvideography' %}">
+                <div class="col-sm-8">
+                  <h4 class="text-center text-dark">Photography and Videography</h4>
+                  <p>Contribute to topics about photographs and videos</p><br></a>
+                </div>
+
+                <div class="col-sm-4">
+                  <h4 class="text-dark">{{photography_videography_articles.count}} Post{{photography_videography_articles|pluralize}}</h4>
+                  <div class="row">
+                    <div class="col-xs-8">
+                      {% for article in latest_photography_videography_articles %}
                       <p>Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
@@ -239,18 +252,42 @@
                 </div>
               </div>
 
-              <div class="row row-c">
-                <a class="panelsuccesscolor" href="{% url 'photographyvideography' %}">
+              <div class="bg-info row justify-content-between">
+                <a class="" href="{% url 'televisionsforum' %}">
                 <div class="col-sm-8">
-                  <h4>Photography and Videography</h4>
-                  <p>Contribute to topics about photographs and videos</p><br>
+                  <h4 class="text-center text-white">Gaming and Televisions</h4>
+                  <p class="text-white">Talk about Gaming and Televisions and discuss with the communities</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{photography_videography_articles.count}} Post{{photography_videography_articles|pluralize}}</h4>
+                  <h4 class="text-white">{{televisions_forum_articles.count}} Post{{televisions_forum_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
-                      {% for article in photography_videography_articles %}
+                      {% for article in latest_televisions_forum_articles %}
+                      <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
+                    </div>
+                    <div class="col-xs-4">
+                      <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
+                        {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
+                      </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-between">
+                <a class="" href="{% url 'soundsystem' %}">
+                <div class="col-sm-8">
+                  <h4 class="text-center text-dark">Sound System</h4>
+                  <p>Contribute and talk on topics about sound systems with the community</p><br></a>
+                </div>
+
+                <div class="col-sm-4">
+                  <h4 class="text-dark">{{sound_system_articles.count}} Post{{sound_system_articles|pluralize}}</h4>
+                  <div class="row">
+                    <div class="col-xs-8">
+                      {% for article in latest_sound_system_articles %}
                       <p>Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
@@ -263,67 +300,19 @@
                 </div>
               </div>
 
-              <div class="row row-d">
-                <a class="panelsuccesscolor" href="{% url 'televisionsforum' %}">
+              <div class="bg-info row justify-content-between">
+                <a class="" href="{% url 'carsforum' %}">
                 <div class="col-sm-8">
-                  <h4>Televisions</h4>
-                  <p>Talk about Televisions and discuss with the communities</p><br>
+                  <h4 class="text-center text-white" >Cars</h4>
+                  <p class="text-white">Contribute and talk about Cars with the community</p><br></a>
                 </div>
-              </a>
-                <div class="col-sm-4">
-                  <h4>{{televisions_forum_articles.count}} Post{{televisions_forum_articles|pluralize}}</h4>
-                  <div class="row">
-                    <div class="col-xs-8">
-                      {% for article in televisions_forum_articles %}
-                      <p>Posted {{article.pub_date|timesince}} ago by</p>
-                    </div>
-                    <div class="col-xs-4">
-                      <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
-                        {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
-                      </a>
-                      {% endfor %}
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="row row-c">
-                <a class="panelsuccesscolor" href="{% url 'soundsystem' %}">
-                <div class="col-sm-8">
-                  <h4>Sound System</h4>
-                  <p>Contribute and talk on topics about sound systems with the community</p><br>
-                </div>
-                </a>
                 <div class="col-sm-4">
-                  <h4>{{sound_system_articles.count}} Post{{sound_system_articles|pluralize}}</h4>
-                  <div class="row">
-                    <div class="col-xs-8">
-                      {% for article in sound_system_articles %}
-                      <p>Posted {{article.pub_date|timesince}} ago by</p>
-                    </div>
-                    <div class="col-xs-4">
-                      <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
-                        {% avatar article.editor.username 50 class="img-circle img-responsive" id="user_avatar" %}
-                      </a>
-                      {% endfor %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row row-d">
-                <a class="panelsuccesscolor" href="{% url 'carsforum' %}">
-                <div class="col-sm-8">
-                  <h4>Cars</h4>
-                  <p>Contribute and talk about Cars with the community</p><br>
-                </div>
-                </a>
-                <div class="col-sm-4">
-                    <h4>{{car_articles.count}} Post{{car_articles|pluralize}}</h4>
+                    <h4 class="text-white">{{car_articles.count}} Post{{car_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
                       {% for article in latest_car_articles %}
-                      <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      <p class="text-white">Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
                       <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
@@ -345,24 +334,24 @@
 
       <div class="container-fluid">
         <div class="row">
-          <div class="panel panel-danger">
-            <div class="panel-heading">
+          <div style="width: 100%;" class="card">
+            <div class="bg-dark text-white card-header">
               <h2>Software</h2>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
 
-              <div class="row row-e">
-                <a class="panelsuccesscolor" href="{% url 'programmesforum' %}">
+              <div class="row ">
+                <a class="" href="{% url 'programmesforum' %}">
                 <div class="col-sm-8">
-                  <h4>Programmes</h4>
-                  <p>Discuss about topics of programmes with the community</p><br>
+                  <h4 class="text-dark text-center">Programmes</h4>
+                  <p>Discuss about topics of programmes with the community</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{programmes_forum_articles.count}} Post{{programmes_forum_articles|pluralize}}</h4>
+                  <h4 class="text-dark">{{programmes_forum_articles.count}} Post{{programmes_forum_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
-                      {% for article in programmes_forum_articles %}
+                      {% for article in latest_programmes_forum_articles %}
                       <p>Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
@@ -375,19 +364,19 @@
                 </div>
               </div>
 
-              <div class="row row-f">
-                <a class="panelsuccesscolor" href="{% url 'appswebsites' %}">
+              <div class="row bg-dark">
+                <a class="" href="{% url 'appswebsites' %}">
                 <div class="col-sm-8">
-                  <h4>Apps and Websites</h4>
-                  <p>Discuss about various applications and websites with the community</p><br>
+                  <h4 class="text-white text-center">Apps and Websites</h4>
+                  <p class="text-white">Discuss about various applications and websites with the community</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{apps_websites_articles.count}} Post{{apps_websites_articles|pluralize}}</h4>
+                  <h4 class="text-white">{{apps_websites_articles.count}} Post{{apps_websites_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
-                      {% for article in apps_websites_articles %}
-                      <p>Posted {{article.pub_date|timesince}} ago by</p>
+                      {% for article in latest_apps_websites_articles %}
+                      <p>class="text-white"Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
                       <a href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
@@ -399,18 +388,18 @@
                 </div>
               </div>
 
-              <div class="row row-e">
-                <a class="panelsuccesscolor" href="{% url 'operatingsystems' %}">
+              <div class="row ">
+                <a class="" href="{% url 'operatingsystems' %}">
                 <div class="col-sm-8">
-                  <h4>Operating Systems</h4>
-                  <p>Discuss abot topics on Operating Systems with the communiity.</p><br>
+                  <h4 class="text-dark text-center">Operating Systems</h4>
+                  <p>Discuss abot topics on Operating Systems with the communiity.</p><br></a>
                 </div>
-              </a>
+
                 <div class="col-sm-4">
-                  <h4>{{operating_systems_articles.count}} Post{{operating_systems_articles|pluralize}}</h4>
+                  <h4 class="text-dark">{{operating_systems_articles.count}} Post{{operating_systems_articles|pluralize}}</h4>
                   <div class="row">
                     <div class="col-xs-8">
-                      {% for article in operating_systems_articles %}
+                      {% for article in latest_operating_systems_articles %}
                       <p>Posted {{article.pub_date|timesince}} ago by</p>
                     </div>
                     <div class="col-xs-4">
@@ -441,10 +430,10 @@
           </div>
           <div class="col-sm-5">
             <h5 style="color: white; text-align: center;">Contact Us</h5>
-            <a target="_blank" href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
-            <a target="_blank" href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
-            <a target="_blank" href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
-            <a href="#" class="fa fa-youtube"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+            <a style="padding-left: 50px;" href="#" class="fa fa-youtube"></a>
           </div>
           <div class="col-sm-1"></div>
         </div> <br>

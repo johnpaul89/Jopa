@@ -18,6 +18,15 @@ def devices(request, pk=None):
     comments = Article.objects.all().order_by('-id')[:10]
     likes = Article.objects.all()
 
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 15)
+    try:
+        article_pages = paginator.page(page)
+    except PageNotAnInteger:
+        article_pages = paginator.page(1)
+    except EmptyPage:
+        article_pages = paginator.page(paginator.num_pages)
+
     car_articles = Article.car_articles()
     apps_websites_articles = Article.apps_websites_articles()
     general_discussion_articles = Article.general_discussion_articles()
@@ -32,7 +41,21 @@ def devices(request, pk=None):
     tech_tips_articles = Article.tech_tips_articles()
     televisions_forum_articles = Article.televisions_forum_articles()
 
-    return render(request, 'index/index.html', {"specs": specs, "televisions_forum_articles": televisions_forum_articles, "tech_tips_articles": tech_tips_articles, "tech_news_articles": tech_news_articles, "photography_videography_articles": photography_videography_articles, "sound_system_articles": sound_system_articles, "programmes_forum_articles": programmes_forum_articles, "operating_systems_articles": operating_systems_articles, "off_topic_articles": off_topic_articles, "car_articles": car_articles, "laptops_forum_articles": laptops_forum_articles,
+    latest_car_articles = Article.objects.filter(tags__name__startswith='Cars').order_by('-id')[:1]
+    latest_tech_tips_articles = Article.objects.filter(tags__name__startswith='Tech_Tips').order_by('-id')[:1]
+    latest_apps_websites_articles = Article.objects.filter(tags__name__startswith='Apps_and_Website').order_by('-id')[:1]
+    latest_general_discussion_articles = Article.objects.filter(tags__name__startswith='General_Discussion').order_by('-id')[:1]
+    latest_laptops_forum_articles = Article.objects.filter(tags__name__startswith='Laptops').order_by('-id')[:1]
+    latest_off_topic_articles = Article.objects.filter(tags__name__startswith='Off_Topic').order_by('-id')[:1]
+    latest_operating_systems_articles = Article.objects.filter(tags__name__startswith='Operating_Systems').order_by('-id')[:1]
+    latest_programmes_forum_articles = Article.objects.filter(tags__name__startswith='Programmes').order_by('-id')[:1]
+    latest_smartphones_tablets_articles = Article.objects.filter(tags__name__startswith='SmartPhones_Tablets').order_by('-id')[:1]
+    latest_sound_system_articles = Article.objects.filter(tags__name__startswith='Sound_System').order_by('-id')[:1]
+    latest_photography_videography_articles = Article.objects.filter(tags__name__startswith='Photography_Videography').order_by('-id')[:1]
+    latest_tech_news_articles = Article.objects.filter(tags__name__startswith='Tech_News').order_by('-id')[:1]
+    latest_televisions_forum_articles = Article.objects.filter(tags__name__startswith='Televisions').order_by('-id')[:1]
+
+    return render(request, 'index/index.html', {"specs": specs, "article_pages": article_pages, "latest_car_articles": latest_car_articles, "latest_tech_tips_articles": latest_tech_tips_articles, "latest_apps_websites_articles": latest_apps_websites_articles, "latest_general_discussion_articles": latest_general_discussion_articles, "latest_laptops_forum_articles": latest_laptops_forum_articles, "latest_off_topic_articles": latest_off_topic_articles, "latest_operating_systems_articles": latest_operating_systems_articles, "latest_programmes_forum_articles": latest_programmes_forum_articles, "latest_smartphones_tablets_articles": latest_smartphones_tablets_articles, "latest_sound_system_articles": latest_sound_system_articles, "latest_photography_videography_articles":latest_photography_videography_articles, "latest_tech_news_articles": latest_tech_news_articles, "latest_televisions_forum_articles": latest_televisions_forum_articles, "televisions_forum_articles": televisions_forum_articles, "tech_tips_articles": tech_tips_articles, "tech_news_articles": tech_news_articles, "photography_videography_articles": photography_videography_articles, "sound_system_articles": sound_system_articles, "programmes_forum_articles": programmes_forum_articles, "operating_systems_articles": operating_systems_articles, "off_topic_articles": off_topic_articles, "car_articles": car_articles, "laptops_forum_articles": laptops_forum_articles,
     "smartphones_tablets_articles": smartphones_tablets_articles, "general_discussion_articles": general_discussion_articles, "apps_websites_articles": apps_websites_articles, "reviews": reviews, "articles": articles, "likes": likes, "comments": comments})
 
 def phone_specs(request):

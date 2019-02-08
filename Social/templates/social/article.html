@@ -1,5 +1,5 @@
 {%extends 'base.html'%}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load static %}
 {% load avatar_tags %}
 <!DOCTYPE html>
@@ -38,8 +38,10 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
     {% endblock %}
 
   </head>
@@ -87,9 +89,7 @@
         <div class="row">
           <div class="col-sm-8">
             {% if article.article_image %}
-            <div class="row">
-              <img src="{{article.article_image.url}}"  class="img-responsive" alt="">
-            </div>
+              <img src="{{article.article_image.url}}"  class=" img-fluid" alt="{{article.title}}">
             {% endif %}
             <br>
           </div>
@@ -164,7 +164,7 @@
           <div class="container-fluid">
             <div class="row">
               <br>
-              <h4>{{article.article_views}} Views</h4>
+              <h4 style="margin-right: 50px;"> <i class="fa fa-eye" style="font-size:24px;color:darkred"></i> {{article.article_views}} Views</h4>
               <div id="like-section">
                 {% include "social/like_section.html" %}
               </div>  <br>
@@ -182,6 +182,28 @@
       </div>
 
     </div>
+    <br>
+
+    <footer>
+      <div class="container-fluid">
+        <div class="row"><br>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-5">
+            <br>
+            <p class="text-white"> &copy; Copyright  <a target="_blank" style="color: white; font-weight: bold;" href="https://www.techeleza.com/">TechEleza</a>  2019.  All Rights Reserved. </p>
+            <p class="text-white"><a style="color: white;" href="#">Terms of Use</a></p>
+          </div>
+          <div class="col-sm-5">
+            <h5 style="text-align: center;">Contact Us</h5>
+            <a style="padding-left: 50px;" target="_blank" href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+            <a style="padding-left: 50px;" target="_blank" href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+            <a style="padding-left: 50px;" href="#" class="fa fa-youtube"></a>
+          </div>
+          <div class="col-sm-1"></div>
+        </div> <br>
+      </div>
+    </footer>
 
 
 

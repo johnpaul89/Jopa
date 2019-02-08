@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load static %}
 {% load staticfiles %}
 <!DOCTYPE html>
@@ -38,31 +38,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
   </head>
   <body>
 
     {% block content %}
+
+    <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2&appId=602036310229095&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
       <br><br><br>
-
-      <!-- Social media -->
-      <div class="container">
-        <div class="row">
-          <br>
-          <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
-          <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
-          <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
-          <a href="#" class="fa fa-youtube"></a>
-        </div>
-      </div>
-      <!-- Social media end -->
-
-      <div class="container-fluid">
-        <div class="row">
-          <h2>{{reviewarticle.title}}</h2>
-        </div>
-      </div>
 
       <div class="container-fluid">
         <div class="row">
@@ -70,11 +63,16 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-7">
-                  <img src="{{reviewarticle.review_image.url}}" class=" reviewarticleimages img-article img-responsive img-rounded" alt="{{reviewarticle.review_article.title|safe}}">
+                  <h2 class="text-center">{{reviewarticle.title}}</h2>
+                  <img src="{{reviewarticle.review_image.url}}" class=" img-card" alt="{{reviewarticle.review_article.title|safe}}">
                 </div>
                 <div class="col-sm-5">
                   <div id="review-like-section">
                     {% include "reviews/review_like_section.html" %}
+                    <div class="fb-page" data-href="https://www.facebook.com/TechEleza/"  data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/TechEleza/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TechEleza/">TechEleza</a></blockquote></div>
+                    <div class="fb-share-button" data-href="https://www.techeleza.com{{request.path}}" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <a href="https://twitter.com/ElezaTech?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @ElezaTech</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                   </div>
                 </div>
               </div>
@@ -86,43 +84,43 @@
                 <h4 class="text-center">{{reviewarticle.title}}</h4>
                 <p class="articleparagraph">{{reviewarticle.description|safe}}</p>
                 {% if reviewarticle.introduction_releasedate_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.introduction_releasedate_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.introduction_releasedate_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.introduction_releasedate|safe}}</p>
                 {% if reviewarticle.performance_price_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.performance_price_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.performance_price_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.performance_price|safe}}</p>
                 {% if reviewarticle.design_hardware_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.design_hardware_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.design_hardware_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.design_hardware|safe}}</p>
                 {% if reviewarticle.software_os_softwarefeatures_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.software_os_softwarefeatures_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.software_os_softwarefeatures_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.software_os_softwarefeatures|safe}}</p>
                 {% if reviewarticle.display_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.display_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.display_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.display|safe}}</p>
                 {% if reviewarticle.batterylife_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.batterylife_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.batterylife_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.batterylife|safe}}</p>
                 {% if reviewarticle.camera_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.camera_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.camera_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.camera|safe}}</p>
                 {% if reviewarticle.competition_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.competition_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.competition_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.competition|safe}}</p>
                 {% if reviewarticle.pros_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.pros_image}}" class=" reviewarticleimages img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.pros_image}}"  alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.pros|safe}}</p>
                 {% if reviewarticle.cons_image %}
-                <img style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.cons_image}}" class=" reviewarticleimages  img-responsive" alt="{{reviewarticle.title}}">
+                <img class="img-card" style="display: block; margin-left: auto; margin-right: auto;" src="{{reviewarticle.cons_image}}" class=" reviewarticleimages  img-responsive" alt="{{reviewarticle.title}}">
                 {% endif %}
                 <p class="articleparagraph">{{reviewarticle.cons|safe}}</p>
                 <p class="articleparagraph">{{reviewarticle.verdict|safe}}</p>
@@ -138,22 +136,23 @@
 
           </div>
           <div class="col-sm-4">
-            <h3>Similar Devices</h3>
+            <br>
+            <h3 style="color: black;" class="text-center">Similar Devices</h3>
             <div class="infinite-container">
               {% for review in review_article_pages %}
               <div class="infinite-item">
                 <div class="col-xs-6">
                   <a href="{% url 'review_article' pk=review.pk %}">
-                  <div class="panel panelstuff panel-default">
+                  <div class="card card-article">
                     <!-- <div class="panel-heading">
                       <h5>{{review.tags.all}}</h5>
                     </div> -->
-                    <div class="panel-body">
+                    <div class="card-header">
 
-                      <img src="{{review.review_image.url}}" class=" reviewarticleimages img-flick img-responsive img-rounded" alt="{{review.title|safe}}">
+                      <img src="{{review.review_image.url}}" class="card-img-top img-article" alt="{{review.title|safe}}">
                     </div>
-                    <div class="panel-footer">
-                      <p class="panel-paragraph">{{review.title|safe}}</p>
+                    <div class="card-footer">
+                      <h5 style="color: darkred" class="card-heading text-center">{{review.title|safe}}</h5>
                     </div>
                   </div></a>
                 </div>

@@ -2,19 +2,38 @@ body{
   background-color: #e9ebee;
    /* #F3E6DE; */
 }
+.img-card {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card-paragagraph{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+}
 h2{
   text-align: center;
 }
 a{
+  background-color: inherit;
   color: black;
 }
 a:hover {
-  background-color: black;
+  background-color: white;
   color: black;
   text-decoration: none;
 }
+a:active {
+  background-color: white;
+  color: black;
+}
 .vergecolor{
-  /* background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%); */
+  background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
 
 }
 .container-border{
@@ -22,44 +41,7 @@ a:hover {
   border-style: solid;
   border-width: thin;
 }
-.panelstuff{
-  height: 263px;
-  width: 175px;
-  border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
-  margin-left: -8px;
-  /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
-}
-.panelspecs{
-  height: auto;
-  width: 175px;
-  border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
-  margin-left: -8px;
-  /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
-}
-.panelreview{
-  height: auto;
-  width: 175px;
-  border: 1px solid linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
-  margin-left: -8px;
-  /* border-top-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
-}
-.panelreviewfoot{
-  height: 200px;
-  width: 175px;
-  margin-left: -8px;
-}
-.panelsearch{
-  height: 300px;
-}
-.panel-border{
-  border: solid;
-  border-right-color: black;
-  border-top-color: white;
-  border-bottom-color: white;
-  border-left-color: white;
-  border-width: 1px;
-}
-.glyphicon-like{
+.fa-heart-o .fa-heart{
   margin-top: 25px;
   font-size: 36px;
   color: darkred;
@@ -89,10 +71,20 @@ a:hover {
   text-align: center;
   font-weight: bold;
 }
-.carousel-cell {
+.carousel-card{
+  margin-left: 5px;
+  width: auto;
 }
-.carousel-padding{
-  padding-left: 10px;
+.carousel_image{
+  height: 200px;
+  width: auto;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel {
+  background: #EEE;
 }
 /* position dots up a bit */
 .flickity-page-dots {
@@ -194,4 +186,47 @@ footer{
 }
 .panelforum{
   margin-top: -19px;
+}
+.alert {
+  padding: 20px;
+  background-color: #2196F3;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+.icon-bar-article {
+  position: fixed;
+  top: 97%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  /* margin-left: 85%; */
+}
+
+/* Style the icon bar links */
+/* .icon-bar-article a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+} */
+
+/* Style the social media icons with color, if you want */
+.icon-bar-article a:hover {
+  background-color: #000;
 }

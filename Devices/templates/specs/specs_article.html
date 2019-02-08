@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load staticfiles %}
 {% load static %}
 <!DOCTYPE html>
@@ -39,44 +39,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
     {% endblock %}
 
   </head>
   <body>
 
     {% block content %}
+
+    <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2&appId=602036310229095&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
     <br><br><br>
-
-    <!-- Social media -->
-    <div class="container">
-      <div class="row">
-        <br>
-        <a href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
-        <a href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
-        <a href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
-        <a href="#" class="fa fa-youtube"></a>
-      </div>
-    </div>
-    <!-- Social media end -->
-
-      <div class="container-fluid">
-        <div class="row">
-          <h1 style="text-align: center;">{{specsarticle.title}}</h1>
-        </div>
-      </div>
 
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-8">
+            <h1 class="text-center">{{specsarticle.title}}</h1>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-7">
-                  <img src="{{specsarticle.specs_image.url}}" class="img-article img-responsive img-rounded" alt="{{specsarticle.specs_article.title|safe}}">
+                  <img src="{{specsarticle.specs_image.url}}" class=" img-card" alt="{{specsarticle.specs_article.title|safe}}">
                 </div>
                 <div class="col-sm-5">
                   <div id="specs-like-section">
                     {% include "specs/specs_like_section.html" %}
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <a href="https://twitter.com/ElezaTech?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @ElezaTech</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <div class="fb-share-button" data-href="https://www.techeleza.com{{request.path}}" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/TechEleza/"  data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/TechEleza/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TechEleza/">TechEleza</a></blockquote></div>
                   </div>
+                  <!-- <div class="row d-none d-lg-inline-block vergecolor">
+                    <div class="col-sm-6">
+                      <h5>Internal Memory</h5>
+                      <p>{{specsarticle.internalmemory| safe}}</p>
+                    </div>
+                    <div class="col-sm-6">
+                      <h5>Size</h5>
+                      <p>{{specsarticle.displaysize| safe}}</p>
+                    </div>
+                  </div> -->
                 </div>
               </div>
             </div><br>
@@ -342,12 +350,12 @@
               <div class="col-xs-6">
                 <div class="infinite-item">
                   <a href="{% url 'specs_article' pk=specs.pk %}">
-                  <div class="panel panelstuff panel-default">
-                    <div class="panel-body">
-                      <img src="{{specs.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{specs.title|safe}}">
+                  <div class="card card-article">
+                    <div class="card-header">
+                      <img src="{{specs.specs_image.url}}" class="card-img-top img-article" alt="{{specs.title|safe}}">
                     </div>
-                    <div class="panel-footer">
-                      <p class="panel-paragraph">{{specs.title|safe}}</p>
+                    <div class="card-footer">
+                      <h5 style="color: darkred" class="card-heading text-center">{{specs.title|safe}}</h5>
                     </div>
                   </div></a>
                 </div>

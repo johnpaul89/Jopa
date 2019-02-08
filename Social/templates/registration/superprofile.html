@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load static %}
 {% load avatar_tags %}
 <!DOCTYPE html>
@@ -27,6 +27,7 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
@@ -41,7 +42,9 @@
           <div class="row">
             <div class="col-xs-1"></div>
             <div class="col-xs-5">
+              {% block profile %}
               {% avatar user 100 class="img-circle img-responsive" id="user_avatar" %}
+              {% endblock %}
             </div>
             <div class="col-xs-6">
               <br>
@@ -55,158 +58,196 @@
             </div>
           </div>
         </div>
-      </div>
-        <br>
+      </div> <br>
 
         <div class="row">
           <div style="margin-left: 50px;" class="col-sm-3">
-            <h3>{{user}}</h3>
-            <h4>{{user.first_name}} {{user.last_name}}</h4>
-            <h4>{{user.email}}</h4>
-            <h4>{{user.userprofile.description}}</h4>
-            <h4>{{user.userprofile.phone}}</h4>
-            <h4>{{user.userprofile.city}}</h4>
-           <a href="{{user.userprofile.website}}"><h4>{{user.userprofile.website}}</h4></a>
+            <h3 class="text-dark">{{user}}</h3>
+            <h4 class="text-dark">{{user.first_name}} {{user.last_name}}</h4>
+            <h4 class="text-dark">{{user.email}}</h4>
+            <h4 class="text-dark">{{user.userprofile.description}}</h4>
+            <h4 class="text-dark">{{user.userprofile.phone}}</h4>
+            <h4 class="text-dark">{{user.userprofile.city}}</h4>
+            <h4 class="text-dark">{{user.userprofile.website}}</h4>
           </div>
           <div class="col-sm-6">
             <br><br>
-            <div style="margin-left: 20px;" class="tab">
-              <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Articles')">Articles</button>
-              <button class="tablinks" onclick="openCity(event, 'Comments')">Comments</button>
-              <button class="tablinks" onclick="openCity(event, 'Likes')">Likes</button>
-            </div>
 
-            <div class="row">
-              <br><br>
-            </div><br>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="article-tab" data-toggle="tab" href="#article" role="tab" aria-controls="article" aria-selected="true">Articles</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">Likes</a>
+              </li>
+            </ul>
 
-            <div id="Articles" class="tabcontent">
-              <div class="panel panel-success">
-                <div class="panel-heading">
-                  <h2>Articles</h2>
-                </div>
-                <div class="panel-body">
-                  {% for article in article_pages %}
-                  <h3>  <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">{{article.title}} </h3>
-                  <!-- <p>{{article.post|truncatechars:50|safe}}</p> -->
-                  <div class="col-xs-4">
-                    <p><i style="color: darkred;"  class="glyphicon glyphicon-heart"></i> <br> {{article.total_likes}} Like{{ article.total_likes|pluralize }}</p>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="article" role="tabpanel" aria-labelledby="article-tab">
+                <div class="card ">
+                  <div class="card-header">
+                    <h2>Articles</h2>
                   </div>
-                  <div class="col-xs-4">
-                    <p>{{comments.article}}</p>
-                  </div>
-                  <div class="col-xs-4">
+                  <div class="card-body">
+                    {% for article in article_pages %}
+                    <div class="container-fluid">
+                      <h3>  <a style="color: black;" href="{% url 'readarticle' pk=article.pk %}">{{article.title}} </h3>
+                      <p>{{article.post|truncatechars:50|safe}}</p>
+                      <div class="col-xs-4">
+                        <p><i style="color: darkred;"  class="fa fa-heart"></i> <br> {{article.total_likes}} Like{{ article.total_likes|pluralize }}</p>
+                        <p><i style="color: darkred;"  class="fa fa-eye"></i> <br> {{article.article_views}} View{{ article.article_views|pluralize }}</p>
+                      </div>
+                      <div class="col-xs-4">
+                        <!-- <p>{{comments.post.count}}</p> -->
+                      </div>
+                      <div class="col-xs-4">
+                        <p style="color: darkred;">Posted on: {{article.pub_date}}</p></a>
+                      </div>
+                    </div>
 
-                  </div>
-                  <p style="color: darkred;">Posted on: {{article.pub_date}}</p></a>
-                  <hr>
-                  {% endfor %}
 
-                  {% if article_pages.has_other_pages %}
-                    <ul class="pagination">
-                      {% if article_pages.has_previous %}
-                        <li><a href="?page={{ article_pages.previous_page_number }}">&laquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                      {% endif %}
-                      {% for i in article_pages.paginator.page_range %}
-                        {% if article_pages.number == i %}
-                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% elif i > article_pages.number|add:'-3' and i < article_pages.number|add:'4' %}
-                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    <hr>
+                    {% endfor %}
+
+                    <nav aria-label="...">
+                    {% if article_pages.has_other_pages %}
+                      <ul class="pagination justify-content-center pagination-lg">
+                        {% if article_pages.has_previous %}
+                          <li class="page-item"><a class="page-link" href="?page={{ article_pages.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
                         {% endif %}
-                      {% endfor %}
-                      {% if article_pages.has_next %}
-                        <li><a href="?page={{ article_pages.next_page_number }}">&raquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                      {% endif %}
-                    </ul>
-                  {% endif %}
+                        {% for i in article_pages.paginator.page_range %}
+                          {% if article_pages.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                          {% elif i > article_pages.number|add:'-3' and i < article_pages.number|add:'4' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                        {% if article_pages.has_next %}
+                          <li class="page-item"><a class="page-link" href="?page={{ article_pages.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                      </ul>
+                    {% endif %}
+                    </nav>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                <div class="card">
+                  <div class="card-header">
+                    <h2>Comments</h2>
+                  </div>
+                  <div class="card-body">
+                    {% for comment in comment_pages %}
+                    <h3>  <a style="color: black;" href="{% url 'readarticle' pk=comment.post.pk  %} #comment">{{comment.content}} </h3>
+                      <p>{{post.comment|truncatechars:30|safe}}</p>
+                    <p style="color: darkred;">Posted on: {{comment.timestamp}}</p></a>
+                    <hr>
+                    {% endfor %}
+
+                    <nav aria-label="...">
+                    {% if comment_pages.has_other_pages %}
+                      <ul class="pagination justify-content-center pagination-lg">
+                        {% if comment_pages.has_previous %}
+                          <li class="page-item"><a class="page-link" href="?page={{ comment_pages.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+                        {% for i in comment_pages.paginator.page_range %}
+                          {% if comment_pages.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                          {% elif i > comment_pages.number|add:'-3' and i < comment_pages.number|add:'4' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                        {% if comment_pages.has_next %}
+                          <li class="page-item"><a class="page-link" href="?page={{ comment_pages.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                      </ul>
+                    {% endif %}
+                    </nav>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="likes-tab">
+                <div class="card">
+                  <div class="card-header">
+                    <h2>Likes</h2>
+                  </div>
+                  <div class="card-body">
+                    {% for like in like_pages %}
+                    <a style="color: black;" href="{% url 'readarticle' pk=like.pk %} #like-section">
+                    <h3 class="text-dark">{{like.title}}</h3>
+                    <p>{{like.post|truncatechars:30|safe}}</p>
+                    <p style="color: darkred;">Posted on: {{like.pub_date}}</p>
+                    </a>
+                    {% endfor %}
+
+                    <nav aria-label="...">
+                    {% if like_pages.has_other_pages %}
+                      <ul class="pagination justify-content-center pagination-lg">
+                        {% if like_pages.has_previous %}
+                          <li class="page-item"><a class="page-link" href="?page={{ like_pages.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+                        {% for i in like_pages.paginator.page_range %}
+                          {% if like_pages.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                          {% elif i > like_pages.number|add:'-3' and i < like_pages.number|add:'4' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                        {% if like_pages.has_next %}
+                          <li class="page-item"><a class="page-link" href="?page={{ like_pages.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                      </ul>
+                    {% endif %}
+                    </nav>
+
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div id="Comments" class="tabcontent">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h2>Comments</h2>
-                </div>
-                <div class="panel-body">
-                  {% for comment in comment_pages %}
-                  <h3>  <a style="color: black;" href="{% url 'readarticle' pk=comment.post.pk  %} #comment">{{comment.content}} </h3>
-                  <p style="color: darkred;">Posted on: {{comment.timestamp}}</p></a>
-                  <hr>
-                  {% endfor %}
-
-                  {% if comment_pages.has_other_pages %}
-                    <ul class="pagination">
-                      {% if comment_pages.has_previous %}
-                        <li><a href="?page={{ comment_pages.previous_page_number }}">&laquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                      {% endif %}
-                      {% for i in comment_pages.paginator.page_range %}
-                        {% if comment_pages.number == i %}
-                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% elif i > comment_pages.number|add:'-3' and i < comment_pages.number|add:'4' %}
-                          <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %}
-                      {% endfor %}
-                      {% if comment_pages.has_next %}
-                        <li><a href="?page={{ comment_pages.next_page_number }}">&raquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                      {% endif %}
-                    </ul>
-                  {% endif %}
-
-                </div>
-              </div>
-            </div>
-
-            <div id="Likes" class="tabcontent">
-              <div class="panel panel-danger">
-                <div class="panel-heading">
-                  <h2>Likes</h2>
-                </div>
-                <div class="panel-body">
-                  {% for like in like_pages %}
-                  <a style="color: black;" href="{% url 'readarticle' pk=like.pk %} #like-section">
-                  <h3>{{like.title}}</h3>
-                  <p style="color: darkred;">Posted on: {{like.pub_date}}</p>
-                  </a>
-                  {% endfor %}
-
-                  {% if like_pages.has_other_pages %}
-                    <ul class="pagination">
-                      {% if like_pages.has_previous %}
-                        <li><a href="?page={{ like_pages.previous_page_number }}">&laquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                      {% endif %}
-                      {% for i in like_pages.paginator.page_range %}
-                        {% if like_pages.number == i %}
-                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% elif i > like_pages.number|add:'-3' and i < like_pages.number|add:'4' %}
-                          <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %}
-                      {% endfor %}
-                      {% if like_pages.has_next %}
-                        <li><a href="?page={{ like_pages.next_page_number }}">&raquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                      {% endif %}
-                    </ul>
-                  {% endif %}
-
-                </div>
-              </div>
-          </div>
 
         </div>
 
+
       </div>
+
+      <footer>
+        <div class="container-fluid">
+          <div class="row"><br>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+              <br>
+              <p> &copy; Copyright  <a target="_blank" style="color: white; font-weight: bold;" href="https://www.techeleza.com/">TechEleza</a>  2019.  All Rights Reserved. </p>
+              <p><a style="color: white;" href="#">Terms of Use</a></p>
+            </div>
+            <div class="col-sm-5">
+              <h5 style="text-align: center;">Contact Us</h5>
+              <a style="padding-left: 50px;" target="_blank" href="https://www.facebook.com/TechEleza/" class="fa fa-facebook"></a>
+              <a style="padding-left: 50px;" target="_blank" href="https://twitter.com/ElezaTech" class="fa fa-twitter"></a>
+              <a style="padding-left: 50px;" target="_blank" href="https://www.instagram.com/techeleza/" class="fa fa-instagram"></a>
+              <a style="padding-left: 50px;" href="#" class="fa fa-youtube"></a>
+            </div>
+            <div class="col-sm-1"></div>
+          </div> <br>
+        </div>
+      </footer>
 
     {% endblock %}
 

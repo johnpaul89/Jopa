@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'Social.apps.SocialConfig',
     'News.apps.NewsConfig',
 
-    'bootstrap3',
+    'bootstrap4',
     'avatar',
     'ckeditor',
     'ckeditor_uploader',
