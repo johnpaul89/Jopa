@@ -55,6 +55,16 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
 
+      {% if  user.is_authenticated %}
+      <div style="z-index: 1;" class="icon-bar-article">
+        <a href="{% url 'newarticle' %}" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Say Something?</button> </a>
+      </div>
+      {% else %}
+      <div style="z-index: 1;" class="icon-bar-article">
+        <a href="/accounts/login/?next=/accounts/login" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Say Something?</button> </a>
+      </div>
+      {% endif %}
+
       <br><br><br>
 
       <div class="container-fluid">

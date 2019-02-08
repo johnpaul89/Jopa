@@ -1,9 +1,12 @@
 {%extends 'base.html'%}
+{% load bootstrap4 %}
 {% load staticfiles %}
 
 {% block title %}
 <title>Search term for {{message_reviews}}</title>
 {% endblock %}
+
+
 
 {% block content %}
   <br><br><br><br>
@@ -18,108 +21,109 @@
   {% endif %}
   <!-- Alert End -->
 
+  {% if  user.is_authenticated %}
+  <div style="z-index: 1;" class="icon-bar-article">
+    <a href="{% url 'newarticle' %}" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Say Something?</button> </a>
+  </div>
+  {% else %}
+  <div style="z-index: 1;" class="icon-bar-article">
+    <a href="/accounts/login/?next=/accounts/login" class="twitter"> <button style="color: white; font-size: 14px; font-weight: bold; background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);" class="btn btn-sm" name="button">Say Something?</button> </a>
+  </div>
+  {% endif %}
+
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="tab">
-          <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Reviews')">Reviews</button>
-          <button class="tablinks" onclick="openCity(event, 'Specs')">Specs</button>
-          <button class="tablinks" onclick="openCity(event, 'Forums')">Forums</button>
-          <!-- <button class="tablinks " onclick="openCity(event, 'News')">News</button> -->
-        </div>
-      </div>
+    <!-- <div class="row"> -->
 
-      <div class="col-xs-12">
-        <div id="Reviews" class="tabcontent">
-          {% if reviews_articles%}
-            <h3>Found {{ reviews_articles|length }} of searched term <strong>{{message_reviews}}</strong> in reviews only 50 ot the most popular ones will be shown.</h3>
-          {% else %}
-            <h3> Found 0 articles for the search term <strong>{{message_reviews}}</strong> in reviews</h3>
-          {% endif %}
-          {% for article in reviews_articles %}
-          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
-            <a href="{% url 'review_article' pk=article.pk %}">
-            <div class="panel panelsearch panel-default">
-              <div class="panel-body">
+      <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="true">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="specs-tab" data-toggle="tab" href="#specs" role="tab" aria-controls="specs" aria-selected="false">Specs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="forums-tab" data-toggle="tab" href="#forums" role="tab" aria-controls="forums" aria-selected="false">Forums</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+            {% if reviews_articles%}
+              <h3 class="text-dark">Found {{ reviews_articles|length }} of searched term <strong>{{message_reviews}}</strong> in reviews only 50 of the most popular ones will be shown.</h3>
+            {% else %}
+              <h3 class="text-dark"> Found 0 articles for the search term <strong>{{message_reviews}}</strong> in reviews</h3>
+            {% endif %}
+            <div class="row">
+              {% for article in reviews_articles %}
+              <div class="col-sm-6 col-md-4 col-lg-3">
+                <a href="{% url 'review_article' pk=article.pk %}">
+                <div class="card">
+                  <div class="card-body">
 
-                <img src="{{article.review_image.url}}" class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
+                    <img src="{{article.review_image.url}}" class="card-img-top img-fluid review-image" alt="{{article.title|safe}}">
+                  </div>
+                  <div class="card-footer">
+                    <h5 style="color: darkred;" class="card-heading">{{article.title|safe}}</h5>
+                  </div>
+                </div></a>
               </div>
-              <div class="panel-footer">
-                <p class="panel-paragraph">{{article.title|safe}}</p>
-              </div>
-            </div></a>
+              {% endfor %}
+            </div>
+
           </div>
-          {% endfor %}
+
+          <div class="tab-pane fade" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+            {% if specs_articles%}
+              <h3 class="text-dark">Found {{ specs_articles|length }} of searched term <strong>{{message_specs}}</strong> in specs only 50 ot the most popular ones will be shown</h3>
+            {% else %}
+              <h3 class="text-dark"> Found 0 articles for the search term <strong>{{message_specs}}</strong> in specs</h3>
+            {% endif %}
+            <div class="row">
+              {% for article in specs_articles %}
+              <div class="col-sm-6 col-md-4 col-lg-3">
+                <a href="{% url 'specs_article' pk=article.pk %}">
+                <div class="card">
+                  <div class="card-body">
+
+                    <img src="{{article.specs_image.url}}" class="card-img-top img-fluid review-image" alt="{{article.title|safe}}">
+                  </div>
+                  <div class="card-footer">
+                    <h5 style="color: darkred;" class="card-heading">{{article.title|safe}}</h5>
+                  </div>
+                </div></a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="tab-pane fade" id="forums" role="tabpanel" aria-labelledby="forums-tab">
+            {% if forums_articles%}
+              <h3 class="text-dark">Found {{ forums_articles|length }} of searched term <strong>{{message_forums}}</strong> in forums only 50 ot the most popular ones will be shown</h3>
+            {% else %}
+              <h3 class="text-dark"> Found 0 articles for the search term <strong>{{message_forums}}</strong> in forums</h3>
+            {% endif %}
+            <div class="row">
+              {% for article in forums_articles %}
+              <div class="col-sm-6 col-md-4 col-lg-3">
+                <a href="{% url 'readarticle' pk=article.pk %}">
+                <div class="card">
+                  <div class="card-body">
+                    {% if article.article_image %}
+                      <img src="{{article.article_image.url}}"  class="card-img-top img-fluid review-image" alt="{{article.title|safe}}">
+                    {% endif %}
+                  </div>
+                  <div class="card-footer">
+                    <h5 style="color: darkred;" class="card-heading">{{article.title|safe}}</h5>
+                  </div>
+                </div></a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
 
-        <div id="Specs" class="tabcontent">
-          {% if specs_articles%}
-            <h3>Found {{ specs_articles|length }} of searched term <strong>{{message_specs}}</strong> in specs only 50 ot the most popular ones will be shown</h3>
-          {% else %}
-            <h3> Found 0 articles for the search term <strong>{{message_specs}}</strong> in specs</h3>
-          {% endif %}
-          {% for article in specs_articles %}
-          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
-            <a href="{% url 'specs_article' pk=article.pk %}">
-            <div class="panel panelsearch panel-default">
-              <div class="panel-body">
-
-                <img src="{{article.specs_image.url}}" class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
-              </div>
-              <div class="panel-footer">
-                <p class="panel-paragraph">{{article.title|safe}}</p>
-              </div>
-            </div></a>
-          </div>
-          {% endfor %}
-        </div>
-
-        <div id="Forums" class="tabcontent">
-          {% if forums_articles%}
-            <h3>Found {{ forums_articles|length }} of searched term <strong>{{message_forums}}</strong> in forums only 50 ot the most popular ones will be shown</h3>
-          {% else %}
-            <h3> Found 0 articles for the search term <strong>{{message_forums}}</strong> in forums</h3>
-          {% endif %}
-          {% for article in forums_articles %}
-          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
-            <a href="{% url 'readarticle' pk=article.pk %}">
-            <div class="panel panelsearch panel-default">
-              <div class="panel-body">
-                {% if article.article_image %}
-                  <img src="{{article.article_image.url}}"  class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
-                {% endif %}
-              </div>
-              <div class="panel-footer">
-                <p class="panel-paragraph">{{article.title|safe}}</p>
-              </div>
-            </div></a>
-          </div>
-          {% endfor %}
-        </div>
-
-        <!-- <div id="News" class="tabcontent">
-          {% if news_articles%}
-            <h3>Found {{ news_articles|length }} of searched term <strong>{{message_news}}</strong> in news</h3>
-          {% else %}
-            <h3> Found 0 articles for the search term <strong>{{message_news}}</strong> in news</h3>
-          {% endif %}
-          {% for article in news_articles %}
-          <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
-            <a href="{% url 'read_news_article' id=article.id %}">
-            <div class="panel panelsearch panel-default">
-              <div class="panel-body">
-                  <img src="{{article.imageUrl}}"  class="img-flick img-responsive img-rounded" alt="{{article.title|safe}}">
-
-              </div>
-              <div class="panel-footer">
-                <p class="panel-paragraph">{{article.title|safe}}</p>
-              </div>
-            </div></a>
-          </div>
-          {% endfor %}
-        </div> -->
-      </div>
+      <!-- </div> -->
 
     </div>
   </div>
+
+
 {% endblock %}
