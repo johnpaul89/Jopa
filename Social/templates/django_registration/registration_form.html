@@ -22,7 +22,6 @@
 
 {% block content %}
 <div class="container">
-  <br><br><br><br>
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
@@ -30,16 +29,6 @@
       {% if form.errors %}
       <p>Some Information Might be Incorrect</p>
       {% endif %}
-
-      {% if  user.is_authenticated %}
-      <div class=""></div>
-      {% else %}
-      <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <h4>Please <a href="/accounts/login/?next=/accounts/login"><strong>Sign in/Sign Up</strong></a> so that you can be able to ask any Tech questions, start a Tech Topic, Comment/Like on other peoples Topics and Posts and be able to access your Profile. </h4>
-      </div>
-      {% endif %}
-      <!-- Alert End -->
 
       <div class="card">
         <div class="card-header">
