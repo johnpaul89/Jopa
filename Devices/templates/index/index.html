@@ -104,7 +104,7 @@
                       <small ><h5><i class="fa fa-eye" style="font-size:24px;color:darkred"></i> {{article.article_views}} Views</h5></small>
                     </div>
                     <div style="margin-left: 10px;" class="col-xs-3">
-                      <small> <h6 style="color: darkred;">Posted by <strong>{{user.username}}</strong> {{article.pub_date|timesince}} ago</h6></small>
+                      <small> <h6 style="color: darkred;">Posted by <strong>{{article.editor.username}}</strong> {{article.pub_date|timesince}} ago</h6></small>
                     </div>
                   </div>
                 </div>

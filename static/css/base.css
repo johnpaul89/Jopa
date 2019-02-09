@@ -10,6 +10,14 @@ body{
   margin-left: auto;
   margin-right: auto;
 }
+.review-image{
+  width: auto;
+  max-width: 150px;
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .card-paragagraph{
   display: block;
   margin-left: auto;
@@ -21,16 +29,16 @@ h2{
 }
 a{
   background-color: inherit;
-  color: black;
+  color: inherit;
 }
 a:hover {
-  background-color: white;
-  color: black;
+  background-color: inherit;
+  color: inherit;
   text-decoration: none;
 }
 a:active {
-  background-color: white;
-  color: black;
+  background-color: inherit;
+  color: inherit;
 }
 .vergecolor{
   background: linear-gradient(90deg,#f7c626 15%,#f68c2f 40%,#e5127d 85%);
@@ -51,7 +59,8 @@ a:active {
 } */
 .fa{
   font-size: 24px;
-  padding-left: 50px;
+  /* padding-left: 50px; */
+  -webkit-appearance: none;
 }
 .fa-facebook{
   color: darkblue;
@@ -189,7 +198,7 @@ footer{
 }
 .alert {
   padding: 20px;
-  background-color: #2196F3;
+  /* background-color: #2196F3; */
   color: white;
 }
 
@@ -209,7 +218,7 @@ footer{
 }
 .icon-bar-article {
   position: fixed;
-  top: 97%;
+  top: 95%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);

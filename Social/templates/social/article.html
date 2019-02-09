@@ -13,7 +13,7 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{article.title}}">
-    <meta property="og:description" content="Get to find Topics and articles discussed by the online community in our forum">
+    <meta property="og:description" content="{{article.description}}">
     <meta property="og:url" content="https://www.techeleza.com{{request.path}}">
     <meta property="og:site_name" content="TechEleza">
     {% if article.article_image %}
@@ -69,31 +69,28 @@
     </div>
     {% endif %}
 
-    <div class="container ">
+    <div class="container article-row">
 
+      {% if article.article_image %}
       <h1 class="text-center">{{article.title}}</h1>
+
 
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-8">
-            {% if article.article_image %}
               <img src="{{article.article_image.url}}"  class=" img-fluid" alt="{{article.title}}">
-            {% endif %}
             <br>
           </div>
           <div class="col-sm-4">
 
-            <!-- Social Media -->
+            <!-- <div> -->
+              <!-- <input type="button" class="btn btn-sm btn-info" value="Copy Url" onclick="Copy();" /> -->
+            <!-- </div> -->
+            <br><br>
             <div class="fb-share-button" data-href="https://www.techeleza.com{{request.path}}" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <a href="https://twitter.com/ElezaTech?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @ElezaTech</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <div class="fb-page" data-href="https://www.facebook.com/TechEleza/"  data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/TechEleza/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TechEleza/">TechEleza</a></blockquote></div>
-
-            <!-- <div> -->
-              <!-- <input type="button" class="btn btn-sm btn-info" value="Copy Url" onclick="Copy();" /> -->
-            <!-- </div> -->
-
-            <!-- Social Media End -->
 
             {% if article.editor == request.user %}
             <div class="panel panel-danger">
@@ -107,7 +104,7 @@
                     </div>
                     <div class="col-xs-6">
                       <a href="{% url 'delete_article' id=article.id %}" id="delete">
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button style="margin-left: 20px;" type="button" class="btn btn-danger">Delete</button>
                       </a>
                     </div>
                   </div>
@@ -118,27 +115,17 @@
 
           </div>
         </div>
+        {% endif %}
       </div>
 
       <div class="container article-row">
         <div class="container-fluid">
-          <div class="container-fluid">
-            <div class="row">
-              {% for topic in topics %}
-              <h3>{{topic.name}}</h3>
-              {% endfor %}
-            </div>
-          </div>
+            <h3 class="text-dark" style="text-align: center;">{{article.title}}</h3> <br>
 
-          <div class="row ">
-            {% autoescape on %}
             <p>{{article.post| safe}}</p>
 
-           {% endautoescape %}
-
-          </div>
           <div class="row">
-            <br><br>
+            <br>
               <p>Posted {{article.pub_date|timesince}} by
                 {% if user.is_authenticated %}
                 <a style="color: darkred;" href="{% url 'accountsprofilewithpk' pk=article.editor.pk %}">
@@ -151,11 +138,44 @@
 
           <div class="container-fluid">
             <div class="row">
-              <br>
-              <h4 style="margin-right: 50px;"> <i class="fa fa-eye" style="font-size:24px;color:darkred"></i> {{article.article_views}} Views</h4>
-              <div id="like-section">
-                {% include "social/like_section.html" %}
-              </div>  <br>
+              <div class="col-sm-6">
+                <br>
+                <h4 style="margin-right: 50px;"> <i class="fa fa-eye" style="font-size:24px;color:darkred"></i> {{article.article_views}} Views</h4>
+                <div id="like-section">
+                  {% include "social/like_section.html" %}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                {% if article.article_image %}
+                {% else %}
+                <br>
+                <div class="fb-share-button" data-href="https://www.techeleza.com{{request.path}}" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <a href="https://twitter.com/ElezaTech?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @ElezaTech</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <div class="fb-page" data-href="https://www.facebook.com/TechEleza/"  data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/TechEleza/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TechEleza/">TechEleza</a></blockquote></div>
+
+                {% if article.editor == request.user %}
+                <div class="panel panel-danger">
+                  <div class="panel-heading">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-xs-6">
+                          <a href="{% url 'edit_article' id=article.id %}">
+                            <button type="button" class="btn btn-outline-success">Edit</button>
+                          </a>
+                        </div>
+                        <div class="col-xs-6">
+                          <a href="{% url 'delete_article' id=article.id %}" id="delete">
+                            <button style="margin-left: 20px;" type="button" class="btn btn-danger">Delete</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                {% endif %}
+              </div>
             </div>
           </div>
 

@@ -2,6 +2,12 @@
 {% load bootstrap4 %}
 {% load staticfiles %}
 
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +32,6 @@
 <body>
   {% block content %}
   <div class="container">
-    <br><br><br><br>
     <div class="container-fluid">
       <br>
       <h1 class="text-center">Write a New Post</h1>
@@ -44,8 +49,11 @@
 
 
    {% block scripts %}
+   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %} {% endblock %}
+  {% bootstrap_javascript %}
+
+  {% endblock %}
 
 </body>
 

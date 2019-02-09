@@ -106,7 +106,7 @@ CKEDITOR_CONFIGS = {
                        ]},
             {'name': 'links', 'items': ['Link', 'Unlink']},
             {'name': 'insert',
-             'items': ['Image', 'Flash', 'HorizontalRule', 'SpecialChar']},
+             'items': ['Image', 'image', 'image2', 'Flash', 'HorizontalRule', 'SpecialChar']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'tools', 'items': ['Maximize']},

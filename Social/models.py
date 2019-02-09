@@ -106,7 +106,7 @@ class Article(models.Model):
 
     @classmethod
     def televisions_forum_articles(cls):
-        articles = cls.objects.filter(tags__name__startswith='Televisions').order_by('-id')
+        articles = cls.objects.filter(tags__name__startswith='Gaming_Televisions').order_by('-id')
         return articles
 
 
